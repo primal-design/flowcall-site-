@@ -5072,10 +5072,7 @@
   </script>
 
   <!-- Vapi Web SDK — browser call to Olivia -->
-  <script>
-    window.vapiSDKReady = false;
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.1.1/dist/vapi.umd.cjs" onload="window.vapiSDKReady=true;"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/dist/vapi.js"></script>
   <script>
     (function () {
       var vapi = null;
@@ -5097,8 +5094,9 @@
 
         // Check SDK loaded
         if (typeof Vapi === "undefined") {
+          console.error("Vapi SDK not loaded");
           status.style.display = "block";
-          status.textContent = "Loading... please try again in a moment.";
+          status.textContent = "Call failed to load — please dial +44 7455 744560 directly.";
           return;
         }
 
