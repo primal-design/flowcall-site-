@@ -5072,80 +5072,67 @@
   </script>
 
   <!-- Vapi Web SDK — browser call to Olivia -->
-  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/dist/vapi.js"></script>
-  <script>
-    (function () {
-      var vapi = null;
-      var callActive = false;
+  <script type="module">
+    import Vapi from "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm";
 
-      function isMobile() {
-        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    var vapi = null;
+    var callActive = false;
+
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    window.startOliviaCall = function () {
+      var btn = document.getElementById("olivia-call-btn");
+      var status = document.getElementById("olivia-call-status");
+
+      // On mobile — just dial directly
+      if (isMobile()) {
+        window.location.href = "tel:+447455744560";
+        return;
       }
 
-      window.startOliviaCall = function () {
-        var btn = document.getElementById("olivia-call-btn");
-        var status = document.getElementById("olivia-call-status");
+      // On desktop — use Vapi browser call
+      if (callActive) {
+        if (vapi) vapi.stop();
+        callActive = false;
+        btn.textContent = "📞 Call Olivia Live";
+        status.style.display = "none";
+        return;
+      }
 
-        // On mobile — just dial directly
-        if (isMobile()) {
-          window.location.href = "tel:+447455744560";
-          return;
-        }
+      btn.textContent = "⏳ Connecting...";
+      btn.disabled = true;
+      status.style.display = "block";
+      status.textContent = "Starting call — allow microphone access when prompted";
 
-        // Check SDK loaded
-        if (typeof Vapi === "undefined") {
-          console.error("Vapi SDK not loaded");
-          status.style.display = "block";
-          status.textContent = "Call failed to load — please dial +44 7455 744560 directly.";
-          return;
-        }
+      vapi = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
 
-        // On desktop — use Vapi browser call
-        if (callActive) {
-          // End the call if already active
-          if (vapi) vapi.stop();
-          callActive = false;
-          btn.textContent = "📞 Call Olivia Live";
-          status.style.display = "none";
-          return;
-        }
+      vapi.on("call-start", function () {
+        callActive = true;
+        btn.textContent = "🔴 End Call";
+        btn.disabled = false;
+        status.textContent = "You're connected to Olivia — speak now";
+      });
 
-        btn.textContent = "⏳ Connecting...";
-        btn.disabled = true;
+      vapi.on("call-end", function () {
+        callActive = false;
+        btn.textContent = "📞 Call Olivia Live";
+        btn.disabled = false;
+        status.style.display = "none";
+      });
+
+      vapi.on("error", function (e) {
+        callActive = false;
+        btn.textContent = "📞 Call Olivia Live";
+        btn.disabled = false;
         status.style.display = "block";
-        status.textContent = "Starting call — allow microphone access when prompted";
+        status.textContent = "Something went wrong — try calling +44 7455 744560";
+        console.error("Vapi error:", e);
+      });
 
-        vapi = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329"); // public key
-
-        vapi.on("call-start", function () {
-          callActive = true;
-          btn.textContent = "🔴 End Call";
-          btn.disabled = false;
-          status.textContent = "You're connected to Olivia — speak now";
-        });
-
-        vapi.on("call-end", function () {
-          callActive = false;
-          btn.textContent = "📞 Call Olivia Live";
-          btn.disabled = false;
-          status.style.display = "none";
-        });
-
-        vapi.on("error", function (e) {
-          callActive = false;
-          btn.textContent = "📞 Call Olivia Live";
-          btn.disabled = false;
-          status.textContent = "Something went wrong — try calling +44 7455 744560";
-        });
-
-        vapi.start("e21e2f5d-372a-4702-9e31-02fbf6b66817", {
-          voice: {
-            provider: "playht",
-            voiceId: "jennifer"
-          }
-        });
-      };
-    })();
+      vapi.start("e21e2f5d-372a-4702-9e31-02fbf6b66817");
+    };
   </script>
 </body>
 </html>
