@@ -5072,7 +5072,10 @@
   </script>
 
   <!-- Vapi Web SDK — browser call to Olivia -->
-  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.umd.js"></script>
+  <script>
+    window.vapiSDKReady = false;
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.1.1/dist/vapi.umd.cjs" onload="window.vapiSDKReady=true;"></script>
   <script>
     (function () {
       var vapi = null;
@@ -5089,6 +5092,13 @@
         // On mobile — just dial directly
         if (isMobile()) {
           window.location.href = "tel:+447455744560";
+          return;
+        }
+
+        // Check SDK loaded
+        if (typeof Vapi === "undefined") {
+          status.style.display = "block";
+          status.textContent = "Loading... please try again in a moment.";
           return;
         }
 
