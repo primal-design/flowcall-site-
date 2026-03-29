@@ -5107,7 +5107,7 @@
         status.style.display = "block";
         status.textContent = "Starting call — allow microphone access when prompted";
 
-        vapi = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
+        vapi = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329"); // public key
 
         vapi.on("call-start", function () {
           callActive = true;
@@ -5130,7 +5130,12 @@
           status.textContent = "Something went wrong — try calling +44 7455 744560";
         });
 
-        vapi.start("e21e2f5d-372a-4702-9e31-02fbf6b66817");
+        vapi.start("e21e2f5d-372a-4702-9e31-02fbf6b66817", {
+          voice: {
+            provider: "playht",
+            voiceId: "jennifer"
+          }
+        });
       };
     })();
   </script>
