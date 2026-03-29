@@ -3759,14 +3759,12 @@
       </div>
 
       <div class="modal-cta-row">
-        <a href="tel:+447455744560" class="modal-cta-call" onclick="closeAudioModal()">
-          📞 Call Olivia Live — +44 7455 744560
-        </a>
+        <button class="modal-cta-call" id="olivia-call-btn" onclick="startOliviaCall()">
+          📞 Call Olivia Live
+        </button>
         <a href="#pricing" class="modal-cta-pricing" onclick="closeAudioModal()">View pricing →</a>
       </div>
-      <div style="text-align:center;margin-top:8px;font-size:13px;color:#888;">
-        On desktop? Dial <strong>+44 7455 744560</strong> from your phone
-      </div>
+      <div id="olivia-call-status" style="text-align:center;margin-top:8px;font-size:13px;color:#888;display:none;"></div>
     </div>
   </div>
 
@@ -5070,6 +5068,70 @@
       document.addEventListener('visibilitychange', function () {
         if (!document.hidden) { cancelAnimationFrame(raf); tick(); }
       });
+    })();
+  </script>
+
+  <!-- Vapi Web SDK — browser call to Olivia -->
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.umd.js"></script>
+  <script>
+    (function () {
+      var vapi = null;
+      var callActive = false;
+
+      function isMobile() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
+
+      window.startOliviaCall = function () {
+        var btn = document.getElementById("olivia-call-btn");
+        var status = document.getElementById("olivia-call-status");
+
+        // On mobile — just dial directly
+        if (isMobile()) {
+          window.location.href = "tel:+447455744560";
+          return;
+        }
+
+        // On desktop — use Vapi browser call
+        if (callActive) {
+          // End the call if already active
+          if (vapi) vapi.stop();
+          callActive = false;
+          btn.textContent = "📞 Call Olivia Live";
+          status.style.display = "none";
+          return;
+        }
+
+        btn.textContent = "⏳ Connecting...";
+        btn.disabled = true;
+        status.style.display = "block";
+        status.textContent = "Starting call — allow microphone access when prompted";
+
+        vapi = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
+
+        vapi.on("call-start", function () {
+          callActive = true;
+          btn.textContent = "🔴 End Call";
+          btn.disabled = false;
+          status.textContent = "You're connected to Olivia — speak now";
+        });
+
+        vapi.on("call-end", function () {
+          callActive = false;
+          btn.textContent = "📞 Call Olivia Live";
+          btn.disabled = false;
+          status.style.display = "none";
+        });
+
+        vapi.on("error", function (e) {
+          callActive = false;
+          btn.textContent = "📞 Call Olivia Live";
+          btn.disabled = false;
+          status.textContent = "Something went wrong — try calling +44 7455 744560";
+        });
+
+        vapi.start("e21e2f5d-372a-4702-9e31-02fbf6b66817");
+      };
     })();
   </script>
 </body>
