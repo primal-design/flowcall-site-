@@ -1,0 +1,5651 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowCall | AI Receptionist for UK Service Businesses</title>
+  <meta name="description" content="FlowCall answers every business call 24/7, captures leads, and sends instant SMS alerts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --page: #faf8f3;
+      --page-2: #fffdf8;
+      --surface: #ffffff;
+      --surface-soft: rgba(255, 255, 255, 0.84);
+      --ink: #171b27;
+      --text-1: #0f172a;
+      --text-2: #475569;
+      --muted: #5c667a;
+      --subtle: #7d88a0;
+      --line: rgba(17, 24, 39, 0.08);
+      --line-strong: rgba(17, 24, 39, 0.12);
+      --blue: #3159f5;
+      --blue-d: #2546cf;
+      --green: #059669;
+      --font-display: "Inter", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --accent-peach: #ffb074;
+      --accent-apricot: #ff9864;
+      --accent-lilac: #d2b2ff;
+      --accent-violet: #9a63ff;
+      --accent-blue: #6c88ff;
+      --accent-soft: #6366f1;
+
+      /* Lumos-style spacing scale */
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-7: 2rem;
+      --space-8: 2.5rem;
+      --space-9: 3rem;
+
+      --space-2xs: 0.5rem;
+      --space-xs: 0.75rem;
+      --space-s: 1rem;
+      --space-m: 1.5rem;
+      --space-l: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+      --space-4xl: 7.5rem;
+
+      /* Typography scale */
+      --text-display: 4rem;
+      --text-h1: 3rem;
+      --text-h2: 2.25rem;
+      --text-h3: 1.375rem;
+      --text-body: 1.125rem;
+      --text-small: 0.875rem;
+
+      /* Unitless line heights */
+      --lh-tight: 1.1;
+      --lh-base: 1.5;
+      --lh-loose: 1.7;
+
+      /* Width system */
+      --max-width-container: 75rem;
+      --max-width-text: 35rem;
+      --max-width-narrow: 30rem;
+      --max-width-body: 32.5rem;
+
+      /* Radius, borders, shadows */
+      --radius-sm: 0.75rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.75rem;
+      --radius-xl: 2rem;
+      --border-subtle: rgba(17, 24, 39, 0.08);
+      --border-strong: rgba(17, 24, 39, 0.12);
+      --shadow-soft: 0 0.875rem 2.125rem rgba(17, 24, 39, 0.045);
+      --shadow-card: 0 1.125rem 3.125rem rgba(17, 24, 39, 0.06);
+
+      /* Legacy aliases for current CSS */
+      --shadow-md: var(--shadow-soft);
+      --shadow-lg: var(--shadow-card);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(960px 520px at 8% 4%, rgba(97, 131, 255, 0.08), transparent 62%),
+        radial-gradient(860px 540px at 96% 6%, rgba(255, 182, 112, 0.10), transparent 64%),
+        var(--page);
+      line-height: var(--lh-base);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .container {
+      width: min(var(--max-width-container), calc(100vw - 3rem));
+      margin: 0 auto;
+    }
+
+    section {
+      padding: var(--space-3xl) 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-small);
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #74809a;
+    }
+
+    .eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #76d8c3, #54b8b4);
+      animation: none;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--ink);
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      font-size: var(--text-h2);
+      line-height: var(--lh-tight);
+      font-weight: 800;
+    }
+
+    .section-copy p,
+    .section-head p,
+    .cta-copy p,
+    .how-board-copy p,
+    .card-copy p,
+    .how-card p,
+    .how-board-demo p {
+      color: var(--muted);
+      font-size: var(--text-body);
+      line-height: var(--lh-loose);
+      max-width: 62ch;
+    }
+
+    .surface-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .surface-card.soft {
+      background: rgba(255, 255, 255, 0.68);
+      border-color: rgba(17, 24, 39, 0.06);
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      padding: 0.86rem 1.3rem;
+      font-size: 0.98rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #5f74f6, #2f56f0);
+      border-color: #4764f3;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+    }
+
+    .btn.primary:hover {
+      background: linear-gradient(135deg, #4764f3, #2649d6);
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.78);
+      border-color: rgba(95, 116, 246, 0.22);
+      color: var(--ink);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(95, 116, 246, 0.08);
+      transform: translateY(-1px);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+    }
+
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+      transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #nav.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 28px rgba(10, 15, 35, 0.08);
+    }
+
+    .ni {
+      height: 60px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 3vw, 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+
+    .nl {
+      display: flex;
+      list-style: none;
+      gap: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nl a {
+      display: block;
+      padding: 6px 16px;
+      font-size: .875rem;
+      font-weight: 400;
+      color: var(--muted);
+      transition: color .15s;
+    }
+
+    .nl a:hover,
+    .nl a.is-active { color: var(--ink); }
+    .nl a.is-active { font-weight: 600; }
+
+    .na {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nb1 {
+      display: inline-flex;
+      align-items: center;
+      font-size: .875rem;
+      font-weight: 500;
+      padding: 6px 4px;
+      background: transparent;
+      color: var(--muted);
+      border: 0;
+      transition: color .15s ease;
+    }
+
+    .nb1:hover { color: var(--ink); }
+    .nb1.is-active {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .nb-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 13px 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #5f74f6, #2f56f0);
+      color: #fff;
+      border: 1px solid #4764f3;
+      transition: all .18s ease;
+      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+    }
+
+    .nb-cta:hover {
+      background: linear-gradient(135deg, #4764f3, #2649d6);
+      border-color: #2649d6;
+      transform: translateY(-1px);
+    }
+
+    .nb-cta.is-active {
+      background: linear-gradient(135deg, #4764f3, #2649d6);
+      border-color: #2649d6;
+    }
+
+    .hbg {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .08);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 8px 9px;
+      width: 38px;
+      height: 38px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hbg span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: transform .25s, opacity .2s;
+    }
+
+    .hbg.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hbg.open span:nth-child(2) { opacity: 0; }
+    .hbg.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mob {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      z-index: 800;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0;
+      padding: 16px 28px;
+    }
+
+    .mob.on { display: flex; }
+
+    .mob a {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--ink);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+      width: 100%;
+      display: block;
+    }
+
+    .mob-ctas {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      width: 100%;
+    }
+
+    .hero {
+      padding-top: 150px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(900px 460px at 12% 4%, rgba(49, 89, 245, 0.1), transparent 65%),
+        radial-gradient(720px 420px at 92% 14%, rgba(232, 196, 160, 0.16), transparent 70%),
+        #fff;
+    }
+
+    .hero-ribbon-fade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(44rem 24rem at 18% 34%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.82) 36%, rgba(255, 255, 255, 0.18) 64%, transparent 82%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 34%);
+    }
+
+    .hero-canvas-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      display: flex;
+      justify-content: center;
+      opacity: 0.56;
+      transform: translateY(12%);
+      filter: blur(4px) saturate(0.82) brightness(1.2);
+    }
+
+    #hero-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @media (min-width: 981px) {
+      #hero-canvas {
+        max-width: 1600px;
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-m);
+      max-width: 32.5rem;
+      padding-top: 0;
+      align-self: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      color: rgba(148, 163, 184, 0.9);
+      margin: 0;
+    }
+
+    .hero-kicker-dot {
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      flex: 0 0 auto;
+      opacity: 0.95;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 4rem;
+      width: min(44rem, 96%);
+      height: 24rem;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.07) 34%, rgba(248, 248, 246, 0.04) 58%, transparent 78%);
+      filter: blur(5rem);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      margin-bottom: 18px;
+      max-width: 14ch;
+    }
+
+    .hero h1 {
+      display: block;
+      line-height: 1;
+      margin: 0;
+      max-width: clamp(34rem, 42vw, 42rem);
+    }
+
+    .hero-title-main {
+      display: block;
+      font-family: var(--font-display);
+      text-wrap: pretty;
+      font-size: clamp(3.4rem, 5.4vw, var(--text-display));
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      font-weight: 800;
+      color: var(--text-1);
+      max-width: none;
+    }
+
+    .hero p {
+      color: var(--text-2);
+      max-width: var(--max-width-body);
+      margin: 0;
+      font-size: var(--text-body);
+      line-height: 1.6;
+      font-weight: 400;
+      text-wrap: pretty;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .hero p strong {
+      font-weight: 700;
+      color: #202637;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-s);
+      margin: 0;
+      margin-top: 0.25rem;
+    }
+
+    .hero-cta,
+    .hero-cta-sec {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 13px 28px;
+      transition: all .18s ease;
+      border: 1px solid transparent;
+    }
+
+    .hero-cta {
+      background: linear-gradient(135deg, #5f74f6, #2f56f0);
+      color: #fff;
+      border-color: #4764f3;
+      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+    }
+
+    .hero-cta:hover {
+      background: linear-gradient(135deg, #4764f3, #2649d6);
+      transform: translateY(-1px);
+    }
+
+    .hero-cta-sec {
+      background: rgba(255, 255, 255, 0.58);
+      border-color: #5f74f6;
+      color: #202637;
+    }
+
+    .hero-cta-sec:hover {
+      background: rgba(95, 116, 246, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .micro-note {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      margin: 0;
+      margin-top: 0.75rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .micro-note-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #6366f1;
+      text-decoration: none;
+      transition: color .18s ease, transform .18s ease, opacity .18s ease;
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .micro-note-main:hover {
+      color: #4f46e5;
+      transform: translateX(1px);
+      opacity: 1;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.12em;
+    }
+
+    .micro-note-main:active {
+      background: rgba(99, 102, 241, 0.08);
+      border-radius: 0.55rem;
+      transform: none;
+      text-decoration: none;
+    }
+
+    .micro-note-play {
+      font-size: 0.96rem;
+      line-height: 1;
+      color: #6366f1;
+      transform: translateY(-0.02rem);
+    }
+
+    .micro-note-label {
+      font-size: 0.78rem;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 500;
+      color: #94a3b8;
+    }
+
+    .fc-hero,
+    .fc-hero *,
+    .fc-hero *::before,
+    .fc-hero *::after {
+      box-sizing: border-box;
+    }
+
+    .fc-hero {
+      font-family: "DM Sans", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      max-width: 32.5rem;
+      padding: 0;
+    }
+
+    .fc-hero .fc-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #5f74f6;
+      letter-spacing: 0.01em;
+      margin: 0 0 1rem 0;
+      max-width: none;
+      line-height: 1.2;
+      text-shadow: none;
+    }
+
+    .fc-eyebrow-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #5f74f6;
+      flex-shrink: 0;
+    }
+
+    .fc-hero .fc-h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(40px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      color: #0d1117;
+      margin: 0 0 1.25rem 0;
+      max-width: none;
+    }
+
+    .fc-hero .fc-sub {
+      font-family: "DM Sans", sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #6b7280;
+      margin: 0 0 2rem 0;
+      max-width: 31rem;
+      text-shadow: none;
+    }
+
+    .fc-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-top: 0;
+    }
+
+    .fc-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      justify-content: center;
+      background: linear-gradient(135deg, #5f74f6, #2f56f0);
+      color: #fff;
+      font-family: "DM Sans", sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 13px 28px;
+      border-radius: 8px;
+      border: 1px solid #4764f3;
+      cursor: pointer;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.18s ease;
+      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+    }
+
+    .fc-cta-primary:hover {
+      background: linear-gradient(135deg, #4764f3, #2649d6);
+      border-color: #2649d6;
+      transform: translateY(-1px);
+    }
+
+    .fc-cta-primary:active {
+      transform: scale(0.97);
+    }
+
+    .fc-cta-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .fc-cta-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: #556178;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .fc-cta-link:hover {
+      color: #0d1117;
+      border-bottom-color: #d1d5db;
+    }
+
+    .fc-cta-meta {
+      font-size: 13px;
+      color: #7f8b9c;
+    }
+
+    .audio-card {
+      background: #fff;
+      border: 1px solid #e2e5ea;
+      border-radius: 14px;
+      padding: 10px 12px;
+      width: 100%;
+      max-width: 440px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+
+    .audio-card:hover {
+      border-color: #c7d2f5;
+      box-shadow: 0 6px 20px rgba(59,91,219,0.10);
+    }
+
+    .audio-card:focus-visible {
+      outline: none;
+      border-color: #5f74f6;
+      box-shadow: 0 0 0 3px rgba(95, 116, 246, 0.16), 0 6px 20px rgba(59,91,219,0.10);
+    }
+
+    .audio-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 9px;
+    }
+
+    .play-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #3b5bdb;
+      border: none;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 3px 10px rgba(59,91,219,0.30);
+      transition: background 0.15s, transform 0.12s;
+    }
+
+    .play-btn:hover {
+      background: #3451c7;
+    }
+
+    .play-btn:active {
+      transform: scale(0.92);
+    }
+
+    .audio-mid {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .audio-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0d1117;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .audio-badge {
+      font-size: 11px;
+      color: #9ca3af;
+      line-height: 1;
+    }
+
+    .audio-right {
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .audio-time {
+      font-size: 14px;
+      font-weight: 500;
+      color: #0d1117;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .audio-duration {
+      font-size: 11px;
+      color: #b0b7c3;
+      margin-top: 4px;
+      line-height: 1;
+    }
+
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 1.5px;
+      height: 22px;
+      padding: 0 2px;
+    }
+
+    .wf-bar {
+      flex-shrink: 0;
+      width: 2.5px;
+      border-radius: 999px;
+      background: #b0b8c8;
+      transition: background 0.06s;
+    }
+
+    .wf-bar.played {
+      background: #3b5bdb;
+    }
+
+    .wf-bar.current {
+      background: #6b86e8;
+    }
+
+    .hero .wf-bar {
+      border-radius: 2px;
+      background: #c7d2f5;
+    }
+
+    .hero .wf-bar.played {
+      background: #8fa2ff;
+    }
+
+    .hero .wf-bar.current {
+      background: #738cff;
+    }
+
+    .hero .audio-caption {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.4;
+      max-width: none;
+      text-shadow: none;
+    }
+
+    .hero .audio-caption::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #d1d5db;
+      flex-shrink: 0;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 540px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+      overflow: hidden;
+      transform: translateY(12px);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-backdrop.open .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 20px 22px 16px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0d1117;
+    }
+
+    .modal-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 3px;
+    }
+
+    .modal-close-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #f3f4f6;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #6b7280;
+      transition: background 0.15s;
+    }
+
+    .modal-close-btn:hover {
+      background: #e5e7eb;
+    }
+
+    .modal-player-area {
+      padding: 0 22px 16px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .modal-wf-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .modal-big-play {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #3b5bdb;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 4px 14px rgba(59,91,219,0.30);
+    }
+
+    .modal-big-play:hover {
+      background: #3451c7;
+    }
+
+    .modal-big-play:active {
+      transform: scale(0.94);
+    }
+
+    .modal-wf {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 2.5px;
+      height: 36px;
+      cursor: pointer;
+    }
+
+    .modal-wf-bar {
+      flex: 1;
+      border-radius: 2px;
+      background: #e5e7eb;
+      min-width: 2px;
+      max-width: 5px;
+      transition: background 0.06s;
+    }
+
+    .modal-wf-bar.done {
+      background: #3b5bdb;
+    }
+
+    .modal-wf-bar.now {
+      background: #3b5bdb;
+      opacity: 0.55;
+    }
+
+    .modal-time-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #9ca3af;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .modal-transcript {
+      padding: 16px 22px;
+      border-bottom: 1px solid #f3f4f6;
+      max-height: 210px;
+      overflow-y: auto;
+    }
+
+    .modal-transcript-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .tr-line {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .tr-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .tr-line.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tr-who {
+      font-size: 11px;
+      font-weight: 600;
+      min-width: 60px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .tr-who.caller {
+      color: #3b5bdb;
+    }
+
+    .tr-who.ai {
+      color: #059669;
+    }
+
+    .tr-text {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.55;
+    }
+
+    .modal-cta-row {
+      display: flex;
+      gap: 10px;
+      padding: 16px 22px;
+    }
+
+    .modal-cta-call {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #3b5bdb;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .modal-cta-call:hover {
+      background: #3451c7;
+    }
+
+    .modal-cta-pricing {
+      background: #f9fafb;
+      color: #374151;
+      font-size: 14px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .modal-cta-pricing:hover {
+      background: #f3f4f6;
+    }
+
+    .fc-hero-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      padding-top: 1.25rem;
+    }
+
+    .call-card,
+    .fc-call-card {
+      background: #ffffff;
+      border: 1px solid #e9eaec;
+      border-radius: 20px;
+      padding: 24px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .card-topbar,
+    .fc-card-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .card-topbar-label,
+    .fc-card-topbar-label {
+      font-size: 13px;
+      color: #6b7280;
+      font-weight: 400;
+    }
+
+    .live-badge,
+    .fc-live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #15803d;
+    }
+
+    .live-badge.ringing,
+    .fc-live-badge.ringing {
+      background: #fff7ed;
+      border-color: #fed7aa;
+      color: #c2410c;
+    }
+
+    .live-badge.ringing .live-dot,
+    .fc-live-badge.ringing .fc-live-dot {
+      background: #f97316;
+    }
+
+    .live-dot,
+    .fc-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    .voice-wf,
+    .fc-voice-wf {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      height: 12px;
+      width: 80px;
+      margin-bottom: 20px;
+    }
+
+    .vwf-bar,
+    .fc-vwf-bar {
+      width: 2px;
+      flex-shrink: 0;
+      border-radius: 2px;
+      background: #c7d2f5;
+      animation: voice-wave 1.2s ease-in-out infinite;
+    }
+
+    .chat-area,
+    .fc-chat-area {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .bubble-caller,
+    .fc-bubble-caller {
+      align-self: flex-end;
+      background: #f3f4f6;
+      border-radius: 14px 14px 4px 14px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #111827;
+      max-width: 85%;
+    }
+
+    .bubble-ai,
+    .fc-bubble-ai {
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bubble-ai-text,
+    .fc-bubble-ai-text {
+      background: #eef2ff;
+      border-radius: 14px 14px 14px 4px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .typing-dots,
+    .fc-typing-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      height: 14px;
+    }
+
+    .typing-dots span,
+    .fc-typing-dots span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #6b7280;
+      display: inline-block;
+      animation: fc-tdot 1.2s ease-in-out infinite;
+    }
+
+    .typing-dots span:nth-child(2),
+    .fc-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3),
+    .fc-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    .bubble-ai-dot,
+    .fc-bubble-ai-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+    }
+
+    .tick-row,
+    .fc-tick-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tick-item,
+    .fc-tick-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      color: #6b7280;
+    }
+
+    .tick-icon,
+    .fc-tick-icon {
+      color: #3b5bdb;
+      font-size: 11px;
+    }
+
+    .card-divider,
+    .fc-card-divider {
+      height: 1px;
+      background: #f3f4f6;
+      margin-bottom: 16px;
+    }
+
+    .booking-row,
+    .fc-booking-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .booking-cell,
+    .fc-booking-cell {
+      flex: 1;
+    }
+
+    .booking-label,
+    .fc-booking-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      color: #9ca3af;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .booking-value-lg,
+    .fc-booking-value-lg {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0d1117;
+      letter-spacing: -0.02em;
+    }
+
+    .booking-meta-row,
+    .fc-booking-meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .booking-meta-cell,
+    .fc-booking-meta-cell {
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .booking-meta-label,
+    .fc-booking-meta-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      color: #9ca3af;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .booking-meta-value,
+    .fc-booking-meta-value {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      border-bottom-color: rgba(0, 0, 0, 0.07);
+      border-right-color: rgba(0, 0, 0, 0.05);
+      border-radius: 22px;
+      box-shadow: 0 12px 30px rgba(8, 18, 38, 0.08);
+      overflow: hidden;
+    }
+
+    .hero-demo-wrap {
+      width: 100%;
+      max-width: 23.75rem;
+      margin-left: auto;
+      margin-right: auto;
+      transform: none;
+      opacity: 1;
+    }
+
+    .audio-spec-section {
+      position: relative;
+      padding: 6rem 0;
+      background:
+        radial-gradient(520px 220px at 0% 0%, rgba(255, 176, 116, 0.08), transparent 70%),
+        radial-gradient(480px 220px at 100% 0%, rgba(95, 116, 246, 0.06), transparent 72%),
+        #fafaf8;
+    }
+
+    .audio-spec-shell {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .audio-spec-head {
+      max-width: 44rem;
+    }
+
+    .audio-spec-live {
+      display: grid;
+      gap: 0.75rem;
+      justify-items: start;
+    }
+
+    .audio-spec-subhead {
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+      font-size: 0.82rem;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #6b7280;
+    }
+
+    .audio-spec-block {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .audio-spec-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(226, 229, 234, 0.9);
+      border-radius: 1.2rem;
+      padding: 1.15rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .audio-spec-anatomy {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .audio-spec-anatomy-row {
+      display: grid;
+      grid-template-columns: 1rem 1fr;
+      gap: 0.9rem;
+      align-items: start;
+      font-size: 0.97rem;
+      line-height: 1.55;
+      color: #374151;
+    }
+
+    .audio-spec-anatomy-key {
+      font-weight: 700;
+      color: #0d1117;
+    }
+
+    .audio-spec-wave-states {
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .audio-spec-wave-row {
+      display: grid;
+      grid-template-columns: 6rem 1fr 7rem;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .audio-spec-wave-label {
+      font-size: 0.97rem;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .audio-spec-wave-meta {
+      font-size: 0.92rem;
+      color: #64748b;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .audio-spec-wave {
+      display: flex;
+      align-items: center;
+      gap: 1.5px;
+      min-height: 22px;
+      overflow: hidden;
+    }
+
+    .audio-spec-wave-bar {
+      width: 2.5px;
+      border-radius: 1px;
+      background: #b0b8c8;
+      flex: 0 0 auto;
+    }
+
+    .audio-spec-wave-bar.is-played {
+      background: #3b5bdb;
+    }
+
+    .audio-spec-wave-bar.is-current {
+      background: #6b86e8;
+    }
+
+    .audio-spec-shape-card {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .audio-spec-shape-wave {
+      display: flex;
+      align-items: center;
+      gap: 1.5px;
+      min-height: 22px;
+      padding: 0 2px;
+    }
+
+    .audio-spec-shape-bar {
+      width: 2.5px;
+      border-radius: 1px;
+      background: #cbd5e1;
+      flex: 0 0 auto;
+    }
+
+    .audio-spec-shape-bar.is-focus {
+      background: #3b5bdb;
+    }
+
+    .audio-spec-shape-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .audio-spec-shape-step {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .audio-spec-shape-step strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      color: #0d1117;
+      font-size: 0.95rem;
+    }
+
+    .audio-spec-token-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .audio-spec-token-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(226, 229, 234, 0.9);
+      border-radius: 1rem;
+      padding: 1rem 1rem 0.95rem;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .audio-spec-token-card strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #0d1117;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .audio-spec-token-card span {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .audio-spec-color-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .audio-spec-color-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(226, 229, 234, 0.9);
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .audio-spec-swatch {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 0.45rem;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      margin-bottom: 0.8rem;
+    }
+
+    .audio-spec-color-title {
+      display: block;
+      font-size: 0.93rem;
+      line-height: 1.3;
+      color: #0d1117;
+      font-weight: 600;
+      margin-bottom: 0.18rem;
+    }
+
+    .audio-spec-color-hex {
+      display: block;
+      font-size: 0.88rem;
+      color: #475569;
+      margin-bottom: 0.18rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .audio-spec-color-use {
+      display: block;
+      font-size: 0.82rem;
+      color: #7f8b9c;
+      line-height: 1.35;
+    }
+
+    .audio-spec-interaction-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .audio-spec-interaction-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(226, 229, 234, 0.9);
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .audio-spec-interaction-title {
+      display: block;
+      font-size: 0.93rem;
+      line-height: 1.3;
+      font-weight: 600;
+      color: #0d1117;
+      margin-bottom: 0.5rem;
+    }
+
+    .audio-spec-interaction-line {
+      display: block;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: #556178;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    @keyframes fc-tdot {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .ticker-belt {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border-top: 1px solid rgba(17, 24, 39, 0.08);
+      border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+      background: rgba(255, 255, 255, 0.52);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .ticker-shell {
+      position: relative;
+      z-index: 1;
+      margin-top: 8px;
+    }
+
+    .ticker-label {
+      width: min(1180px, calc(100vw - 48px));
+      margin: 0 auto 10px;
+      color: #6a758b;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .ticker-belt::before,
+    .ticker-belt::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 84px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ticker-belt::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(250, 248, 243, 0.96), transparent 100%);
+    }
+
+    .ticker-belt::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(250, 248, 243, 0.96), transparent 100%);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: tickerScroll 32s linear infinite;
+      will-change: transform;
+    }
+
+    .ticker-track:hover { animation-play-state: paused; }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 34px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #677286;
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color .18s ease, transform .18s ease;
+      cursor: pointer;
+    }
+
+    .ticker-item:hover {
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    .ticker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #c8cfdd;
+      flex: 0 0 auto;
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(28px); }
+      to { transform: translateX(calc(-50% + 28px)); }
+    }
+
+    .loss-section {
+      padding: 6rem 0;
+      background:
+        radial-gradient(860px 380px at 8% 8%, rgba(255, 182, 112, 0.08), transparent 64%),
+        radial-gradient(760px 440px at 92% 90%, rgba(108, 136, 255, 0.08), transparent 64%),
+        linear-gradient(180deg, #fdfcf8 0%, #f8fbff 100%);
+      border-bottom: 1px solid rgba(17, 24, 39, 0.05);
+    }
+
+    .loss-shell {
+      display: grid;
+      gap: 2.5rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .loss-copy {
+      max-width: 46rem;
+    }
+
+    .loss-copy h2 {
+      max-width: 22ch;
+      font-size: clamp(2.05rem, 3vw, 3.05rem);
+      line-height: 1.02;
+      white-space: normal;
+      text-wrap: balance;
+      margin-bottom: 0.75rem;
+    }
+
+    .loss-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.92fr);
+      gap: 2.5rem;
+      padding: 42px;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(520px 180px at 0% 0%, rgba(255, 176, 116, 0.10), transparent 68%),
+        radial-gradient(520px 180px at 100% 100%, rgba(108, 136, 255, 0.08), transparent 70%),
+        rgba(255, 255, 255, 0.84);
+    }
+
+    .loss-board::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0));
+    }
+
+    .loss-board-copy {
+      position: relative;
+      z-index: 1;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-self: start;
+      max-width: 31rem;
+    }
+
+    .loss-proof {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+      align-self: start;
+      justify-self: end;
+      width: min(100%, 486px);
+    }
+
+    .calc-kicker {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      padding: 0;
+      border-radius: 999px;
+      background: transparent;
+      border: 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7b8798;
+    }
+
+    .loss-board-copy h3 {
+      max-width: 11ch;
+      margin-bottom: 0.75rem;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: var(--text-1);
+    }
+
+    .loss-board-copy p {
+      max-width: 42ch;
+      margin-bottom: 1.5rem;
+      color: #5f6b7a;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .loss-checklist {
+      display: grid;
+      gap: 0.75rem;
+      max-width: 30rem;
+    }
+
+    .loss-point {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #3f4b63;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .loss-point-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6b7cff;
+      opacity: 0.6;
+      border: 0;
+      flex: 0 0 auto;
+    }
+
+    .calc-card {
+      position: relative;
+      z-index: 1;
+      padding: 1.75rem;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(249,249,249,0.98));
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+      align-self: start;
+      justify-self: stretch;
+      width: 100%;
+      transform: scale(1.02);
+      transform-origin: top right;
+    }
+
+    .loss-board.is-visible .calc-field:nth-child(1) .calc-input {
+      animation: calcInputIntro 0.44s ease;
+    }
+
+    .loss-board.is-visible .calc-field:nth-child(2) .calc-input {
+      animation: calcInputIntro 0.44s ease 0.08s;
+    }
+
+    .loss-board.is-visible .calc-result {
+      animation: calcResultIntro 0.52s ease;
+    }
+
+    .calc-card::before {
+      content: "";
+      position: absolute;
+      inset: -20% 10% auto;
+      height: 160px;
+      background: radial-gradient(circle, rgba(17, 24, 39, 0.06), transparent 68%);
+      filter: blur(28px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .calc-hint {
+      margin-bottom: 0.9rem;
+      color: #7b86a0;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .calc-guidance {
+      display: grid;
+      gap: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .calc-guidance strong {
+      color: #1f2838;
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .calc-guidance span {
+      color: #7b86a0;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .calc-range {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+      color: #7b86a0;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .calc-range strong {
+      color: #5f6b7a;
+      font-weight: 600;
+    }
+
+    .calc-fields {
+      display: grid;
+      gap: 1.25rem;
+      margin-bottom: 18px;
+    }
+
+    .calc-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .calc-field-note {
+      color: #8a94a6;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .calc-field label {
+      display: inline-block;
+      margin-bottom: 2px;
+      color: #6f7b95;
+    }
+
+    .calc-field label {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #7b86a0;
+    }
+
+    .calc-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      color: #1d2331;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .calc-input.is-active {
+      background: #f9faff;
+      border-color: rgba(99, 102, 241, 0.18);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.05);
+    }
+
+    .calc-input:hover {
+      background: #fff;
+      border-color: rgba(17, 24, 39, 0.1);
+    }
+
+    .calc-input:focus-within {
+      border-color: rgba(17, 24, 39, 0.14);
+      box-shadow: 0 0 0 4px rgba(17, 24, 39, 0.03);
+      transform: translateY(-1px);
+    }
+
+    .calc-input input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: #1d2331;
+      font: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      outline: none;
+      min-width: 0;
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    .calc-input input::-webkit-outer-spin-button,
+    .calc-input input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .calc-prefix {
+      color: #4f5667;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .calc-stepper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+
+    .calc-step {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      background: rgba(255, 255, 255, 0.92);
+      color: #576075;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .calc-step:hover {
+      transform: translateY(-1px);
+      border-color: rgba(17, 24, 39, 0.16);
+      background: rgba(17, 24, 39, 0.08);
+      color: #111827;
+    }
+
+    .calc-step:active {
+      transform: scale(0.97);
+      background: rgba(17, 24, 39, 0.12);
+    }
+
+    .calc-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .calc-preset {
+      min-width: 44px;
+      min-height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+      color: #5f6b7a;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0 0.9rem;
+      cursor: pointer;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    .calc-preset:hover {
+      border-color: rgba(99, 102, 241, 0.18);
+      background: rgba(99, 102, 241, 0.06);
+      color: #4653d6;
+      transform: translateY(-1px);
+    }
+
+    .calc-preset:active {
+      transform: scale(0.97);
+    }
+
+    .calc-preset.is-selected {
+      border-color: rgba(99, 102, 241, 0.22);
+      background: rgba(99, 102, 241, 0.09);
+      color: #4653d6;
+    }
+
+    .calc-result {
+      padding: 1.75rem;
+      border-radius: 24px;
+      background:
+        radial-gradient(220px 120px at 85% 16%, rgba(99, 102, 241, 0.08), transparent 70%),
+        linear-gradient(145deg, rgba(17, 24, 39, 0.035), rgba(17, 24, 39, 0.07));
+      border: 1px solid rgba(17, 24, 39, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .calc-result-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7b86a0;
+    }
+
+    .calc-result-value {
+      display: block;
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: #171b27;
+    }
+
+    .calc-impact-meta {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+      margin-bottom: 10px;
+    }
+
+    .calc-daily {
+      color: #1f2838;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .calc-based {
+      color: #7b86a0;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .calc-result-copy {
+      margin-top: 0;
+      color: #7b8798;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .calc-result.is-updating {
+      transform: scale(1.03);
+      box-shadow: 0 20px 40px rgba(17, 24, 39, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    @keyframes calcInputIntro {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes calcResultIntro {
+      0% { opacity: 0.82; transform: translateY(4px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .loss-action {
+      display: grid;
+      gap: 0.75rem;
+      align-items: start;
+      justify-items: start;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+
+    .loss-action .btn {
+      min-height: 3rem;
+      padding: 0 1.5rem;
+      border-radius: 0.6rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .loss-action-copy {
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .loss-action-copy strong {
+      color: #1f2838;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .loss-action-copy p {
+      color: #5f697d;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      max-width: 34ch;
+    }
+
+    .loss-action-meta {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .loss-action-meta strong {
+      color: #1f2838;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .loss-action-meta span {
+      color: #7b86a0;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .section-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 96px 32px;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a7f5a;
+      margin-bottom: 14px;
+    }
+
+    .section-eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1a7f5a;
+      flex-shrink: 0;
+    }
+
+    .section-h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #0d1117;
+      margin-bottom: 12px;
+      max-width: 18ch;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: #6b7280;
+      line-height: 1.65;
+      max-width: 42ch;
+    }
+
+    .cost-section {
+      background: #fff;
+      border-top: 1px solid #f3f4f6;
+    }
+
+    .cost-section .section-wrap {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .cost-section .calc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 56px;
+      align-items: center;
+      margin-top: 52px;
+    }
+
+    .cost-section .calc-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cost-section .calc-stat-block {
+      margin-bottom: 28px;
+    }
+
+    .cost-section .calc-stat-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .cost-section .calc-stat-num {
+      font-family: "DM Serif Display", serif;
+      font-size: 52px;
+      font-weight: 400;
+      color: #0d1117;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .cost-section .calc-stat-label {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+      max-width: 24ch;
+    }
+
+    .cost-section .calc-divider {
+      width: 32px;
+      height: 1px;
+      background: #e5e7eb;
+      margin-bottom: 24px;
+    }
+
+    .cost-section .calc-left-heading {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #0d1117;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .cost-section .calc-left-sub {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      max-width: 30ch;
+    }
+
+    .cost-section .calc-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .cost-section .calc-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .cost-section .calc-bullet-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #3b5bdb;
+      flex-shrink: 0;
+    }
+
+    .cost-section .calc-widget {
+      background: #fafafa;
+      border: 1px solid #e9eaec;
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .cost-section .calc-widget-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 24px;
+    }
+
+    .cost-section .calc-field {
+      margin-bottom: 20px;
+    }
+
+    .cost-section .calc-field-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cost-section .calc-field-hint {
+      font-weight: 400;
+      color: #9ca3af;
+      font-size: 11px;
+    }
+
+    .cost-section .calc-input-wrap {
+      display: flex;
+      align-items: center;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cost-section .calc-input-wrap:focus-within {
+      border-color: #3b5bdb;
+      box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.08);
+    }
+
+    .cost-section .calc-input-wrap.err {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.08);
+    }
+
+    .cost-section .calc-prefix {
+      padding: 0 14px;
+      font-size: 15px;
+      color: #9ca3af;
+      background: #f9fafb;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+
+    .cost-section .calc-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 0 14px;
+      font-size: 16px;
+      font-weight: 500;
+      height: 48px;
+      background: transparent;
+      color: #0d1117;
+      min-width: 0;
+      font-family: "DM Sans", sans-serif;
+      -moz-appearance: textfield;
+    }
+
+    .cost-section .calc-input::-webkit-outer-spin-button,
+    .cost-section .calc-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .cost-section .calc-steppers {
+      display: flex;
+      border-left: 1px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+
+    .cost-section .calc-step {
+      width: 44px;
+      height: 48px;
+      border: none;
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.1s ease, color 0.1s ease, transform 0.1s ease;
+      font-family: inherit;
+    }
+
+    .cost-section .calc-step:hover {
+      background: #f3f4f6;
+      color: #0d1117;
+    }
+
+    .cost-section .calc-step:active {
+      transform: scale(0.97);
+    }
+
+    .cost-section .calc-step:first-child {
+      border-right: 1px solid #e5e7eb;
+    }
+
+    .cost-section .calc-presets {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cost-section .calc-preset {
+      font-size: 12px;
+      padding: 5px 13px;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      background: #fff;
+      color: #6b7280;
+      cursor: pointer;
+      font-family: "DM Sans", sans-serif;
+      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+
+    .cost-section .calc-preset:hover {
+      border-color: #c7d2f5;
+      color: #3b5bdb;
+    }
+
+    .cost-section .calc-preset.active {
+      background: #eef2ff;
+      border-color: #c7d2f5;
+      color: #3b5bdb;
+      font-weight: 500;
+    }
+
+    .cost-section .calc-err-msg {
+      font-size: 11px;
+      color: #ef4444;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .cost-section .calc-err-msg.show {
+      display: block;
+    }
+
+    .cost-section .calc-result {
+      background: #fff;
+      border: 1px solid #e9eaec;
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-top: 8px;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, opacity 0.24s ease;
+    }
+
+    .cost-section .calc-result.is-updating {
+      transform: scale(1.02);
+      box-shadow: 0 10px 24px rgba(59, 91, 219, 0.1);
+    }
+
+    .cost-section .calc-result-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .cost-section .calc-result-num {
+      font-family: "DM Serif Display", serif;
+      font-size: 42px;
+      font-weight: 400;
+      color: #0d1117;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .cost-section .calc-result-sub {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 18px;
+    }
+
+    .cost-section .calc-result-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #3b5bdb;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 22px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: "DM Sans", sans-serif;
+      box-shadow: 0 2px 8px rgba(59, 91, 219, 0.25);
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .cost-section .calc-result-cta:hover {
+      background: #3451c7;
+    }
+
+    .cost-section .calc-result-cta:active {
+      transform: scale(0.97);
+    }
+
+    .cost-section .calc-below-cta {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 10px;
+      max-width: 36ch;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 960px) {
+      .cost-section .calc-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .cost-section .calc-widget {
+        padding: 28px 22px;
+      }
+    }
+
+    .how-section {
+      background:
+        radial-gradient(880px 360px at 6% 0%, rgba(108, 136, 255, 0.06), transparent 58%),
+        radial-gradient(860px 420px at 100% 100%, rgba(255, 182, 112, 0.08), transparent 60%),
+        #fff;
+      border-top: 1px solid rgba(17, 24, 39, 0.05);
+      border-bottom: 1px solid rgba(17, 24, 39, 0.05);
+    }
+
+    .how-shell {
+      display: grid;
+      gap: 42px;
+    }
+
+    .how-head {
+      max-width: 46rem;
+    }
+
+    .how-head h3 {
+      font-size: clamp(1.72rem, 2.45vw, 2.35rem);
+      line-height: 1.06;
+      margin-bottom: 16px;
+      font-weight: 800;
+      max-width: 16ch;
+    }
+
+    .how-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .how-card {
+      padding: 26px;
+      min-height: 184px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.52);
+      border-style: solid;
+      border-width: 1px;
+      border-color: rgba(17, 24, 39, 0.06);
+    }
+
+    .how-card h3 {
+      font-size: clamp(1.12rem, 1.35vw, 1.32rem);
+      line-height: 1.16;
+      margin-bottom: 12px;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      max-width: 13ch;
+    }
+
+    .how-card p {
+      max-width: 29ch;
+    }
+
+    .how-board {
+      position: relative;
+      overflow: hidden;
+      min-height: 448px;
+      padding: 42px 42px 34px;
+      background:
+        radial-gradient(760px 220px at 0% 0%, rgba(255, 182, 112, 0.10), transparent 66%),
+        radial-gradient(760px 260px at 100% 100%, rgba(154, 99, 255, 0.10), transparent 68%),
+        rgba(255,255,255,0.84);
+    }
+
+    .how-board-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 420px);
+      gap: clamp(18px, 2.4vw, 30px);
+      align-items: start;
+    }
+
+    .how-board-copy {
+      max-width: 34ch;
+    }
+
+    .how-board-copy h3 {
+      font-size: clamp(1.6rem, 2.2vw, 2.05rem);
+      line-height: 1.08;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .how-board-meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      justify-items: start;
+    }
+
+    .how-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      color: #505a71;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .how-pill-label {
+      color: #5d6880;
+      font-weight: 600;
+    }
+
+    .how-pill strong::before {
+      content: "·";
+      margin: 0 8px;
+      color: #98a2b7;
+      font-weight: 600;
+    }
+
+    .how-pill strong {
+      color: var(--ink);
+      font-size: 0.85rem;
+      letter-spacing: -0.01em;
+    }
+
+    .how-ribbon-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #how-ribbon-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .how-board-demo {
+      position: relative;
+      z-index: 3;
+      isolation: isolate;
+      overflow: hidden;
+      align-self: start;
+      justify-self: end;
+      width: min(100%, 420px);
+      padding: 34px 34px 30px;
+      text-align: center;
+      border-radius: 24px;
+      border: 1px solid rgba(95, 116, 246, 0.16);
+      box-shadow: 0 22px 56px rgba(16, 24, 40, 0.10), 0 0 0 16px rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background:
+        radial-gradient(220px 120px at 12% 28%, rgba(255, 182, 112, 0.16), transparent 72%),
+        radial-gradient(220px 120px at 88% 42%, rgba(154, 99, 255, 0.12), transparent 72%),
+        rgba(255, 255, 255, 0.92);
+    }
+
+    .how-board-demo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0));
+    }
+
+    .how-board-demo-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+
+    .how-demo-expectation {
+      margin: -2px 0 2px;
+      color: #58657d;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .how-board-demo .eyebrow {
+      margin-bottom: 0;
+      justify-content: center;
+    }
+
+    .how-board-demo h4 {
+      margin-bottom: 0;
+      font-size: clamp(1.5rem, 2.1vw, 1.95rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      max-width: 9.5ch;
+    }
+
+    .how-demo-wave {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 38px;
+      margin-bottom: 0;
+    }
+
+    .how-demo-wave span {
+      width: 5px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(188, 198, 255, 1), rgba(95, 116, 246, 1));
+      box-shadow: 0 0 14px rgba(95, 116, 246, 0.18);
+      animation: howDemoWave 1s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .how-demo-wave span:nth-child(1),
+    .how-demo-wave span:nth-child(7) { height: 12px; animation-delay: 0s; }
+    .how-demo-wave span:nth-child(2),
+    .how-demo-wave span:nth-child(6) { height: 22px; animation-delay: 0.08s; }
+    .how-demo-wave span:nth-child(3),
+    .how-demo-wave span:nth-child(5) { height: 32px; animation-delay: 0.16s; }
+    .how-demo-wave span:nth-child(4) { height: 42px; animation-delay: 0.24s; }
+
+    .how-live-number {
+      display: block;
+      margin-bottom: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.05rem, 3.3vw, 3.15rem);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      font-weight: 800;
+      color: var(--ink);
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .how-live-demo-meta {
+      margin-top: 0;
+      font-size: 0.84rem;
+      color: #6a758c;
+      letter-spacing: -0.01em;
+    }
+
+    @keyframes howDemoWave {
+      0%, 100% { transform: scaleY(0.48); opacity: 0.38; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    .pricing-section {
+      background:
+        radial-gradient(920px 420px at 8% 10%, rgba(255,171,110,0.11), transparent 60%),
+        radial-gradient(760px 420px at 92% 90%, rgba(128,105,255,0.10), transparent 62%),
+        linear-gradient(180deg, #fbf8f1 0%, #f7fafc 100%);
+      border-top: 1px solid rgba(17, 24, 39, 0.06);
+      border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+    }
+
+    .pricing-shell {
+      display: grid;
+      gap: 36px;
+    }
+
+    .pricing-head {
+      max-width: 48rem;
+      margin-bottom: 4px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 30px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(95, 116, 246, 0.18);
+      box-shadow: 0 24px 60px rgba(44, 62, 138, 0.13);
+      background:
+        radial-gradient(320px 140px at 0% 0%, rgba(255, 176, 116, 0.12), transparent 66%),
+        radial-gradient(280px 180px at 100% 100%, rgba(108, 136, 255, 0.12), transparent 70%),
+        rgba(255,255,255,0.92);
+    }
+
+    .pricing-card.business {
+      border-color: rgba(17, 24, 39, 0.14);
+      box-shadow: 0 20px 50px rgba(17, 24, 39, 0.08);
+      background:
+        radial-gradient(300px 170px at 100% 0%, rgba(255, 176, 116, 0.08), transparent 68%),
+        rgba(255,255,255,0.9);
+    }
+
+    .pricing-badge {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(95, 116, 246, 0.08);
+      border: 1px solid rgba(95, 116, 246, 0.12);
+      color: #4d61b9;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pricing-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .pricing-plan {
+      display: block;
+      font-size: 0.78rem;
+      line-height: 1.2;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #74809a;
+    }
+
+    .pricing-price {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 8px;
+      font-family: var(--font-display);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .pricing-price strong {
+      font-size: clamp(2.2rem, 3.8vw, 3rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .pricing-card.featured .pricing-price strong {
+      font-size: clamp(2.45rem, 4.1vw, 3.35rem);
+    }
+
+    .pricing-price small {
+      font-size: 0.86rem;
+      color: #7b86a0;
+      line-height: 1.25;
+      padding-bottom: 5px;
+    }
+
+    .pricing-positioning {
+      margin: 0 0 20px;
+      color: var(--ink);
+      font-size: 0.98rem;
+      line-height: 1.48;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .pricing-block {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .pricing-label {
+      display: block;
+      font-size: 0.72rem;
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #74809a;
+    }
+
+    .pricing-flow,
+    .pricing-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pricing-flow li {
+      position: relative;
+      display: grid;
+      gap: 4px;
+      padding-left: 14px;
+    }
+
+    .pricing-flow li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(95, 116, 246, 0.9);
+      box-shadow: 0 0 0 4px rgba(95, 116, 246, 0.08);
+    }
+
+    .pricing-flow strong {
+      font-size: 0.94rem;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pricing-flow span {
+      color: #5f6c85;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .pricing-list li {
+      position: relative;
+      padding-left: 20px;
+      color: #46526a;
+      font-size: 0.95rem;
+      line-height: 1.52;
+    }
+
+    .pricing-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      font-size: 0.84rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #5f74f6;
+    }
+
+    .pricing-note {
+      margin-top: 4px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(248, 250, 255, 0.96);
+      border: 1px solid rgba(17, 24, 39, 0.07);
+    }
+
+    .pricing-note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #74809a;
+    }
+
+    .pricing-note p {
+      margin: 0;
+      color: #4f5d74;
+      font-size: 0.94rem;
+      line-height: 1.54;
+    }
+
+    .pricing-anchor {
+      margin: 14px 0 18px;
+      color: #56647c;
+      font-size: 0.93rem;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .pricing-support {
+      margin-top: 10px;
+      color: #63718a;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .pricing-card .btn {
+      width: fit-content;
+    }
+
+    .pricing-overage-card {
+      display: grid;
+      gap: 22px;
+      padding: 34px;
+      background: rgba(255,255,255,0.74);
+    }
+
+    .pricing-overage-head {
+      display: grid;
+      gap: 8px;
+      max-width: 42rem;
+    }
+
+    .pricing-overage-head h3 {
+      margin: 0;
+      font-size: clamp(1.32rem, 1.8vw, 1.72rem);
+      line-height: 1.12;
+      font-weight: 800;
+    }
+
+    .pricing-overage-head p,
+    .pricing-overage-reassure {
+      margin: 0;
+      color: #56647c;
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .pricing-overage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pricing-overage-item {
+      display: grid;
+      gap: 6px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      box-shadow: none;
+    }
+
+    .pricing-overage-item strong {
+      font-size: 1rem;
+      line-height: 1.3;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .pricing-overage-item span {
+      color: #5a6880;
+      font-size: 0.94rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .pricing-overage-reassure {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .pricing-roi {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 24px;
+      align-items: start;
+      padding: 34px;
+      background:
+        radial-gradient(320px 180px at 0% 0%, rgba(255, 182, 112, 0.10), transparent 72%),
+        radial-gradient(300px 200px at 100% 100%, rgba(108, 136, 255, 0.10), transparent 72%),
+        rgba(255,255,255,0.78);
+    }
+
+    .pricing-roi-copy {
+      display: grid;
+      gap: 10px;
+      max-width: 28rem;
+    }
+
+    .pricing-roi-copy h3 {
+      margin: 0;
+      font-size: clamp(1.38rem, 2vw, 1.8rem);
+      line-height: 1.12;
+      font-weight: 800;
+    }
+
+    .pricing-roi-copy p,
+    .pricing-roi-profit {
+      margin: 0;
+      color: #55637b;
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .pricing-roi-math {
+      display: grid;
+      gap: 14px;
+    }
+
+    .pricing-roi-values {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pricing-roi-value {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(17, 24, 39, 0.06);
+    }
+
+    .pricing-roi-value span {
+      display: block;
+      margin-bottom: 8px;
+      color: #74809a;
+      font-size: 0.74rem;
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .pricing-roi-value strong {
+      display: block;
+      font-family: var(--font-display);
+      color: var(--ink);
+      font-size: clamp(1.85rem, 3vw, 2.45rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .pricing-roi-highlight {
+      padding: 18px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(95, 116, 246, 0.14);
+      background:
+        radial-gradient(240px 120px at 0% 0%, rgba(255, 182, 112, 0.12), transparent 72%),
+        radial-gradient(260px 140px at 100% 100%, rgba(108, 136, 255, 0.14), transparent 72%),
+        rgba(250,250,255,0.94);
+      color: var(--ink);
+      font-size: 1.02rem;
+      line-height: 1.48;
+      font-weight: 700;
+    }
+
+    .cta-section {
+      background:
+        radial-gradient(760px 280px at 10% 100%, rgba(255, 182, 112, 0.10), transparent 60%),
+        radial-gradient(680px 260px at 90% 0%, rgba(108, 136, 255, 0.10), transparent 64%),
+        #fcfbf7;
+    }
+
+    .cta-board {
+      position: relative;
+      overflow: hidden;
+      padding: 48px 42px;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+      box-shadow: 0 26px 68px rgba(17, 24, 39, 0.10);
+      background:
+        radial-gradient(440px 150px at 0% 0%, rgba(255,176,116,0.10), transparent 66%),
+        radial-gradient(420px 180px at 100% 100%, rgba(108,136,255,0.10), transparent 68%),
+        rgba(255,255,255,0.9);
+    }
+
+    .cta-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-context {
+      margin: 14px auto 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 12px;
+      width: fit-content;
+      border-radius: 999px;
+      background: rgba(95, 116, 246, 0.07);
+      border: 1px solid rgba(95, 116, 246, 0.12);
+      color: #5160ae;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .cta-context.is-visible {
+      display: inline-flex;
+    }
+
+    .cta-copy h2 {
+      max-width: 12ch;
+      margin: 0 auto 14px;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      line-height: 1.02;
+    }
+
+    .cta-copy p {
+      margin: 12px auto 24px;
+      max-width: 34rem;
+    }
+
+    .cta-actions {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+    }
+
+    .cta-actions .btn {
+      min-width: 240px;
+    }
+
+    .cta-link-lite {
+      min-width: auto !important;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #617088;
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: none;
+    }
+
+    .cta-link-lite:hover {
+      color: var(--ink);
+      background: transparent;
+      transform: none;
+    }
+
+    .faq-section {
+      padding-top: 0;
+      background: transparent;
+    }
+
+    .faq-shell {
+      display: grid;
+      gap: 30px;
+    }
+
+    .faq-head {
+      max-width: 36rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .faq-item {
+      padding: 26px;
+      background: rgba(255,255,255,0.54);
+      border-color: rgba(17, 24, 39, 0.06);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 12px;
+      font-size: 1.04rem;
+      line-height: 1.26;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .site-footer {
+      padding: 28px 0 36px;
+      border-top: 1px solid rgba(17, 24, 39, 0.08);
+      background: transparent;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      max-width: 24rem;
+    }
+
+    .footer-brand strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .footer-brand p,
+    .footer-meta {
+      color: #6a758a;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: #55627b;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover { color: var(--ink); }
+
+    @media (max-width: 1120px) {
+      .pricing-grid,
+      .how-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-overage-grid,
+      .faq-grid,
+      .pricing-roi-values {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-roi {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .loss-board {
+        grid-template-columns: 1fr;
+      }
+
+      .nl { display: none; }
+      .na { display: none; }
+      .nb1 { display: none; }
+      .hbg { display: inline-flex; }
+      .hero { padding-top: 120px; }
+
+      .hero-demo-wrap {
+        margin: 0 auto;
+        transform: none;
+        width: min(100%, 28rem);
+      }
+
+      .hero h1 {
+        max-width: min(100%, 34rem);
+      }
+
+      .hero-copy {
+        gap: 1rem;
+      }
+
+      .hero-grid {
+        gap: 1.25rem;
+      }
+
+      .loss-board {
+        gap: 24px;
+        padding: 26px;
+      }
+
+      .loss-proof {
+        width: min(100%, 32rem);
+        justify-self: start;
+      }
+
+      .calc-card {
+        transform: none;
+      }
+
+      .loss-board-copy h3,
+      .cta-copy h2,
+      .loss-copy h2 {
+        max-width: 14ch;
+        white-space: normal;
+        text-wrap: balance;
+      }
+
+      .how-board {
+        min-height: 392px;
+        padding: 32px 32px 28px;
+      }
+      .how-board-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .how-board-demo {
+        justify-self: start;
+        width: min(100%, 420px);
+      }
+      .how-live-number {
+        white-space: normal;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card,
+      .pricing-overage-card,
+      .pricing-roi {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 64px 0; }
+      .container { width: min(var(--max-width-container), calc(100vw - (2 * var(--space-4)))); }
+      .hero-ctas a,
+      .cta-actions a { width: 100%; }
+      .mob-ctas .nb-cta { width: 100%; justify-content: center; }
+      .hero-copy {
+        gap: 0;
+        padding-top: 0;
+      }
+      .fc-hero {
+        max-width: 100%;
+        padding: 0;
+      }
+      .fc-hero .fc-eyebrow {
+        font-size: 0.875rem;
+        margin-bottom: var(--space-2);
+      }
+      .fc-hero .fc-h1 {
+        font-size: 2.375rem;
+        line-height: 1.08;
+        letter-spacing: -0.015em;
+        margin-bottom: var(--space-3);
+      }
+      .fc-hero .fc-sub {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        margin-bottom: var(--space-4);
+      }
+      .audio-card {
+        max-width: 100%;
+        padding: 10px 12px;
+      }
+      .audio-top {
+        gap: 8px;
+      }
+      .play-btn {
+        width: 36px;
+        height: 36px;
+      }
+      .audio-title {
+        font-size: 12.5px;
+      }
+      .audio-badge {
+        font-size: 10.5px;
+      }
+      .audio-caption {
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+      .modal-backdrop {
+        padding: 16px;
+      }
+      .modal-box {
+        max-width: 100%;
+        border-radius: 16px;
+      }
+      .modal-header {
+        padding: 18px 18px 14px;
+      }
+      .modal-title {
+        font-size: 15px;
+      }
+      .modal-subtitle {
+        font-size: 12px;
+      }
+      .modal-player-area {
+        padding: 0 18px 14px;
+      }
+      .modal-wf-row {
+        gap: 12px;
+      }
+      .modal-big-play {
+        width: 44px;
+        height: 44px;
+      }
+      .modal-transcript {
+        padding: 14px 18px;
+        max-height: 220px;
+      }
+      .tr-line {
+        gap: 8px;
+      }
+      .tr-who {
+        min-width: 52px;
+      }
+      .modal-cta-row {
+        flex-direction: column;
+        padding: 14px 18px 18px;
+      }
+      .modal-cta-pricing,
+      .modal-cta-call {
+        width: 100%;
+        justify-content: center;
+      }
+      .fc-cta-group {
+        width: 100%;
+        align-items: stretch;
+      }
+      .fc-cta-primary {
+        width: 100%;
+        justify-content: center;
+      }
+      .fc-cta-meta-row {
+        gap: 0.75rem 1rem;
+      }
+      .hero-grid {
+        gap: var(--space-6);
+      }
+      .hero-demo-wrap {
+        width: min(100%, 24rem);
+        margin-top: 0;
+      }
+      .fc-hero-right {
+        padding-top: 0;
+      }
+      .call-card,
+      .fc-call-card {
+        padding: var(--space-4);
+        border-radius: 1.125rem;
+      }
+      .card-topbar,
+      .fc-card-topbar {
+        margin-bottom: var(--space-3);
+      }
+      .card-topbar-label,
+      .fc-card-topbar-label {
+        font-size: 0.8rem;
+      }
+      .live-badge,
+      .fc-live-badge {
+        font-size: 0.72rem;
+        padding: 0.28rem 0.6rem;
+      }
+      .voice-wf,
+      .fc-voice-wf {
+        margin-bottom: var(--space-4);
+      }
+      .chat-area,
+      .fc-chat-area {
+        gap: var(--space-2);
+        margin-bottom: var(--space-4);
+      }
+      .bubble-caller,
+      .fc-bubble-caller,
+      .bubble-ai-text,
+      .fc-bubble-ai-text {
+        font-size: 0.875rem;
+        padding: var(--space-3);
+      }
+      .tick-row,
+      .fc-tick-row {
+        gap: var(--space-2) var(--space-3);
+        margin-bottom: var(--space-4);
+      }
+      .tick-item,
+      .fc-tick-item {
+        font-size: 0.68rem;
+      }
+      .booking-row,
+      .fc-booking-row {
+        margin-bottom: var(--space-3);
+      }
+      .booking-value-lg,
+      .fc-booking-value-lg {
+        font-size: 1.2rem;
+      }
+      .booking-meta-row,
+      .fc-booking-meta-row {
+        gap: var(--space-3);
+      }
+      .booking-meta-cell,
+      .fc-booking-meta-cell {
+        padding: var(--space-3);
+      }
+      .ticker-label {
+        width: min(1180px, calc(100vw - 24px));
+        margin-bottom: 8px;
+        font-size: 0.76rem;
+      }
+      .ticker-item { padding: 12px 24px; font-size: 0.72rem; }
+      .loss-board,
+      .pricing-card,
+      .cta-board,
+      .how-card,
+      .how-board,
+      .pricing-overage-card,
+      .pricing-roi,
+      .faq-item { padding: 22px; }
+      .loss-proof {
+        width: 100%;
+        gap: var(--space-4);
+      }
+      .calc-card { padding: 22px; }
+      .loss-action {
+        justify-items: stretch;
+      }
+      .loss-action .btn { width: 100%; }
+      .loss-copy p,
+      .section-copy p,
+      .section-head p,
+      .cta-copy p,
+      .how-board-copy p,
+      .card-copy p,
+      .how-card p { font-size: 0.96rem; }
+      .pricing-card .btn,
+      .cta-actions .btn {
+        width: 100%;
+      }
+      .cta-actions .cta-link-lite {
+        width: auto;
+      }
+      .pricing-overage-grid,
+      .faq-grid,
+      .pricing-roi-values {
+        grid-template-columns: 1fr;
+      }
+      .pricing-card-top,
+      .pricing-price {
+        justify-content: flex-start;
+      }
+      .footer-inner { flex-direction: column; }
+      .how-board-demo .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="ni">
+      <div class="logo">FlowCall</div>
+      <ul class="nl">
+        <li><a href="#how">How It Works</a></li>
+      </ul>
+      <div class="na">
+        <a class="nb1" href="#pricing">Pricing</a>
+        <a class="nb-cta" href="#cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0 1 22 16.92z"/></svg>
+          Call &amp; Try It Live
+        </a>
+      </div>
+      <button class="hbg" id="hbg" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mob" id="mob">
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <div class="mob-ctas">
+      <a class="nb-cta" href="#cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0 1 22 16.92z"/></svg>
+        Call &amp; Try It Live
+      </a>
+    </div>
+  </div>
+
+  <section class="hero" id="top">
+    <div class="hero-canvas-wrap" id="hero-canvas-wrap" aria-hidden="true">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+    <div class="hero-ribbon-fade" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="fc-hero">
+          <p class="fc-eyebrow">
+            <span class="fc-eyebrow-dot"></span>
+            Never miss a call
+          </p>
+          <h1 class="fc-h1">
+            Turn every call into<br>
+            a booked job.
+          </h1>
+          <p class="fc-sub">
+            FlowCall answers instantly, qualifies the caller, and books<br>
+            the job — while the lead is still on the phone.
+          </p>
+          <div class="audio-card" id="fc-player" onclick="openAudioModal()" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Play a real call recording">
+            <div class="audio-top">
+              <button class="play-btn" type="button" tabindex="-1" aria-label="Play">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M4 2.5L13 8L4 13.5V2.5Z" fill="white"/>
+                </svg>
+              </button>
+              <div class="audio-mid">
+                <div class="audio-title">Real inbound call</div>
+                <div class="audio-badge">Real call · No script</div>
+              </div>
+              <div class="audio-right">
+                <div class="audio-time" id="fc-time">0:15</div>
+                <div class="audio-duration">15 sec</div>
+              </div>
+            </div>
+            <div class="waveform" id="fc-waveform" aria-hidden="true"></div>
+          </div>
+
+          <p class="audio-caption">Actual customer call. Booked in under 30 seconds.</p>
+          <div class="fc-cta-group">
+            <a class="fc-cta-primary" href="#cta">
+              <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M12.5 9.9c-.3-.3-1.9-1.2-2.3-1.4-.4-.2-.7-.1-.9.1l-.6.8c-.1.2-.4.2-.6.1C7.3 9 6.1 8 5.4 7.2 4.7 6.4 4 5.3 3.8 4.5c-.1-.2 0-.5.1-.6l.8-.6c.2-.2.3-.5.1-.9C4.6 2 3.7.4 3.4.1 3.1-.2 2.7 0 2.5.2 2 .7 1.3 1.4 1.1 2.2.7 3.5 1.5 5.6 3.5 7.6c2 2 4.1 2.8 5.4 2.4.8-.2 1.5-.9 2-1.4.2-.2.4-.6.1-.9L12.5 9.9z" fill="currentColor"/>
+              </svg>
+              Call &amp; Try It Live
+            </a>
+            <div class="fc-cta-meta-row">
+              <a class="fc-cta-link" href="#pricing">View Plans &amp; Pricing →</a>
+              <span class="fc-cta-meta">Free to call · Under 30 sec</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-demo-wrap fc-hero-right" aria-label="FlowCall live call demo preview" aria-hidden="true">
+        <div class="call-card">
+
+          <!-- Top bar -->
+          <div class="card-topbar">
+            <span class="card-topbar-label" id="card-status">Inbound call · Ringing</span>
+            <span class="live-badge ringing" id="card-live-badge">
+              <span class="live-dot" id="card-live-dot"></span>
+              <span id="card-live-label">Ringing</span>
+            </span>
+          </div>
+
+          <!-- Voice waveform -->
+          <div class="voice-wf" id="voice-wf" aria-hidden="true"></div>
+
+          <!-- Chat bubbles -->
+          <div class="chat-area" id="card-chat">
+            <div class="bubble-caller" id="card-caller-msg" style="opacity:0;transition:opacity 0.3s"></div>
+            <div class="bubble-ai" id="card-ai-bubble" style="opacity:0;transition:opacity 0.3s">
+              <div class="bubble-ai-text">
+                <span class="bubble-ai-dot"></span>
+                <span id="card-ai-msg"></span>
+                <span class="typing-dots" id="card-typing" style="display:none">
+                  <span></span><span></span><span></span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ticks -->
+          <div class="tick-row">
+            <div class="tick-item" id="tick-1" style="opacity:0;transition:opacity 0.4s"><span class="tick-icon">✓</span> Job booked instantly</div>
+            <div class="tick-item" id="tick-2" style="opacity:0;transition:opacity 0.4s"><span class="tick-icon">✓</span> Lead captured</div>
+            <div class="tick-item" id="tick-3" style="opacity:0;transition:opacity 0.4s"><span class="tick-icon">✓</span> Customer confirmed</div>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <!-- Booking summary -->
+          <div class="booking-row" id="card-booking">
+            <div class="booking-cell">
+              <div class="booking-label">Booked</div>
+              <div class="booking-value-lg" id="card-booking-time" style="opacity:0;transition:opacity 0.4s">—</div>
+            </div>
+          </div>
+
+          <div class="booking-meta-row" id="card-meta">
+            <div class="booking-meta-cell">
+              <div class="booking-meta-label">Lead captured</div>
+              <div class="booking-meta-value" id="card-lead" style="opacity:0;transition:opacity 0.4s">—</div>
+            </div>
+            <div class="booking-meta-cell">
+              <div class="booking-meta-label">Confirmed</div>
+              <div class="booking-meta-value" id="card-confirmed" style="opacity:0;transition:opacity 0.4s">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-backdrop" id="audio-modal" role="dialog" aria-modal="true" aria-label="Real call recording" onclick="handleAudioOverlayClick(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Real inbound call</div>
+          <div class="modal-subtitle">Blocked drain · South London · Booked in 28 seconds</div>
+        </div>
+        <button class="modal-close-btn" type="button" onclick="closeAudioModal()" aria-label="Close">&#x2715;</button>
+      </div>
+
+      <div class="modal-player-area">
+        <div class="modal-wf-row">
+          <button class="modal-big-play" id="modal-play-btn" type="button" onclick="toggleModalAudio()" aria-label="Play recording">
+            <svg id="modal-play-svg" viewBox="0 0 16 16" fill="#fff" style="width:18px;height:18px;margin-left:2px">
+              <path d="M3.5 2.5l10 5.5-10 5.5V2.5z"/>
+            </svg>
+            <svg id="modal-pause-svg" viewBox="0 0 16 16" fill="#fff" style="width:18px;height:18px;display:none">
+              <rect x="3" y="2" width="3.5" height="12" rx="1"/>
+              <rect x="9.5" y="2" width="3.5" height="12" rx="1"/>
+            </svg>
+          </button>
+          <div class="modal-wf" id="modal-wf" onclick="scrubAudio(event)"></div>
+        </div>
+        <div class="modal-time-row">
+          <span id="modal-elapsed">0:00</span>
+          <span id="modal-duration">0:15</span>
+        </div>
+      </div>
+
+      <div class="modal-transcript" id="modal-transcript">
+        <div class="modal-transcript-label">Transcript</div>
+        <div class="tr-line" data-at="0" id="tl-0"><span class="tr-who ai">FlowCall</span><span class="tr-text">"Thanks for calling South London Drains — how can I help?"</span></div>
+        <div class="tr-line" data-at="2" id="tl-1"><span class="tr-who caller">Caller</span><span class="tr-text">"Hi yeah — I've got a blocked drain, it's pretty bad."</span></div>
+        <div class="tr-line" data-at="4" id="tl-2"><span class="tr-who ai">FlowCall</span><span class="tr-text">"Got it. Can I take your name and postcode?"</span></div>
+        <div class="tr-line" data-at="7" id="tl-3"><span class="tr-who caller">Caller</span><span class="tr-text">"It's Dave, SE14."</span></div>
+        <div class="tr-line" data-at="9" id="tl-4"><span class="tr-who ai">FlowCall</span><span class="tr-text">"Perfect Dave — I've got 11:45am today. Shall I book that in?"</span></div>
+        <div class="tr-line" data-at="12" id="tl-5"><span class="tr-who caller">Caller</span><span class="tr-text">"Yes please."</span></div>
+        <div class="tr-line" data-at="13" id="tl-6"><span class="tr-who ai">FlowCall</span><span class="tr-text">"Done — confirmation text on its way. See you at 11:45."</span></div>
+      </div>
+
+      <div class="modal-cta-row">
+        <a href="#pricing" class="modal-cta-call" onclick="closeAudioModal()">Call &amp; Try It Live</a>
+        <a href="#pricing" class="modal-cta-pricing" onclick="closeAudioModal()">View pricing →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker-shell">
+    <div class="ticker-label">Built for service businesses like</div>
+    <div class="ticker-belt">
+      <div class="ticker-track">
+        <a class="ticker-item" href="#cta" data-vertical="Dental practices">Dental Practices<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="GP surgeries">GP Surgeries<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Veterinary practices">Veterinary Practices<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Physiotherapy clinics">Physiotherapy Clinics<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Plumbers">Plumbers<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Electricians">Electricians<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Boiler engineers">Boiler Engineers<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="HVAC engineers">HVAC Engineers<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Dental practices">Dental Practices<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="GP surgeries">GP Surgeries<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Veterinary practices">Veterinary Practices<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Physiotherapy clinics">Physiotherapy Clinics<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Plumbers">Plumbers<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Electricians">Electricians<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="Boiler engineers">Boiler Engineers<span class="ticker-dot"></span></a>
+        <a class="ticker-item" href="#cta" data-vertical="HVAC engineers">HVAC Engineers<span class="ticker-dot"></span></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="cost-section" id="cost">
+    <div class="section-wrap">
+      <p class="section-eyebrow">
+        <span class="section-eyebrow-dot"></span> The Hidden Cost
+      </p>
+      <h2 class="section-h2">Most businesses miss more calls than they think.</h2>
+      <p class="section-sub">Missed calls don't feel urgent — but the revenue adds up fast.</p>
+
+      <div class="calc-layout">
+        <div class="calc-left">
+          <div class="calc-stat-block">
+            <div class="calc-stat-eyebrow">Average UK service business</div>
+            <div class="calc-stat-num">6–8</div>
+            <div class="calc-stat-label">missed calls every day they don't know about</div>
+          </div>
+          <div class="calc-divider"></div>
+          <div class="calc-left-heading">You're losing this every month</div>
+          <div class="calc-left-sub">Adjust the numbers to match your business.</div>
+          <ul class="calc-bullets">
+            <li><span class="calc-bullet-dot"></span> Customers don't wait</li>
+            <li><span class="calc-bullet-dot"></span> They call the next business</li>
+            <li><span class="calc-bullet-dot"></span> The opportunity is gone instantly</li>
+          </ul>
+        </div>
+
+        <div class="calc-widget">
+          <div class="calc-widget-label">Revenue Calculator</div>
+
+          <div class="calc-field">
+            <div class="calc-field-label">
+              Average job value
+              <span class="calc-field-hint">Typical: £50–£2,000</span>
+            </div>
+            <div class="calc-input-wrap" id="jv-wrap">
+              <span class="calc-prefix">£</span>
+              <input class="calc-input" id="jv-input" type="number" value="150" min="1" max="5000" inputmode="numeric" oninput="calcUpdate()">
+              <div class="calc-steppers">
+                <button class="calc-step" type="button" onclick="calcStep('jv-input', -50)">−</button>
+                <button class="calc-step" type="button" onclick="calcStep('jv-input', 50)">+</button>
+              </div>
+            </div>
+            <div class="calc-err-msg" id="jv-err">Enter a job value above £0</div>
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field-label">
+              Missed calls per day
+              <span class="calc-field-hint">Most miss more than they think</span>
+            </div>
+            <div class="calc-input-wrap" id="mc-wrap">
+              <input class="calc-input" id="mc-input" type="number" value="3" min="0" max="50" style="padding-left:14px" inputmode="numeric" oninput="calcUpdate()">
+              <div class="calc-steppers">
+                <button class="calc-step" type="button" onclick="calcStep('mc-input', -1)">−</button>
+                <button class="calc-step" type="button" onclick="calcStep('mc-input', 1)">+</button>
+              </div>
+            </div>
+            <div class="calc-err-msg" id="mc-err">Enter at least 1 missed call</div>
+            <div class="calc-presets">
+              <button class="calc-preset" type="button" onclick="setMC(2, this)">2 calls</button>
+              <button class="calc-preset active" type="button" onclick="setMC(3, this)">3 calls</button>
+              <button class="calc-preset" type="button" onclick="setMC(5, this)">5 calls</button>
+              <button class="calc-preset" type="button" onclick="setMC(8, this)">8 calls</button>
+            </div>
+          </div>
+
+          <div class="calc-result" id="calc-result">
+            <div class="calc-result-label">Monthly impact</div>
+            <div class="calc-result-num" id="calc-num">£13,500</div>
+            <div class="calc-result-sub" id="calc-sub">≈ £450/day</div>
+            <a href="#pricing" class="calc-result-cta">
+              See the plan that covers this
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </a>
+            <div class="calc-below-cta">
+              FlowCall starts at £199/month. Recovering one job covers the plan.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section" id="how" aria-labelledby="how-title">
+    <div class="container how-shell">
+      <header class="how-head section-copy">
+        <div class="eyebrow"><span class="dot"></span>How it works</div>
+        <h3 id="how-title">The call handled. The lead delivered.</h3>
+        <p>FlowCall answers instantly, qualifies the enquiry naturally, and sends you the details while the lead is still warm.</p>
+      </header>
+
+      <div class="how-cards">
+        <article class="surface-card soft how-card">
+          <h3>Customer calls</h3>
+          <p>AI answers instantly and understands the request in your business name.</p>
+        </article>
+        <article class="surface-card soft how-card">
+          <h3>Lead is qualified</h3>
+          <p>Captures what they need, where they are, and how urgent the enquiry is.</p>
+        </article>
+        <article class="surface-card soft how-card">
+          <h3>Next step is delivered</h3>
+          <p>Your team gets the lead, booking, and follow-up details while the enquiry is still warm.</p>
+        </article>
+      </div>
+
+      <article class="surface-card how-board">
+        <div class="how-ribbon-wrap" aria-hidden="true">
+          <canvas id="how-ribbon-canvas"></canvas>
+        </div>
+        <div class="how-board-inner">
+          <div class="how-board-copy">
+            <h3>Voice intelligence in motion</h3>
+            <p>FlowCall answers, qualifies, and hands your team the lead details before the caller moves on, so missed calls turn into booked work instead of lost intent.</p>
+            <div class="how-board-meta">
+              <span class="how-pill"><span class="how-pill-label">Answer speed</span><strong>&lt; 2 rings</strong></span>
+              <span class="how-pill"><span class="how-pill-label">Qualification</span><strong>Natural AI</strong></span>
+              <span class="how-pill"><span class="how-pill-label">Delivery</span><strong>SMS + CRM</strong></span>
+            </div>
+          </div>
+
+          <div class="how-board-demo">
+            <div class="how-board-demo-inner">
+              <div class="eyebrow"><span class="dot"></span>Live demo</div>
+              <h4>Hear it for yourself.</h4>
+              <p>Call our demo number. Hear exactly how FlowCall sounds on your line.</p>
+              <div class="how-demo-expectation">Call. Speak naturally. See how it handles a real enquiry.</div>
+              <div class="how-demo-wave" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <a class="btn primary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
+              <div class="how-live-demo-meta">Free to call · Less than 30 seconds</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
+    <div class="container pricing-shell">
+      <header class="pricing-head section-copy">
+        <div class="eyebrow"><span class="dot"></span>Pricing</div>
+        <h2 id="pricing-title">Turn every call into a lead — and every lead into revenue</h2>
+        <p>FlowCall answers instantly, qualifies the caller, and helps you capture — or book — every opportunity.</p>
+      </header>
+
+      <div class="pricing-grid">
+        <article class="surface-card pricing-card">
+          <div class="pricing-card-top">
+            <span class="pricing-plan">Book</span>
+            <div class="pricing-price"><strong>£199</strong><small>per month</small></div>
+          </div>
+          <p class="pricing-positioning">Stop losing customers to missed calls</p>
+          <div class="pricing-note">
+            <strong>Result</strong>
+            <p>You know exactly who called and what they need — so you can call back and win the job.</p>
+          </div>
+          <div class="pricing-block">
+            <span class="pricing-label">What happens when someone calls</span>
+            <ul class="pricing-flow">
+              <li><strong>Call comes in</strong><span>AI answers instantly in your business name.</span></li>
+              <li><strong>Conversation happens</strong><span>Collects name, service, postcode, and urgency.</span></li>
+              <li><strong>You get the lead instantly</strong><span>SMS with full details lands seconds after the call.</span></li>
+            </ul>
+          </div>
+          <div class="pricing-block">
+            <span class="pricing-label">What you get</span>
+            <ul class="pricing-list">
+              <li>~40 enquiries handled</li>
+              <li>24/7 call answering</li>
+              <li>Lead capture (structured details)</li>
+              <li>Instant SMS delivery</li>
+              <li>Missed-call text-back</li>
+              <li>Call summary (see what was said)</li>
+            </ul>
+          </div>
+          <div class="pricing-anchor">Just 1–2 recovered jobs can cover this plan.</div>
+          <a class="btn secondary" href="#cta">Start with Book</a>
+        </article>
+
+        <article class="surface-card pricing-card featured">
+          <div class="pricing-badge">Most popular</div>
+          <div class="pricing-card-top">
+            <span class="pricing-plan">Grow</span>
+            <div class="pricing-price"><strong>£299</strong><small>per month</small></div>
+          </div>
+          <p class="pricing-positioning">Calls don’t just come in — they get booked instantly</p>
+          <div class="pricing-block">
+            <span class="pricing-label">What happens when someone calls</span>
+            <ul class="pricing-flow">
+              <li><strong>Call comes in</strong><span>AI answers instantly.</span></li>
+              <li><strong>Conversation happens</strong><span>Qualifies the caller.</span></li>
+              <li><strong>Appointment booked</strong><span>AI books directly into your calendar.</span></li>
+              <li><strong>Confirmation sent</strong><span>You and the customer get the details instantly.</span></li>
+            </ul>
+          </div>
+          <div class="pricing-block">
+            <span class="pricing-label">What you get</span>
+            <ul class="pricing-list">
+              <li>~80 enquiries handled</li>
+              <li>Everything in Book</li>
+              <li>AI appointment booking</li>
+              <li>Calendar integration (Google / Cal.com)</li>
+              <li>Booking confirmations + reminders</li>
+            </ul>
+          </div>
+          <div class="pricing-note">
+            <strong>Result</strong>
+            <p>Customers don't just call — they get booked instantly.</p>
+          </div>
+          <div class="pricing-anchor">Even a few extra bookings per week can generate thousands in additional revenue.</div>
+          <a class="btn primary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
+          <div class="pricing-support">See how it handles your calls in under 30 seconds.</div>
+        </article>
+
+        <article class="surface-card pricing-card business">
+          <div class="pricing-card-top">
+            <span class="pricing-plan">Scale</span>
+            <div class="pricing-price"><strong>£499</strong><small>per month</small></div>
+          </div>
+          <p class="pricing-positioning">Maximise revenue and see exactly what's working</p>
+          <div class="pricing-block">
+            <span class="pricing-label">What happens when someone calls</span>
+            <ul class="pricing-flow">
+              <li><strong>Call comes in</strong><span>AI answers instantly.</span></li>
+              <li><strong>Conversation happens</strong><span>Qualifies and books the job.</span></li>
+              <li><strong>Data captured</strong><span>Stored and synced to your CRM.</span></li>
+              <li><strong>Insights generated</strong><span>See which calls turn into revenue.</span></li>
+            </ul>
+          </div>
+          <div class="pricing-block">
+            <span class="pricing-label">What you get</span>
+            <ul class="pricing-list">
+              <li>~200 enquiries handled</li>
+              <li>Everything in Grow</li>
+              <li>CRM sync (Airtable / HubSpot)</li>
+              <li>Revenue tracking dashboard</li>
+              <li>Call analytics + attribution</li>
+            </ul>
+          </div>
+          <div class="pricing-note">
+            <strong>Result</strong>
+            <p>Your phone becomes a measurable, optimised revenue channel.</p>
+          </div>
+          <div class="pricing-anchor">Know exactly where your revenue is coming from — and scale what works.</div>
+          <a class="btn secondary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
+        </article>
+      </div>
+
+      <article class="surface-card soft pricing-overage-card">
+        <div class="pricing-overage-head">
+          <h3>No limits. No missed opportunities.</h3>
+          <p>If you exceed your plan, we keep answering every call:</p>
+        </div>
+        <div class="pricing-overage-grid">
+          <div class="pricing-overage-item">
+            <strong>Book</strong>
+            <span>£1.50 per extra call</span>
+          </div>
+          <div class="pricing-overage-item">
+            <strong>Grow</strong>
+            <span>£1.00 per extra call</span>
+          </div>
+          <div class="pricing-overage-item">
+            <strong>Scale</strong>
+            <span>£0.75 per extra call</span>
+          </div>
+        </div>
+        <p class="pricing-overage-reassure">We never stop answering your calls — even if you exceed your plan.</p>
+      </article>
+
+      <article class="surface-card soft pricing-roi">
+        <div class="pricing-roi-copy">
+          <span class="pricing-label">ROI example</span>
+          <h3>Just a few extra calls can pay for everything</h3>
+          <p>A couple of recovered jobs can pay for the plan before the month has even settled.</p>
+        </div>
+        <div class="pricing-roi-math">
+          <div class="pricing-roi-values">
+            <div class="pricing-roi-value">
+              <span>Average job</span>
+              <strong>£150</strong>
+            </div>
+            <div class="pricing-roi-value">
+              <span>2 extra bookings</span>
+              <strong>£300</strong>
+            </div>
+          </div>
+          <div class="pricing-roi-highlight">Covers the Grow plan completely.</div>
+          <p class="pricing-roi-profit">Everything after that is profit.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <article class="surface-card cta-board">
+        <div class="cta-copy">
+          <div class="eyebrow"><span class="dot"></span>Live demo</div>
+          <div class="cta-context" id="cta-context"></div>
+          <h2>Hear it before you decide</h2>
+          <p>Call our AI receptionist and experience exactly how it handles your customers.</p>
+          <div class="cta-actions">
+            <a class="btn primary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
+            <a class="btn secondary cta-link-lite" href="#pricing">View Plans &amp; Pricing</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-title">
+    <div class="container faq-shell">
+      <header class="faq-head section-copy">
+        <div class="eyebrow"><span class="dot"></span>FAQ</div>
+        <h2 id="faq-title">Short answers before you commit.</h2>
+      </header>
+
+      <div class="faq-grid">
+        <article class="surface-card soft faq-item">
+          <h3>Do I need to change my number?</h3>
+          <p>No — just forward your existing number.</p>
+        </article>
+        <article class="surface-card soft faq-item">
+          <h3>What happens after the call?</h3>
+          <p>You receive a full lead summary instantly via SMS.</p>
+        </article>
+        <article class="surface-card soft faq-item">
+          <h3>Can it book appointments?</h3>
+          <p>Yes — on Grow and Scale plans.</p>
+        </article>
+        <article class="surface-card soft faq-item">
+          <h3>What if I get more calls than expected?</h3>
+          <p>We continue handling them automatically.</p>
+        </article>
+        <article class="surface-card soft faq-item">
+          <h3>What if I already have a receptionist?</h3>
+          <p>FlowCall works alongside your team — covering missed calls, after-hours, and overflow.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="audio-spec-section" id="audio-spec" aria-labelledby="audio-spec-title">
+    <div class="container audio-spec-shell">
+      <header class="audio-spec-head section-copy">
+        <div class="eyebrow"><span class="dot"></span>Audio player spec</div>
+        <h2 id="audio-spec-title">Every decision behind the live audio card.</h2>
+        <p>Reference layout for the component, waveform states, spacing tokens, colour tokens, and interaction states.</p>
+      </header>
+
+      <div class="audio-spec-block">
+        <div class="audio-spec-subhead">Live component</div>
+        <div class="audio-spec-live">
+          <div class="audio-card" id="audio-spec-player" role="button" tabindex="0" aria-label="Play the audio player demo">
+            <div class="audio-top">
+              <button class="play-btn" type="button" tabindex="-1" aria-label="Play">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M4 2.5L13 8L4 13.5V2.5Z" fill="white"/>
+                </svg>
+              </button>
+              <div class="audio-mid">
+                <div class="audio-title">Real inbound call</div>
+                <div class="audio-badge">Real call · No script</div>
+              </div>
+              <div class="audio-right">
+                <div class="audio-time" id="audio-spec-time">0:15</div>
+                <div class="audio-duration">15 sec</div>
+              </div>
+            </div>
+            <div class="waveform" id="audio-spec-waveform" aria-hidden="true"></div>
+          </div>
+          <p class="audio-caption">Actual customer call. Booked in under 30 seconds.</p>
+        </div>
+      </div>
+
+      <div class="audio-spec-block">
+        <div class="audio-spec-subhead">Anatomy</div>
+        <div class="audio-spec-card audio-spec-anatomy">
+          <div class="audio-spec-anatomy-row"><span class="audio-spec-anatomy-key">A</span><span>Play button — 38×38px circle, #3B5BDB fill, 13px icon, shadow 0 3px 10px rgba(59,91,219,.30)</span></div>
+          <div class="audio-spec-anatomy-row"><span class="audio-spec-anatomy-key">B</span><span>Title — 13px / 600 / #0D1117, 3px margin-bottom</span></div>
+          <div class="audio-spec-anatomy-row"><span class="audio-spec-anatomy-key">C</span><span>Subtitle — 11px / 400 / #9CA3AF, line-height 1</span></div>
+          <div class="audio-spec-anatomy-row"><span class="audio-spec-anatomy-key">D</span><span>Timestamp — 14px / 500 / tabular-nums, right-aligned</span></div>
+          <div class="audio-spec-anatomy-row"><span class="audio-spec-anatomy-key">E</span><span>Duration label — 11px / #B0B7C3</span></div>
+          <div class="audio-spec-anatomy-row"><span class="audio-spec-anatomy-key">F</span><span>Waveform — 22px tall, 2.5px bars, 1.5px gap, padding 0 2px</span></div>
+        </div>
+      </div>
+
+      <div class="audio-spec-block">
+        <div class="audio-spec-subhead">Waveform bar states</div>
+        <div class="audio-spec-wave-states">
+          <div class="audio-spec-wave-row">
+            <div class="audio-spec-wave-label">Unplayed</div>
+            <div class="audio-spec-wave" id="wave-state-unplayed" aria-hidden="true"></div>
+            <div class="audio-spec-wave-meta">#B0B8C8</div>
+          </div>
+          <div class="audio-spec-wave-row">
+            <div class="audio-spec-wave-label">Played</div>
+            <div class="audio-spec-wave" id="wave-state-played" aria-hidden="true"></div>
+            <div class="audio-spec-wave-meta">#3B5BDB</div>
+          </div>
+          <div class="audio-spec-wave-row">
+            <div class="audio-spec-wave-label">Current</div>
+            <div class="audio-spec-wave" id="wave-state-current" aria-hidden="true"></div>
+            <div class="audio-spec-wave-meta">#6B86E8</div>
+          </div>
+          <div class="audio-spec-wave-row">
+            <div class="audio-spec-wave-label">Mixed</div>
+            <div class="audio-spec-wave" id="wave-state-mixed" aria-hidden="true"></div>
+            <div class="audio-spec-wave-meta">at 40% play</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-spec-block">
+        <div class="audio-spec-subhead">Waveform shape — real voice call pattern</div>
+        <div class="audio-spec-card audio-spec-shape-card">
+          <div class="audio-spec-shape-wave" id="audio-shape-wave" aria-hidden="true"></div>
+          <div class="audio-spec-shape-grid">
+            <div class="audio-spec-shape-step"><strong>Silence</strong><span>1–2px</span></div>
+            <div class="audio-spec-shape-step"><strong>Pickup</strong><span>3–6px</span></div>
+            <div class="audio-spec-shape-step"><strong>Speech burst</strong><span>8–20px</span></div>
+            <div class="audio-spec-shape-step"><strong>Pause</strong><span>1–2px</span></div>
+            <div class="audio-spec-shape-step"><strong>Reply burst</strong><span>8–19px</span></div>
+            <div class="audio-spec-shape-step"><strong>Fade out</strong><span>1–2px</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-spec-block">
+        <div class="audio-spec-subhead">Spacing &amp; sizing tokens</div>
+        <div class="audio-spec-token-grid">
+          <div class="audio-spec-token-card"><strong>Card padding</strong><span>10px 12px</span></div>
+          <div class="audio-spec-token-card"><strong>Card radius</strong><span>14px</span></div>
+          <div class="audio-spec-token-card"><strong>Card max-width</strong><span>440px</span></div>
+          <div class="audio-spec-token-card"><strong>Top row gap</strong><span>10px</span></div>
+          <div class="audio-spec-token-card"><strong>Top → waveform</strong><span>9px</span></div>
+          <div class="audio-spec-token-card"><strong>Play btn size</strong><span>38 × 38px</span></div>
+          <div class="audio-spec-token-card"><strong>Bar width</strong><span>2.5px</span></div>
+          <div class="audio-spec-token-card"><strong>Bar gap</strong><span>1.5px</span></div>
+          <div class="audio-spec-token-card"><strong>Waveform height</strong><span>22px</span></div>
+          <div class="audio-spec-token-card"><strong>Bar radius</strong><span>1px</span></div>
+          <div class="audio-spec-token-card"><strong>Waveform padding</strong><span>0 2px</span></div>
+          <div class="audio-spec-token-card"><strong>Card height</strong><span>~89px</span></div>
+        </div>
+      </div>
+
+      <div class="audio-spec-block">
+        <div class="audio-spec-subhead">Colour tokens</div>
+        <div class="audio-spec-color-grid">
+          <div class="audio-spec-color-card">
+            <div class="audio-spec-swatch" style="background:#3B5BDB"></div>
+            <span class="audio-spec-color-title">Play / played</span>
+            <span class="audio-spec-color-hex">#3B5BDB</span>
+            <span class="audio-spec-color-use">Play btn · Played bars</span>
+          </div>
+          <div class="audio-spec-color-card">
+            <div class="audio-spec-swatch" style="background:#6B86E8"></div>
+            <span class="audio-spec-color-title">Current bar</span>
+            <span class="audio-spec-color-hex">#6B86E8</span>
+            <span class="audio-spec-color-use">Playhead position</span>
+          </div>
+          <div class="audio-spec-color-card">
+            <div class="audio-spec-swatch" style="background:#B0B8C8"></div>
+            <span class="audio-spec-color-title">Unplayed</span>
+            <span class="audio-spec-color-hex">#B0B8C8</span>
+            <span class="audio-spec-color-use">Default bar state</span>
+          </div>
+          <div class="audio-spec-color-card">
+            <div class="audio-spec-swatch" style="background:#E2E5EA"></div>
+            <span class="audio-spec-color-title">Card border</span>
+            <span class="audio-spec-color-hex">#E2E5EA</span>
+            <span class="audio-spec-color-use">Default · resting</span>
+          </div>
+          <div class="audio-spec-color-card">
+            <div class="audio-spec-swatch" style="background:#C7D2F5"></div>
+            <span class="audio-spec-color-title">Border hover</span>
+            <span class="audio-spec-color-hex">#C7D2F5</span>
+            <span class="audio-spec-color-use">Card :hover state</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-spec-block">
+        <div class="audio-spec-subhead">Interaction states</div>
+        <div class="audio-spec-interaction-grid">
+          <div class="audio-spec-interaction-card">
+            <span class="audio-spec-interaction-title">Resting</span>
+            <span class="audio-spec-interaction-line">border: 1px solid #E2E5EA</span>
+            <span class="audio-spec-interaction-line">box-shadow: 0 2px 8px rgba(0,0,0,.06)</span>
+          </div>
+          <div class="audio-spec-interaction-card">
+            <span class="audio-spec-interaction-title">Hover</span>
+            <span class="audio-spec-interaction-line">border: 1px solid #C7D2F5</span>
+            <span class="audio-spec-interaction-line">box-shadow: 0 6px 20px rgba(59,91,219,.10)</span>
+          </div>
+          <div class="audio-spec-interaction-card">
+            <span class="audio-spec-interaction-title">Play btn hover</span>
+            <span class="audio-spec-interaction-line">background: #3451C7</span>
+            <span class="audio-spec-interaction-line">transition: 0.15s</span>
+          </div>
+          <div class="audio-spec-interaction-card">
+            <span class="audio-spec-interaction-title">Play btn press</span>
+            <span class="audio-spec-interaction-line">transform: scale(0.92)</span>
+            <span class="audio-spec-interaction-line">transition: 0.12s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong>FlowCall</strong>
+        <p>AI receptionist for UK service businesses. Never miss a call, never lose a lead, and keep follow-up moving while the enquiry is still warm.</p>
+      </div>
+      <div>
+        <div class="footer-links">
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#cta">Live demo</a>
+        </div>
+        <div class="footer-meta">© 2026 FlowCall. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      var sections = [
+        { link: document.querySelector('.nl a[href="#how"]'), section: document.getElementById("how") },
+        { link: document.querySelector('#nav .nb1[href="#pricing"]'), section: document.getElementById("pricing") },
+        { link: document.querySelector('#nav .nb-cta[href="#cta"]'), section: document.getElementById("cta") }
+      ].filter(function (item) {
+        return item.link && item.section;
+      });
+
+      function onScroll() {
+        if (nav) nav.classList.toggle("scrolled", window.scrollY > 12);
+      }
+
+      if (sections.length) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var item = sections.find(function (candidate) {
+              return candidate.section === entry.target;
+            });
+            if (!item) return;
+            if (entry.isIntersecting) {
+              sections.forEach(function (candidate) { candidate.link.classList.remove("is-active"); });
+              item.link.classList.add("is-active");
+            }
+          });
+        }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+
+        sections.forEach(function (item) { observer.observe(item.section); });
+      }
+
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var hbg = document.getElementById("hbg");
+      var mob = document.getElementById("mob");
+      if (!hbg || !mob) return;
+
+      function closeMenu() {
+        hbg.classList.remove("open");
+        mob.classList.remove("on");
+        hbg.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      hbg.addEventListener("click", function () {
+        var opening = !mob.classList.contains("on");
+        hbg.classList.toggle("open", opening);
+        mob.classList.toggle("on", opening);
+        hbg.setAttribute("aria-expanded", opening ? "true" : "false");
+        document.body.style.overflow = opening ? "hidden" : "";
+      });
+
+      mob.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+      });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 980) closeMenu();
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var previewWaveform = document.getElementById("fc-waveform");
+      var trigger = document.getElementById("fc-player");
+      var previewTime = document.getElementById("fc-time");
+      var backdrop = document.getElementById("audio-modal");
+      var modalWaveform = document.getElementById("modal-wf");
+      var modalPlay = document.getElementById("modal-play-btn");
+      var modalPlaySvg = document.getElementById("modal-play-svg");
+      var modalPauseSvg = document.getElementById("modal-pause-svg");
+      var modalElapsed = document.getElementById("modal-elapsed");
+      var modalDuration = document.getElementById("modal-duration");
+      var transcriptLines = Array.prototype.slice.call(document.querySelectorAll(".tr-line"));
+      if (!previewWaveform || !trigger || !previewTime || !backdrop || !modalWaveform || !modalPlay || !modalPlaySvg || !modalPauseSvg || !modalElapsed || !modalDuration || !transcriptLines.length) return;
+
+      var PREVIEW_BARS = [
+        1, 1, 1, 1, 2, 2, 1, 1, 1, 1,
+        2, 2, 3, 4, 4, 3, 2, 2,
+        1, 1, 1,
+        2, 3, 5, 7, 10, 12, 14, 15, 14, 13, 12, 11, 10, 9, 8, 9, 11, 13, 14, 13, 11, 9, 6, 4, 2, 1,
+        1, 1, 1,
+        2, 3, 5, 8, 11, 14, 16, 17, 16, 15, 13, 12, 11, 10, 9, 10, 12, 14, 15, 14, 12, 10, 7, 4, 2, 1,
+        1, 1,
+        2, 3, 5, 7, 10, 12, 13, 12, 11, 10, 9, 8, 9, 10, 11, 10, 9, 7, 5, 3, 2, 1, 1
+      ];
+      var MODAL_BARS = [6, 10, 14, 20, 26, 18, 28, 22, 16, 30, 24, 18, 14, 22, 32, 27, 20, 16, 12, 18, 24, 29, 22, 16, 12, 18, 14, 10, 7, 5];
+      var TOTAL_SECS = 15;
+      var currentTime = 0;
+      var isPlaying = false;
+      var interval = null;
+      var lastFocused = null;
+      var previewBars = [];
+      var modalBars = [];
+
+      function formatTime(seconds) {
+        var whole = Math.max(0, Math.floor(seconds));
+        return "0:" + (whole < 10 ? "0" : "") + whole;
+      }
+
+      function buildBars(container, heights, className) {
+        heights.forEach(function (height) {
+          var bar = document.createElement("div");
+          bar.className = className;
+          bar.style.height = height + "px";
+          container.appendChild(bar);
+        });
+        return Array.prototype.slice.call(container.querySelectorAll("." + className));
+      }
+
+      previewBars = buildBars(previewWaveform, PREVIEW_BARS, "wf-bar");
+      modalBars = buildBars(modalWaveform, MODAL_BARS, "modal-wf-bar");
+
+      function renderPreview() {
+        previewTime.textContent = "0:15";
+        previewBars.forEach(function (bar) {
+          bar.classList.remove("played");
+          bar.classList.remove("current");
+        });
+      }
+
+      function renderModalWaveform() {
+        var pct = currentTime / TOTAL_SECS;
+        var currentIndex = Math.floor(pct * modalBars.length);
+        modalBars.forEach(function (bar, index) {
+          bar.classList.toggle("done", index < currentIndex);
+          bar.classList.toggle("now", index === currentIndex && currentTime < TOTAL_SECS);
+        });
+      }
+
+      function renderTranscript() {
+        transcriptLines.forEach(function (line) {
+          var at = Number(line.getAttribute("data-at")) || 0;
+          line.classList.toggle("show", currentTime >= at);
+        });
+      }
+
+      function updateModal() {
+        modalElapsed.textContent = formatTime(currentTime);
+        modalDuration.textContent = formatTime(TOTAL_SECS);
+        renderModalWaveform();
+        renderTranscript();
+      }
+
+      function setPlaying(state) {
+        isPlaying = state;
+        modalPlaySvg.style.display = state ? "none" : "";
+        modalPauseSvg.style.display = state ? "" : "none";
+        modalPlay.setAttribute("aria-label", state ? "Pause recording" : "Play recording");
+      }
+
+      function pauseAudio() {
+        window.clearInterval(interval);
+        interval = null;
+        setPlaying(false);
+      }
+
+      function resetAudio() {
+        pauseAudio();
+        currentTime = 0;
+        updateModal();
+      }
+
+      function tick() {
+        currentTime = Math.min(TOTAL_SECS, currentTime + 0.1);
+        updateModal();
+        if (currentTime >= TOTAL_SECS) {
+          pauseAudio();
+        }
+      }
+
+      function playAudio() {
+        if (currentTime >= TOTAL_SECS) currentTime = 0;
+        pauseAudio();
+        setPlaying(true);
+        interval = window.setInterval(tick, 100);
+      }
+
+      window.openAudioModal = function () {
+        lastFocused = document.activeElement;
+        backdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+        resetAudio();
+        modalPlay.focus();
+      };
+
+      window.closeAudioModal = function () {
+        backdrop.classList.remove("open");
+        document.body.style.overflow = "";
+        resetAudio();
+        if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+      };
+
+      window.handleAudioOverlayClick = function (event) {
+        if (event.target === backdrop) window.closeAudioModal();
+      };
+
+      window.toggleModalAudio = function () {
+        if (isPlaying) {
+          pauseAudio();
+        } else {
+          playAudio();
+        }
+      };
+
+      window.scrubAudio = function (event) {
+        var rect = modalWaveform.getBoundingClientRect();
+        var ratio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+        currentTime = ratio * TOTAL_SECS;
+        updateModal();
+        if (currentTime >= TOTAL_SECS) {
+          pauseAudio();
+        }
+      };
+
+      trigger.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          window.openAudioModal();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && backdrop.classList.contains("open")) {
+          window.closeAudioModal();
+        }
+      });
+
+      renderPreview();
+      updateModal();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var player = document.getElementById("audio-spec-player");
+      var timeLabel = document.getElementById("audio-spec-time");
+      var previewWave = document.getElementById("audio-spec-waveform");
+      var stateUnplayed = document.getElementById("wave-state-unplayed");
+      var statePlayed = document.getElementById("wave-state-played");
+      var stateCurrent = document.getElementById("wave-state-current");
+      var stateMixed = document.getElementById("wave-state-mixed");
+      var shapeWave = document.getElementById("audio-shape-wave");
+      if (!player || !timeLabel || !previewWave || !stateUnplayed || !statePlayed || !stateCurrent || !stateMixed || !shapeWave) return;
+
+      var PREVIEW_BARS = [
+        1, 1, 1, 1, 2, 2, 1, 1, 1, 1,
+        2, 2, 3, 4, 4, 3, 2, 2,
+        1, 1, 1,
+        2, 3, 5, 7, 10, 12, 14, 15, 14, 13, 12, 11, 10, 9, 8, 9, 11, 13, 14, 13, 11, 9, 6, 4, 2, 1,
+        1, 1, 1,
+        2, 3, 5, 8, 11, 14, 16, 17, 16, 15, 13, 12, 11, 10, 9, 10, 12, 14, 15, 14, 12, 10, 7, 4, 2, 1,
+        1, 1,
+        2, 3, 5, 7, 10, 12, 13, 12, 11, 10, 9, 8, 9, 10, 11, 10, 9, 7, 5, 3, 2, 1, 1
+      ];
+      var GUIDE_BARS = [
+        1, 1, 1, 1, 2, 2, 1, 1, 1, 1,
+        2, 2, 3, 4, 4, 3, 2, 2,
+        1, 1, 1,
+        2, 3, 5, 7, 10, 12, 14, 15, 14, 13, 12, 11, 10, 9, 8, 9, 11, 13, 14, 13, 11, 9, 6, 4, 2, 1,
+        1, 1, 1,
+        2, 3, 5, 8, 11, 14, 16, 17, 16, 15, 13, 12, 11, 10, 9, 10, 12, 14, 15, 14, 12, 10, 7, 4, 2, 1,
+        1, 1,
+        2, 3, 5, 7, 10, 12, 13, 12, 11, 10, 9, 8, 9, 10, 11, 10, 9, 7, 5, 3, 2, 1, 1
+      ];
+      var SHAPE_GROUPS = [
+        { heights: [1,1,2,1,2,1], focus: true },
+        { heights: [3,4,5,6,5,4], focus: true },
+        { heights: [8,12,16,20,18,14], focus: true },
+        { heights: [1,2,1,1,2,1], focus: false },
+        { heights: [8,11,15,19,17,12], focus: false },
+        { heights: [2,2,1,1,2,1], focus: false }
+      ];
+      var totalSecs = 15;
+      var progress = 0;
+      var running = false;
+      var interval = null;
+
+      function formatTime(seconds) {
+        var whole = Math.max(0, Math.floor(seconds));
+        return "0:" + (whole < 10 ? "0" : "") + whole;
+      }
+
+      function buildBars(container, heights, className) {
+        heights.forEach(function (height) {
+          var bar = document.createElement("div");
+          bar.className = className;
+          bar.style.height = height + "px";
+          container.appendChild(bar);
+        });
+        return Array.prototype.slice.call(container.querySelectorAll("." + className));
+      }
+
+      var previewBars = buildBars(previewWave, PREVIEW_BARS, "wf-bar");
+
+      function renderPreview() {
+        var ratio = progress / totalSecs;
+        var currentIndex = Math.floor(ratio * previewBars.length);
+        previewBars.forEach(function (bar, index) {
+          bar.classList.toggle("played", index < currentIndex);
+          bar.classList.toggle("current", index === currentIndex && progress < totalSecs);
+        });
+        timeLabel.textContent = formatTime(Math.max(0, totalSecs - progress));
+      }
+
+      function resetPreview() {
+        window.clearInterval(interval);
+        interval = null;
+        running = false;
+        progress = 0;
+        renderPreview();
+      }
+
+      function playPreview() {
+        if (running) return;
+        if (progress >= totalSecs) progress = 0;
+        running = true;
+        interval = window.setInterval(function () {
+          progress = Math.min(totalSecs, progress + 0.1);
+          renderPreview();
+          if (progress >= totalSecs) {
+            window.clearInterval(interval);
+            interval = null;
+            running = false;
+            window.setTimeout(resetPreview, 900);
+          }
+        }, 100);
+      }
+
+      player.addEventListener("click", playPreview);
+      player.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          playPreview();
+        }
+      });
+
+      function buildGuideWave(container, mode) {
+        GUIDE_BARS.forEach(function (height, index) {
+          var bar = document.createElement("div");
+          bar.className = "audio-spec-wave-bar";
+          if (mode === "played") {
+            bar.classList.add("is-played");
+          } else if (mode === "current") {
+            if (index === Math.floor(GUIDE_BARS.length * 0.55)) {
+              bar.classList.add("is-current");
+            } else {
+              bar.classList.add("is-played");
+            }
+          } else if (mode === "mixed") {
+            if (index < Math.floor(GUIDE_BARS.length * 0.4)) {
+              bar.classList.add("is-played");
+            } else if (index === Math.floor(GUIDE_BARS.length * 0.4)) {
+              bar.classList.add("is-current");
+            }
+          }
+          bar.style.height = height + "px";
+          container.appendChild(bar);
+        });
+      }
+
+      buildGuideWave(stateUnplayed, "unplayed");
+      buildGuideWave(statePlayed, "played");
+      buildGuideWave(stateCurrent, "current");
+      buildGuideWave(stateMixed, "mixed");
+
+      SHAPE_GROUPS.forEach(function (group) {
+        group.heights.forEach(function (height) {
+          var bar = document.createElement("div");
+          bar.className = "audio-spec-shape-bar";
+          if (group.focus) bar.classList.add("is-focus");
+          bar.style.height = height + "px";
+          shapeWave.appendChild(bar);
+        });
+      });
+
+      renderPreview();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var voiceWf = document.getElementById("voice-wf");
+      var status = document.getElementById("card-status");
+      var badge = document.getElementById("card-live-badge");
+      var badgeLabel = document.getElementById("card-live-label");
+      var caller = document.getElementById("card-caller-msg");
+      var aiBubble = document.getElementById("card-ai-bubble");
+      var ai = document.getElementById("card-ai-msg");
+      var typing = document.getElementById("card-typing");
+      var tick1 = document.getElementById("tick-1");
+      var tick2 = document.getElementById("tick-2");
+      var tick3 = document.getElementById("tick-3");
+      var bookingTime = document.getElementById("card-booking-time");
+      var lead = document.getElementById("card-lead");
+      var confirmed = document.getElementById("card-confirmed");
+      var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!voiceWf || !status || !badge || !badgeLabel || !caller || !aiBubble || !ai || !typing || !tick1 || !tick2 || !tick3 || !bookingTime || !lead || !confirmed) return;
+
+      var bars = [];
+      [4, 6, 9, 7, 11, 8, 11, 7, 9, 6, 5, 4].forEach(function (height, index) {
+        var bar = document.createElement("div");
+        bar.className = "vwf-bar";
+        bar.style.height = height + "px";
+        bar.style.animationDelay = (index * 0.07) + "s";
+        voiceWf.appendChild(bar);
+        bars.push(bar);
+      });
+
+      var scenarios = [
+        {
+          callerMsg: "I need help with a blocked drain.",
+          aiMsg: "Got it — booked you in for today at 11:45am.",
+          bookingTime: "Today · 11:45am",
+          lead: "Priya K · CR0",
+          confirmed: "SMS sent instantly"
+        },
+        {
+          callerMsg: "My boiler has stopped working.",
+          aiMsg: "Engineer booked for tomorrow at 9:00am.",
+          bookingTime: "Tomorrow · 9:00am",
+          lead: "James T · SW11",
+          confirmed: "SMS sent instantly"
+        },
+        {
+          callerMsg: "I need a quote for new electrics.",
+          aiMsg: "Survey visit locked in — Friday at 2:00pm.",
+          bookingTime: "Friday · 2:00pm",
+          lead: "Sarah M · E1",
+          confirmed: "SMS sent instantly"
+        },
+        {
+          callerMsg: "My cat needs an urgent vet appointment.",
+          aiMsg: "Confirmed — today at 3:30pm works perfectly.",
+          bookingTime: "Today · 3:30pm",
+          lead: "D. Patel · N1",
+          confirmed: "SMS sent instantly"
+        },
+        {
+          callerMsg: "Roof is leaking badly after last night.",
+          aiMsg: "Emergency slot secured — today at 1:00pm.",
+          bookingTime: "Today · 1:00pm",
+          lead: "M. Brown · SE6",
+          confirmed: "SMS sent instantly"
+        }
+      ];
+
+      var scenarioIndex = 0;
+      var timers = [];
+
+      function schedule(ms, fn) {
+        timers.push(window.setTimeout(fn, ms));
+      }
+
+      function clearTimers() {
+        timers.forEach(window.clearTimeout);
+        timers = [];
+      }
+
+      function setWaveformActive(active) {
+        bars.forEach(function (bar) {
+          bar.style.animationPlayState = active ? "running" : "paused";
+          bar.style.opacity = active ? "1" : "0.3";
+        });
+      }
+
+      function show(el, duration) {
+        el.style.transition = "opacity " + duration + "ms ease";
+        el.style.opacity = "1";
+      }
+
+      function typeInto(el, text, msPerChar, done) {
+        el.textContent = "";
+        var i = 0;
+        var timer = window.setInterval(function () {
+          el.textContent += text[i];
+          i += 1;
+          if (i >= text.length) {
+            window.clearInterval(timer);
+            if (done) done();
+          }
+        }, msPerChar);
+        timers.push(timer);
+      }
+
+      function resetScenario(s) {
+        status.textContent = "Inbound call · Ringing";
+        badge.className = "live-badge ringing";
+        badgeLabel.textContent = "Ringing";
+
+        caller.style.opacity = "0";
+        caller.textContent = s.callerMsg;
+        aiBubble.style.opacity = "0";
+        ai.textContent = "";
+        typing.style.display = "none";
+
+        tick1.style.opacity = "0";
+        tick2.style.opacity = "0";
+        tick3.style.opacity = "0";
+
+        bookingTime.textContent = "—";
+        bookingTime.style.opacity = "0";
+        lead.textContent = "—";
+        lead.style.opacity = "0";
+        confirmed.textContent = "—";
+        confirmed.style.opacity = "0";
+
+        setWaveformActive(false);
+      }
+
+      function showCompleted(s) {
+        status.textContent = "Inbound call · Confirmed";
+        badge.className = "live-badge";
+        badgeLabel.textContent = "Live";
+
+        caller.textContent = s.callerMsg;
+        caller.style.opacity = "1";
+        ai.textContent = s.aiMsg;
+        aiBubble.style.opacity = "1";
+        typing.style.display = "none";
+
+        tick1.style.opacity = "1";
+        tick2.style.opacity = "1";
+        tick3.style.opacity = "1";
+
+        bookingTime.textContent = s.bookingTime;
+        bookingTime.style.opacity = "1";
+        lead.textContent = s.lead;
+        lead.style.opacity = "1";
+        confirmed.textContent = s.confirmed;
+        confirmed.style.opacity = "1";
+
+        setWaveformActive(true);
+      }
+
+      function runScenario(s) {
+        clearTimers();
+        resetScenario(s);
+
+        schedule(900, function () {
+          status.textContent = "Inbound call · Connected";
+          badge.className = "live-badge";
+          badgeLabel.textContent = "Live";
+          setWaveformActive(true);
+        });
+
+        schedule(1500, function () {
+          show(caller, 300);
+        });
+
+        schedule(2300, function () {
+          typing.style.display = "inline-flex";
+          show(aiBubble, 280);
+        });
+
+        schedule(3400, function () {
+          typing.style.display = "none";
+          typeInto(ai, s.aiMsg, 34);
+        });
+
+        var typedAt = 3400 + (s.aiMsg.length * 34);
+        schedule(typedAt + 240, function () { show(tick1, 320); });
+        schedule(typedAt + 520, function () { show(tick2, 320); });
+        schedule(typedAt + 800, function () { show(tick3, 320); });
+        schedule(typedAt + 1080, function () {
+          status.textContent = "Inbound call · Confirmed";
+          bookingTime.textContent = s.bookingTime;
+          show(bookingTime, 360);
+        });
+        schedule(typedAt + 1400, function () {
+          lead.textContent = s.lead;
+          show(lead, 320);
+        });
+        schedule(typedAt + 1660, function () {
+          confirmed.textContent = s.confirmed;
+          show(confirmed, 320);
+        });
+        schedule(typedAt + 5660, function () {
+          scenarioIndex = (scenarioIndex + 1) % scenarios.length;
+          runScenario(scenarios[scenarioIndex]);
+        });
+      }
+
+      if (reduceMotion) {
+        showCompleted(scenarios[0]);
+        return;
+      }
+
+      showCompleted(scenarios[0]);
+      schedule(5000, function () {
+        scenarioIndex = 1;
+        runScenario(scenarios[1]);
+      });
+    })();
+  </script>
+
+  <script>
+    function calcStep(id, delta) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var max = Number(el.max || Number.POSITIVE_INFINITY);
+      var min = Number(el.min || 0);
+      var next = Math.max(min, Number(el.value || 0) + delta);
+      el.value = String(Math.min(max, next));
+      calcUpdate();
+    }
+
+    function setMC(v, btn) {
+      var input = document.getElementById("mc-input");
+      if (!input) return;
+      input.value = String(v);
+      document.querySelectorAll(".cost-section .calc-preset").forEach(function (b) {
+        b.classList.remove("active");
+      });
+      if (btn) btn.classList.add("active");
+      calcUpdate();
+    }
+
+    function calcUpdate() {
+      var jvInput = document.getElementById("jv-input");
+      var mcInput = document.getElementById("mc-input");
+      var calcNum = document.getElementById("calc-num");
+      var calcSub = document.getElementById("calc-sub");
+      var result = document.getElementById("calc-result");
+      var jvWrap = document.getElementById("jv-wrap");
+      var mcWrap = document.getElementById("mc-wrap");
+      var jvErr = document.getElementById("jv-err");
+      var mcErr = document.getElementById("mc-err");
+      if (!jvInput || !mcInput || !calcNum || !calcSub) return;
+
+      var jv = Number(jvInput.value);
+      var mc = Math.min(Number(mcInput.value), 50);
+
+      jvWrap.classList.remove("err");
+      mcWrap.classList.remove("err");
+      jvErr.classList.remove("show");
+      mcErr.classList.remove("show");
+
+      if (!Number.isFinite(jv) || jv <= 0) {
+        jvWrap.classList.add("err");
+        jvErr.classList.add("show");
+        return;
+      }
+
+      if (!Number.isFinite(mc) || mc <= 0) {
+        mcWrap.classList.add("err");
+        mcErr.classList.add("show");
+        return;
+      }
+
+      jv = Math.min(Math.max(jv, 1), 5000);
+      mc = Math.min(Math.max(mc, 0), 50);
+      jvInput.value = String(jv);
+      mcInput.value = String(mc);
+
+      document.querySelectorAll(".cost-section .calc-preset").forEach(function (button) {
+        button.classList.toggle("active", button.textContent.indexOf(String(mc)) === 0);
+      });
+
+      var monthly = Math.round((jv * mc * 30) / 100) * 100;
+      var daily = Math.round(monthly / 30);
+
+      calcNum.textContent = "£" + monthly.toLocaleString("en-GB");
+      calcSub.textContent = "≈ £" + daily.toLocaleString("en-GB") + "/day";
+
+      if (result) {
+        result.classList.remove("is-updating");
+        void result.offsetWidth;
+        result.classList.add("is-updating");
+        window.setTimeout(function () {
+          result.classList.remove("is-updating");
+        }, 240);
+      }
+    }
+
+    calcUpdate();
+  </script>
+
+  <script>
+    (function () {
+      var ctaContext = document.getElementById("cta-context");
+      if (!ctaContext) return;
+
+      document.querySelectorAll(".ticker-item[data-vertical]").forEach(function (link) {
+        link.addEventListener("click", function () {
+          var vertical = link.getAttribute("data-vertical");
+          if (!vertical) return;
+          ctaContext.textContent = "Built for " + vertical;
+          ctaContext.classList.add("is-visible");
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var canvas = document.getElementById("how-ribbon-canvas");
+      if (!canvas) return;
+      var ctx = canvas.getContext("2d");
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var W = 0;
+      var H = 0;
+      var raf = null;
+      var tick = 0;
+      var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function resize() {
+        var rect = canvas.getBoundingClientRect();
+        if (!rect.width || !rect.height) {
+          requestAnimationFrame(resize);
+          return;
+        }
+        W = rect.width;
+        H = rect.height;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function surfaceY(x, depth, time) {
+        var nx = x / W;
+        var mobile = W < 560;
+        var ampScale = mobile ? 0.74 : 1;
+        var breathe = 1 + Math.sin(time * 0.42) * 0.18;
+        var w1 = Math.sin(nx * Math.PI * 2.1 - time - depth * 1.25);
+        var w2 = Math.sin(nx * Math.PI * 3.9 + time * 0.72 + depth * 0.9) * 0.26;
+        var w3 = Math.sin(nx * Math.PI * 0.72 - time * 0.44 + depth * 0.56) * 0.18;
+        var w4 = Math.sin(nx * Math.PI * 6.4 - time * 1.28 + depth * 0.32) * 0.07;
+        var wave = (w1 + w2 + w3 + w4) * breathe;
+        var amp = H * (0.11 + depth * 0.09) * ampScale;
+        var centerY = H * (0.72 + depth * 0.12);
+        var edge = Math.pow(Math.sin(nx * Math.PI), 0.07);
+        return centerY + wave * amp * edge;
+      }
+
+      function buildLine(depth, time, steps) {
+        var points = [];
+        for (var i = 0; i <= steps; i++) {
+          var x = (i / steps) * W;
+          points.push({ x: x, y: surfaceY(x, depth, time) });
+        }
+        return points;
+      }
+
+      function drawStrip(top, bottom, c0, c1) {
+        var grad = ctx.createLinearGradient(0, 0, 0, H);
+        grad.addColorStop(0, c0);
+        grad.addColorStop(1, c1);
+        ctx.beginPath();
+        ctx.moveTo(top[0].x, top[0].y);
+        for (var i = 1; i < top.length; i++) ctx.lineTo(top[i].x, top[i].y);
+        for (var j = bottom.length - 1; j >= 0; j--) ctx.lineTo(bottom[j].x, bottom[j].y);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.fill();
+      }
+
+      function drawLine(points, alpha, width) {
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (var i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+        ctx.strokeStyle = "rgba(255,255,255," + alpha + ")";
+        ctx.lineWidth = width;
+        ctx.lineJoin = "round";
+        ctx.lineCap = "round";
+        ctx.stroke();
+      }
+
+      function renderFrame() {
+        if (!W || !H) {
+          raf = requestAnimationFrame(renderFrame);
+          return;
+        }
+
+        var time = tick * 0.0022;
+        var mobile = W < 560;
+        var slices = mobile ? 18 : 28;
+        var lines = mobile ? 12 : 20;
+        var steps = mobile ? 72 : 120;
+        ctx.clearRect(0, 0, W, H);
+
+        var sliceLines = [];
+        for (var s = 0; s <= slices; s++) sliceLines.push(buildLine(s / slices, time, steps));
+
+        for (var k = 0; k < slices; k++) {
+          var mid = (k + 0.5) / slices;
+          var r = Math.round(255 - mid * 96);
+          var g = Math.round(176 - mid * 88);
+          var b = Math.round(112 + mid * 150);
+          var edge = Math.abs(mid - 0.5) * 2;
+          var a = 0.16 + edge * edge * 0.22;
+          drawStrip(
+            sliceLines[k],
+            sliceLines[k + 1],
+            "rgba(" + r + "," + g + "," + b + "," + a + ")",
+            "rgba(" + Math.max(0, r - 8) + "," + Math.max(0, g - 8) + "," + Math.min(255, b + 10) + "," + a + ")"
+          );
+        }
+
+        for (var l = 0; l < lines; l++) {
+          var depth = l / Math.max(1, lines - 1);
+          var alpha = Math.max(0.04, 0.18 - depth * 0.12);
+          drawLine(buildLine(depth, time, steps), alpha, depth < 0.12 ? 1 : 0.6);
+        }
+
+        var topFade = ctx.createLinearGradient(0, 0, 0, H * 0.42);
+        topFade.addColorStop(0, "rgba(255,255,255,0.98)");
+        topFade.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = topFade;
+        ctx.fillRect(0, 0, W, H * 0.42);
+
+        var sideWidth = W * 0.12;
+        var leftFade = ctx.createLinearGradient(0, 0, sideWidth, 0);
+        leftFade.addColorStop(0, "rgba(255,255,255,0.98)");
+        leftFade.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = leftFade;
+        ctx.fillRect(0, 0, sideWidth, H);
+
+        var rightFade = ctx.createLinearGradient(W, 0, W - sideWidth, 0);
+        rightFade.addColorStop(0, "rgba(255,255,255,0.98)");
+        rightFade.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = rightFade;
+        ctx.fillRect(W - sideWidth, 0, sideWidth, H);
+
+        var bottomFade = ctx.createLinearGradient(0, H, 0, H * 0.86);
+        bottomFade.addColorStop(0, "rgba(255,255,255,0.68)");
+        bottomFade.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = bottomFade;
+        ctx.fillRect(0, H * 0.86, W, H * 0.14);
+
+        tick += 1;
+        raf = requestAnimationFrame(renderFrame);
+      }
+
+      function start() {
+        cancelAnimationFrame(raf);
+        resize();
+        if (reduceMotion) {
+          tick = 10;
+          renderFrame();
+          cancelAnimationFrame(raf);
+        } else {
+          renderFrame();
+        }
+      }
+
+      if (document.readyState === "complete") start();
+      else window.addEventListener("load", start, { once: true });
+
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          cancelAnimationFrame(raf);
+          resize();
+          if (reduceMotion) {
+            tick = 10;
+            renderFrame();
+            cancelAnimationFrame(raf);
+          } else {
+            renderFrame();
+          }
+        }, 100);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var W, H, raf, t = 0;
+      var dpr = window.devicePixelRatio || 1;
+      var mx = 0.5, my = 0.5;
+
+      function surfaceY(x, depth, time) {
+        var nx = x / W;
+        var mxOff = (mx - 0.5) * 0.55;
+        var myMod = (my - 0.5) * 0.18;
+        var breathe = 1.0 + Math.sin(time * 0.38) * 0.22;
+        var twistRate = 1.1 + Math.sin(time * 0.27) * 0.45;
+        var freq1 = 1.2 + Math.sin(time * 0.19) * 0.18;
+        var phase1 = time + depth * twistRate;
+        var w1 = Math.sin((nx + mxOff) * Math.PI * freq1 * 2 - phase1);
+        var w2 = Math.sin((nx + mxOff) * Math.PI * 2.8 + time * 0.95 + depth * 0.6) * 0.32;
+        var w3 = Math.sin((nx + mxOff) * Math.PI * 4.2 - time * 1.1 + depth * 1.4) * 0.14;
+        var w4 = Math.sin((nx + mxOff) * Math.PI * 0.7 - time * 0.55 + depth * 0.8) * 0.20;
+        var w5 = Math.sin((nx + mxOff) * Math.PI * 7.0 - time * 1.8 + depth * 0.25) * 0.05;
+        var wave = (w1 + w2 + w3 + w4 + w5) * breathe;
+        var mobile = W < 560;
+        var tablet = W < 820;
+        var ampScale = mobile ? 0.60 : (tablet ? 0.80 : 1);
+        var amp = H * (0.14 + depth * 0.10) * ampScale;
+        var centreOffset = mobile ? 0.80 : (tablet ? 0.72 : 0.58);
+        var centreY = H * (centreOffset + myMod * 0.3 + depth * (mobile ? 0.10 : 0.14));
+        var edgeFade = Math.sin(nx * Math.PI);
+        edgeFade = Math.pow(edgeFade, 0.08);
+        return centreY + wave * amp * edgeFade;
+      }
+
+      function buildLine(depth, time, steps) {
+        var pts = [];
+        for (var i = 0; i <= steps; i++) {
+          var x = (i / steps) * W;
+          pts.push({ x: x, y: surfaceY(x, depth, time) });
+        }
+        return pts;
+      }
+
+      function drawStrip(ptsA, ptsB, colorTop, colorBot) {
+        ctx.beginPath();
+        ctx.moveTo(ptsA[0].x, ptsA[0].y);
+        for (var i = 1; i < ptsA.length; i++) ctx.lineTo(ptsA[i].x, ptsA[i].y);
+        for (var j = ptsB.length - 1; j >= 0; j--) ctx.lineTo(ptsB[j].x, ptsB[j].y);
+        ctx.closePath();
+        var minY = Math.min(ptsA[0].y, ptsB[0].y);
+        var maxY = Math.max(ptsA[ptsA.length - 1].y, ptsB[ptsB.length - 1].y);
+        var grad = ctx.createLinearGradient(0, minY - 20, 0, maxY + 20);
+        grad.addColorStop(0, colorTop);
+        grad.addColorStop(1, colorBot);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      }
+
+      function drawLine(pts, alpha, lw) {
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+        ctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
+        ctx.lineWidth = lw;
+        ctx.stroke();
+      }
+
+      function tick() {
+        if (!W || !H) { raf = requestAnimationFrame(tick); return; }
+        t++;
+        ctx.clearRect(0, 0, W, H);
+
+        var mobile = W < 560;
+        var SLICES = mobile ? 24 : 48;
+        var FLOWLINES = mobile ? 18 : 36;
+        var STEPS = mobile ? 80 : 160;
+        var time = t * 0.0024;
+        var sliceLines = [];
+        for (var s = 0; s <= SLICES; s++) sliceLines.push(buildLine(s / SLICES, time, STEPS));
+
+        for (var k = 0; k < SLICES; k++) {
+          var mid = ((k / SLICES) + ((k + 1) / SLICES)) * 0.5;
+          var p = mid;
+          var r0 = Math.round(255 - p * 100);
+          var g0 = Math.round(160 - p * 100);
+          var b0 = Math.round(60 + p * 195);
+          var edgeDist = Math.abs(mid - 0.5) * 2;
+          var a0 = 0.45 + edgeDist * edgeDist * 0.55;
+          drawStrip(
+            sliceLines[k],
+            sliceLines[k + 1],
+            'rgba(' + r0 + ',' + g0 + ',' + b0 + ',' + a0 + ')',
+            'rgba(' + Math.max(0, r0 - 8) + ',' + Math.max(0, g0 - 8) + ',' + Math.min(255, b0 + 6) + ',' + a0 + ')'
+          );
+        }
+
+        ctx.save();
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        for (var f = 0; f < FLOWLINES; f++) {
+          var d = f / (FLOWLINES - 1);
+          var alpha = Math.max(0, 0.22 - d * 0.16);
+          if (alpha > 0.01) drawLine(buildLine(d, time, STEPS), alpha, 0.55);
+        }
+        drawLine(buildLine(0, time, STEPS), 0.65, 1.4);
+        drawLine(buildLine(0.04, time, STEPS), 0.32, 0.9);
+        drawLine(buildLine(0.96, time, STEPS), 0.42, 1.0);
+        ctx.restore();
+
+        ctx.save();
+        var bg = 'rgba(255,255,255,';
+        var sideFade = W < 560 ? 0.16 : 0.11;
+        var sideWidth = W * sideFade;
+
+        var gl = ctx.createLinearGradient(0, 0, sideWidth, 0);
+        gl.addColorStop(0, bg + '1)');
+        gl.addColorStop(1, bg + '0)');
+        ctx.fillStyle = gl;
+        ctx.fillRect(0, 0, sideWidth, H);
+
+        var gr = ctx.createLinearGradient(W, 0, W - sideWidth, 0);
+        gr.addColorStop(0, bg + '1)');
+        gr.addColorStop(1, bg + '0)');
+        ctx.fillStyle = gr;
+        ctx.fillRect(W - sideWidth, 0, sideWidth, H);
+
+        var topFade = W < 560 ? 0.68 : (W < 820 ? 0.62 : 0.52);
+        var gt = ctx.createLinearGradient(0, 0, 0, H * topFade);
+        gt.addColorStop(0, bg + '1)');
+        gt.addColorStop(1, bg + '0)');
+        ctx.fillStyle = gt;
+        ctx.fillRect(0, 0, W, H * topFade);
+
+        var gb = ctx.createLinearGradient(0, H, 0, H * 0.86);
+        gb.addColorStop(0, bg + '1)');
+        gb.addColorStop(1, bg + '0)');
+        ctx.fillStyle = gb;
+        ctx.fillRect(0, H * 0.86, W, H * 0.14);
+        ctx.restore();
+
+        raf = requestAnimationFrame(tick);
+      }
+
+      function safeResize() {
+        var rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) {
+          requestAnimationFrame(safeResize);
+          return;
+        }
+        W = rect.width;
+        H = rect.height;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function startLoop() {
+        cancelAnimationFrame(raf);
+        safeResize();
+        tick();
+      }
+
+      if (document.readyState === 'complete') startLoop();
+      else window.addEventListener('load', startLoop);
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          cancelAnimationFrame(raf);
+          safeResize();
+          tick();
+        }, 100);
+      });
+
+      window.addEventListener('orientationchange', function () {
+        setTimeout(function () {
+          cancelAnimationFrame(raf);
+          safeResize();
+          tick();
+        }, 300);
+      });
+
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) { cancelAnimationFrame(raf); tick(); }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+:root {
+  --t1: #171717;
+  --t2: #4b5563;
+  --t3: #7b8394;
+  --blue: #3159f5;
+  --blue-d: #2546cf;
+  --green-bg: rgba(5, 150, 105, 0.14);
+  --green-bd: rgba(5, 150, 105, 0.28);
+}
+
+/* Higher contrast defaults and cleaner text rendering */
+body {
+  color: var(--t1);
+  text-rendering: geometricPrecision;
+}
+
+/* Subtle ambient wash to unify sections */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(900px 500px at 8% 4%, rgba(49, 89, 245, 0.08), transparent 68%),
+    radial-gradient(700px 460px at 92% 12%, rgba(232, 196, 160, 0.12), transparent 70%);
+}
+
+/* Better keyboard accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Nav elevation on scroll (paired with JS class) */
+#nav {
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#nav.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 28px rgba(10, 15, 35, 0.08);
+}
+
+.nl a.is-active {
+  color: var(--t1);
+  font-weight: 600;
+}
+
+/* Stronger premium CTA treatment */
+.hero-cta,
+.nb-cta,
+.p-trial-btn,
+.pbtn-s {
+  background: linear-gradient(135deg, #3159f5, #4f6fff);
+  border-color: #3159f5;
+  box-shadow: 0 10px 24px rgba(49, 89, 245, 0.22);
+}
+
+.hero-cta:hover,
+.nb-cta:hover,
+.p-trial-btn:hover,
+.pbtn-s:hover {
+  background: linear-gradient(135deg, #2748cf, #3a58df);
+  border-color: #2748cf;
+}
+
+/* Card polish */
+.card,
+.tcard,
+.ba-card,
+.pstack,
+.faq-wrap,
+.hiw2-window {
+  box-shadow: 0 14px 36px rgba(12, 22, 42, 0.07);
+}
+
+/* Add subtle gradient rim to major cards */
+.card::after,
+.tcard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(49, 89, 245, 0.14));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Cleaner section rhythm */
+.sec-head p,
+.demo-sub,
+.p-header p,
+.ba-intro,
+.hero-sub {
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile hero was too tall in current CSS */
+@media (max-width: 640px) {
+  #hero {
+    padding-top: 180px;
+    padding-bottom: 88px;
+  }
+
+  .hero-cta,
+  .hero-cta-sec {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-cta-wrap {
+    width: 100%;
+  }
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
