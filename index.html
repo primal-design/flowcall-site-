@@ -5073,7 +5073,8 @@
 
   <!-- Vapi Web SDK — browser call to Olivia -->
   <script type="module">
-    import Vapi from "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm";
+    import VapiModule from "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm";
+    const Vapi = VapiModule.default || VapiModule;
 
     var vapiInstance = null;
     var callActive = false;
