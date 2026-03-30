@@ -2505,397 +2505,412 @@
     }
 
     .pricing-section {
-      background:
-        radial-gradient(920px 420px at 8% 10%, rgba(255,171,110,0.11), transparent 60%),
-        radial-gradient(760px 420px at 92% 90%, rgba(128,105,255,0.10), transparent 62%),
-        linear-gradient(180deg, #fbf8f1 0%, #f7fafc 100%);
-      border-top: 1px solid rgba(17, 24, 39, 0.06);
-      border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+      background: #fff;
+      border-top: 1px solid #f3f4f6;
     }
 
-    .pricing-shell {
-      display: grid;
-      gap: 36px;
+    .pricing-section .section-wrap {
+      padding-top: 96px;
+      padding-bottom: 96px;
     }
 
-    .pricing-head {
-      max-width: 48rem;
-      margin-bottom: 4px;
+    .billing-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .billing-label {
+      font-size: 13px;
+      color: #6b7280;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .billing-label.active {
+      color: #0d1117;
+      font-weight: 500;
+    }
+
+    .toggle-track {
+      width: 44px;
+      height: 24px;
+      border-radius: 12px;
+      background: #e5e7eb;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+      border: none;
+      outline: none;
+    }
+
+    .toggle-track.on {
+      background: #3b5bdb;
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .toggle-track.on .toggle-thumb {
+      transform: translateX(20px);
+    }
+
+    .save-badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: #d1fae5;
+      color: #065f46;
+      padding: 3px 8px;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .save-badge.visible {
+      opacity: 1;
+    }
+
+    .plan-recommended {
+      display: none;
+      font-size: 11px;
+      font-weight: 600;
+      background: #eef2ff;
+      color: #3b5bdb;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      border: 1px solid #c7d2f5;
+    }
+
+    .plan-card.recommended .plan-recommended {
+      display: inline-block;
+    }
+
+    .plan-card.recommended {
+      border-color: #3b5bdb;
+      border-width: 2px;
+      box-shadow: 0 0 0 4px rgba(59, 91, 219, 0.06);
     }
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+      align-items: start;
     }
 
-    .pricing-card {
+    .plan-card {
+      border: 1px solid #e9eaec;
+      border-radius: 20px;
+      padding: 28px 24px;
+      background: #fff;
+    }
+
+    .plan-card.featured {
+      border-color: #3b5bdb;
+      border-width: 2px;
+    }
+
+    .plan-popular {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      background: #eef2ff;
+      color: #3b5bdb;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .plan-tier {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .plan-price-num {
+      font-family: "DM Serif Display", serif;
+      font-size: 42px;
+      font-weight: 400;
+      color: #0d1117;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    .plan-price-period {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .plan-tagline {
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .plan-result-box {
+      background: #f9f8f6;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+
+    .plan-result-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 5px;
+    }
+
+    .plan-result-text {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .plan-features-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .plan-features {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      min-height: 100%;
-      padding: 30px;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(17, 24, 39, 0.08);
+      gap: 9px;
+      margin: 0 0 24px;
+      padding: 0;
     }
 
-    .pricing-card.featured {
-      border-color: rgba(95, 116, 246, 0.18);
-      box-shadow: 0 24px 60px rgba(44, 62, 138, 0.13);
-      background:
-        radial-gradient(320px 140px at 0% 0%, rgba(255, 176, 116, 0.12), transparent 66%),
-        radial-gradient(280px 180px at 100% 100%, rgba(108, 136, 255, 0.12), transparent 70%),
-        rgba(255,255,255,0.92);
-    }
-
-    .pricing-card.business {
-      border-color: rgba(17, 24, 39, 0.14);
-      box-shadow: 0 20px 50px rgba(17, 24, 39, 0.08);
-      background:
-        radial-gradient(300px 170px at 100% 0%, rgba(255, 176, 116, 0.08), transparent 68%),
-        rgba(255,255,255,0.9);
-    }
-
-    .pricing-badge {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      margin-bottom: 14px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(95, 116, 246, 0.08);
-      border: 1px solid rgba(95, 116, 246, 0.12);
-      color: #4d61b9;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .pricing-card-top {
+    .plan-features li {
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 14px;
+      gap: 9px;
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.4;
     }
 
-    .pricing-plan {
-      display: block;
-      font-size: 0.78rem;
-      line-height: 1.2;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #74809a;
+    .plan-tick {
+      color: #3b5bdb;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
-    .pricing-price {
+    .plan-anchor {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .plan-cta {
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      gap: 8px;
-      font-family: var(--font-display);
-      color: var(--ink);
-      white-space: nowrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
     }
 
-    .pricing-price strong {
-      font-size: clamp(2.2rem, 3.8vw, 3rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-      font-weight: 800;
+    .plan-cta.solid {
+      background: #3b5bdb;
+      color: #fff;
+      border: none;
+      box-shadow: 0 1px 3px rgba(59, 91, 219, 0.25);
     }
 
-    .pricing-card.featured .pricing-price strong {
-      font-size: clamp(2.45rem, 4.1vw, 3.35rem);
+    .plan-cta.solid:hover {
+      background: #3451c7;
     }
 
-    .pricing-price small {
-      font-size: 0.86rem;
-      color: #7b86a0;
-      line-height: 1.25;
-      padding-bottom: 5px;
+    .plan-cta.outline {
+      background: transparent;
+      color: #374151;
+      border: 1px solid #e5e7eb;
     }
 
-    .pricing-positioning {
-      margin: 0 0 20px;
-      color: var(--ink);
-      font-size: 0.98rem;
-      line-height: 1.48;
-      font-weight: 650;
-      letter-spacing: -0.02em;
+    .plan-cta.outline:hover {
+      border-color: #d1d5db;
+      background: #f9fafb;
     }
 
-    .pricing-block {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 18px;
+    .overage-block {
+      margin-top: 32px;
+      padding: 24px 28px;
+      background: #f9f8f6;
+      border-radius: 16px;
+      border: 1px solid #f3f4f6;
     }
 
-    .pricing-label {
-      display: block;
-      font-size: 0.72rem;
-      line-height: 1.2;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #74809a;
+    .overage-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0d1117;
+      margin-bottom: 4px;
     }
 
-    .pricing-flow,
-    .pricing-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .pricing-flow li {
-      position: relative;
-      display: grid;
-      gap: 4px;
-      padding-left: 14px;
-    }
-
-    .pricing-flow li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 5px;
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(95, 116, 246, 0.9);
-      box-shadow: 0 0 0 4px rgba(95, 116, 246, 0.08);
-    }
-
-    .pricing-flow strong {
-      font-size: 0.94rem;
-      line-height: 1.35;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .pricing-flow span {
-      color: #5f6c85;
-      font-size: 0.92rem;
+    .overage-subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 16px;
       line-height: 1.5;
     }
 
-    .pricing-list li {
-      position: relative;
-      padding-left: 20px;
-      color: #46526a;
-      font-size: 0.95rem;
-      line-height: 1.52;
+    .overage-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
     }
 
-    .pricing-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      top: 1px;
-      font-size: 0.84rem;
-      line-height: 1;
-      font-weight: 800;
-      color: #5f74f6;
+    .overage-cell {
+      background: #f9f8f6;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
     }
 
-    .pricing-note {
-      margin-top: 4px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(248, 250, 255, 0.96);
-      border: 1px solid rgba(17, 24, 39, 0.07);
-    }
-
-    .pricing-note strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.72rem;
-      line-height: 1.2;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #74809a;
-    }
-
-    .pricing-note p {
-      margin: 0;
-      color: #4f5d74;
-      font-size: 0.94rem;
-      line-height: 1.54;
-    }
-
-    .pricing-anchor {
-      margin: 14px 0 18px;
-      color: #56647c;
-      font-size: 0.93rem;
-      line-height: 1.55;
+    .overage-tier {
+      font-size: 13px;
       font-weight: 600;
+      color: #374151;
+      margin-bottom: 4px;
     }
 
-    .pricing-support {
-      margin-top: 10px;
-      color: #63718a;
-      font-size: 0.84rem;
+    .overage-price {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .overage-note {
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 14px;
       line-height: 1.5;
-      font-weight: 600;
     }
 
-    .pricing-card .btn {
-      width: fit-content;
-    }
-
-    .pricing-overage-card {
-      display: grid;
-      gap: 22px;
-      padding: 34px;
-      background: rgba(255,255,255,0.74);
-    }
-
-    .pricing-overage-head {
-      display: grid;
-      gap: 8px;
-      max-width: 42rem;
-    }
-
-    .pricing-overage-head h3 {
-      margin: 0;
-      font-size: clamp(1.32rem, 1.8vw, 1.72rem);
-      line-height: 1.12;
-      font-weight: 800;
-    }
-
-    .pricing-overage-head p,
-    .pricing-overage-reassure {
-      margin: 0;
-      color: #56647c;
-      font-size: 0.96rem;
-      line-height: 1.6;
-    }
-
-    .pricing-overage-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .pricing-overage-item {
-      display: grid;
-      gap: 6px;
-      padding: 18px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(17, 24, 39, 0.06);
-      box-shadow: none;
-    }
-
-    .pricing-overage-item strong {
-      font-size: 1rem;
-      line-height: 1.3;
-      font-weight: 800;
-      color: var(--ink);
-    }
-
-    .pricing-overage-item span {
-      color: #5a6880;
-      font-size: 0.94rem;
-      line-height: 1.5;
-      font-weight: 600;
-    }
-
-    .pricing-overage-reassure {
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .pricing-roi {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    .roi-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 24px;
-      align-items: start;
-      padding: 34px;
-      background:
-        radial-gradient(320px 180px at 0% 0%, rgba(255, 182, 112, 0.10), transparent 72%),
-        radial-gradient(300px 200px at 100% 100%, rgba(108, 136, 255, 0.10), transparent 72%),
-        rgba(255,255,255,0.78);
+      flex-wrap: wrap;
+      background: #f9f8f6;
+      border: 1px solid #f3f4f6;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 32px;
     }
 
-    .pricing-roi-copy {
-      display: grid;
-      gap: 10px;
-      max-width: 28rem;
-    }
-
-    .pricing-roi-copy h3 {
-      margin: 0;
-      font-size: clamp(1.38rem, 2vw, 1.8rem);
-      line-height: 1.12;
-      font-weight: 800;
-    }
-
-    .pricing-roi-copy p,
-    .pricing-roi-profit {
-      margin: 0;
-      color: #55637b;
-      font-size: 0.96rem;
-      line-height: 1.6;
-    }
-
-    .pricing-roi-math {
-      display: grid;
-      gap: 14px;
-    }
-
-    .pricing-roi-values {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .pricing-roi-value {
-      padding: 18px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(17, 24, 39, 0.06);
-    }
-
-    .pricing-roi-value span {
-      display: block;
-      margin-bottom: 8px;
-      color: #74809a;
-      font-size: 0.74rem;
-      line-height: 1.2;
-      letter-spacing: 0.12em;
+    .roi-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
-      font-weight: 700;
+      color: #9ca3af;
+      margin-bottom: 6px;
     }
 
-    .pricing-roi-value strong {
-      display: block;
-      font-family: var(--font-display);
-      color: var(--ink);
-      font-size: clamp(1.85rem, 3vw, 2.45rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      font-weight: 800;
+    .roi-left {
+      flex: 1;
+      min-width: 200px;
     }
 
-    .pricing-roi-highlight {
-      padding: 18px 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(95, 116, 246, 0.14);
-      background:
-        radial-gradient(240px 120px at 0% 0%, rgba(255, 182, 112, 0.12), transparent 72%),
-        radial-gradient(260px 140px at 100% 100%, rgba(108, 136, 255, 0.14), transparent 72%),
-        rgba(250,250,255,0.94);
-      color: var(--ink);
-      font-size: 1.02rem;
-      line-height: 1.48;
-      font-weight: 700;
+    .roi-left p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #0d1117;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .roi-copy {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .roi-numbers {
+      display: flex;
+      gap: 20px;
+    }
+
+    .roi-num-cell {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 20px;
+      text-align: center;
+    }
+
+    .roi-num {
+      font-family: "DM Serif Display", serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: #0d1117;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .roi-num-label {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 3px;
+    }
+
+    .roi-result {
+      background: #eef2ff;
+      border-radius: 10px;
+      padding: 12px 20px;
+      text-align: center;
+      align-self: center;
+    }
+
+    .roi-result-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: #3b5bdb;
+      line-height: 1.5;
     }
 
     .site-footer {
@@ -2946,13 +2961,13 @@
         grid-template-columns: 1fr;
       }
 
-      .pricing-overage-grid,
-      .pricing-roi-values {
+      .overage-row {
         grid-template-columns: 1fr;
       }
 
-      .pricing-roi {
-        grid-template-columns: 1fr;
+      .roi-strip {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
@@ -3011,11 +3026,9 @@
         grid-template-columns: 1fr;
       }
 
-      .pricing-card,
-      .pricing-overage-card,
-      .pricing-roi {
-        padding: 24px;
-      }
+      .plan-card { padding: 24px; }
+      .overage-block,
+      .roi-strip { padding: 24px; }
     }
 
     @media (max-width: 640px) {
@@ -3193,9 +3206,7 @@
         padding: var(--space-3);
       }
       .loss-board,
-      .pricing-card,
-      .pricing-overage-card,
-      .pricing-roi { padding: 22px; }
+      .plan-card { padding: 22px; }
       .loss-proof {
         width: 100%;
         gap: var(--space-4);
@@ -3209,15 +3220,10 @@
       .section-copy p,
       .section-head p,
       .card-copy p { font-size: 0.96rem; }
-      .pricing-card .btn { width: 100%; }
-      .pricing-overage-grid,
-      .pricing-roi-values {
-        grid-template-columns: 1fr;
-      }
-      .pricing-card-top,
-      .pricing-price {
-        justify-content: flex-start;
-      }
+      .plan-cta { width: 100%; }
+      .overage-row { grid-template-columns: 1fr; }
+      .roi-strip { flex-direction: column; align-items: flex-start; }
+      .roi-numbers { flex-direction: column; width: 100%; }
       .footer-inner { flex-direction: column; }
     }
 
@@ -3598,160 +3604,170 @@
     </div>
   </section>
 
-  <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
-    <div class="container pricing-shell">
-      <header class="pricing-head section-copy">
-        <div class="eyebrow"><span class="dot"></span>Pricing</div>
-        <h2 id="pricing-title">Turn every call into a lead — and every lead into revenue</h2>
-        <p>FlowCall answers instantly, qualifies the caller, and helps you capture — or book — every opportunity.</p>
-      </header>
+  <section class="pricing-section" id="pricing">
+    <div class="section-wrap">
+      <p class="section-eyebrow">
+        <span class="section-eyebrow-dot"></span> Pricing
+      </p>
+      <h2 class="section-h2" id="pricing-title">
+        Turn every call into a lead —<br>and every lead into revenue.
+      </h2>
+      <p class="section-sub">
+        FlowCall answers instantly, qualifies the caller, and helps you
+        capture — or book — every opportunity.
+      </p>
 
-      <div class="pricing-grid">
-        <article class="surface-card pricing-card">
-          <div class="pricing-card-top">
-            <span class="pricing-plan">Book</span>
-            <div class="pricing-price"><strong>£199</strong><small>per month</small></div>
-          </div>
-          <p class="pricing-positioning">Stop losing customers to missed calls</p>
-          <div class="pricing-note">
-            <strong>Result</strong>
-            <p>You know exactly who called and what they need — so you can call back and win the job.</p>
-          </div>
-          <div class="pricing-block">
-            <span class="pricing-label">What happens when someone calls</span>
-            <ul class="pricing-flow">
-              <li><strong>Call comes in</strong><span>AI answers instantly in your business name.</span></li>
-              <li><strong>Conversation happens</strong><span>Collects name, service, postcode, and urgency.</span></li>
-              <li><strong>You get the lead instantly</strong><span>SMS with full details lands seconds after the call.</span></li>
-            </ul>
-          </div>
-          <div class="pricing-block">
-            <span class="pricing-label">What you get</span>
-            <ul class="pricing-list">
-              <li>~40 enquiries handled</li>
-              <li>24/7 call answering</li>
-              <li>Lead capture (structured details)</li>
-              <li>Instant SMS delivery</li>
-              <li>Missed-call text-back</li>
-              <li>Call summary (see what was said)</li>
-            </ul>
-          </div>
-          <div class="pricing-anchor">Just 1–2 recovered jobs can cover this plan.</div>
-          <a class="btn secondary" href="#audio-modal" onclick="openAudioModal(); return false;">Start with Book</a>
-        </article>
-
-        <article class="surface-card pricing-card featured">
-          <div class="pricing-badge">Most popular</div>
-          <div class="pricing-card-top">
-            <span class="pricing-plan">Grow</span>
-            <div class="pricing-price"><strong>£299</strong><small>per month</small></div>
-          </div>
-          <p class="pricing-positioning">Calls don’t just come in — they get booked instantly</p>
-          <div class="pricing-block">
-            <span class="pricing-label">What happens when someone calls</span>
-            <ul class="pricing-flow">
-              <li><strong>Call comes in</strong><span>AI answers instantly.</span></li>
-              <li><strong>Conversation happens</strong><span>Qualifies the caller.</span></li>
-              <li><strong>Appointment booked</strong><span>AI books directly into your calendar.</span></li>
-              <li><strong>Confirmation sent</strong><span>You and the customer get the details instantly.</span></li>
-            </ul>
-          </div>
-          <div class="pricing-block">
-            <span class="pricing-label">What you get</span>
-            <ul class="pricing-list">
-              <li>~80 enquiries handled</li>
-              <li>Everything in Book</li>
-              <li>AI appointment booking</li>
-              <li>Calendar integration (Google / Cal.com)</li>
-              <li>Booking confirmations + reminders</li>
-            </ul>
-          </div>
-          <div class="pricing-note">
-            <strong>Result</strong>
-            <p>Customers don't just call — they get booked instantly.</p>
-          </div>
-          <div class="pricing-anchor">Even a few extra bookings per week can generate thousands in additional revenue.</div>
-          <a class="btn primary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
-          <div class="pricing-support">See how it handles your calls in under 30 seconds.</div>
-        </article>
-
-        <article class="surface-card pricing-card business">
-          <div class="pricing-card-top">
-            <span class="pricing-plan">Scale</span>
-            <div class="pricing-price"><strong>£499</strong><small>per month</small></div>
-          </div>
-          <p class="pricing-positioning">Maximise revenue and see exactly what's working</p>
-          <div class="pricing-block">
-            <span class="pricing-label">What happens when someone calls</span>
-            <ul class="pricing-flow">
-              <li><strong>Call comes in</strong><span>AI answers instantly.</span></li>
-              <li><strong>Conversation happens</strong><span>Qualifies and books the job.</span></li>
-              <li><strong>Data captured</strong><span>Stored and synced to your CRM.</span></li>
-              <li><strong>Insights generated</strong><span>See which calls turn into revenue.</span></li>
-            </ul>
-          </div>
-          <div class="pricing-block">
-            <span class="pricing-label">What you get</span>
-            <ul class="pricing-list">
-              <li>~200 enquiries handled</li>
-              <li>Everything in Grow</li>
-              <li>CRM sync (Airtable / HubSpot)</li>
-              <li>Revenue tracking dashboard</li>
-              <li>Call analytics + attribution</li>
-            </ul>
-          </div>
-          <div class="pricing-note">
-            <strong>Result</strong>
-            <p>Your phone becomes a measurable, optimised revenue channel.</p>
-          </div>
-          <div class="pricing-anchor">Know exactly where your revenue is coming from — and scale what works.</div>
-          <a class="btn secondary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
-        </article>
+      <div class="billing-toggle">
+        <span class="billing-label active" id="lbl-monthly">Monthly</span>
+        <button class="toggle-track" id="billing-toggle" type="button" onclick="toggleBilling()" aria-label="Switch billing period">
+          <div class="toggle-thumb"></div>
+        </button>
+        <span class="billing-label" id="lbl-annual">Annual</span>
+        <span class="save-badge" id="save-badge">Save 2 months</span>
       </div>
 
-      <article class="surface-card soft pricing-overage-card">
-        <div class="pricing-overage-head">
-          <h3>No limits. No missed opportunities.</h3>
-          <p>If you exceed your plan, we keep answering every call:</p>
+      <div class="pricing-grid">
+        <div class="plan-card" id="plan-book">
+          <div class="plan-recommended">Recommended for you</div>
+          <div class="plan-tier">Book</div>
+          <div class="plan-price">
+            <span class="plan-price-num" id="price-book">£199</span>
+            <span class="plan-price-period">per month</span>
+          </div>
+          <div class="plan-tagline">Stop losing customers to missed calls</div>
+          <div class="plan-result-box">
+            <div class="plan-result-label">Result</div>
+            <div class="plan-result-text">You know exactly who called and what they need — so you can call back and win the job.</div>
+          </div>
+          <div class="plan-features-label">What happens when someone calls</div>
+          <ul class="plan-features">
+            <li><span class="plan-tick">✓</span> AI answers instantly in your business name</li>
+            <li><span class="plan-tick">✓</span> Collects name, service, postcode, and urgency</li>
+            <li><span class="plan-tick">✓</span> SMS with full lead details seconds after the call</li>
+            <li><span class="plan-tick">✓</span> ~40 enquiries handled per month</li>
+            <li><span class="plan-tick">✓</span> 24/7 call answering</li>
+            <li><span class="plan-tick">✓</span> Missed-call text-back</li>
+            <li><span class="plan-tick">✓</span> Call summary — see what was said</li>
+          </ul>
+          <div class="plan-anchor">
+            Just 1–2 recovered jobs can cover this plan.
+          </div>
+          <a href="#call-live" class="plan-cta outline" onclick="startOliviaCall(); return false;">Start with Book</a>
         </div>
-        <div class="pricing-overage-grid">
-          <div class="pricing-overage-item">
-            <strong>Book</strong>
-            <span>£1.50 per extra call</span>
-          </div>
-          <div class="pricing-overage-item">
-            <strong>Grow</strong>
-            <span>£1.00 per extra call</span>
-          </div>
-          <div class="pricing-overage-item">
-            <strong>Scale</strong>
-            <span>£0.75 per extra call</span>
-          </div>
-        </div>
-        <p class="pricing-overage-reassure">We never stop answering your calls — even if you exceed your plan.</p>
-      </article>
 
-      <article class="surface-card soft pricing-roi">
-        <div class="pricing-roi-copy">
-          <span class="pricing-label">ROI example</span>
-          <h3>Just a few extra calls can pay for everything</h3>
-          <p>A couple of recovered jobs can pay for the plan before the month has even settled.</p>
-        </div>
-        <div class="pricing-roi-math">
-          <div class="pricing-roi-values">
-            <div class="pricing-roi-value">
-              <span>Average job</span>
-              <strong>£150</strong>
-            </div>
-            <div class="pricing-roi-value">
-              <span>2 extra bookings</span>
-              <strong>£300</strong>
-            </div>
+        <div class="plan-card featured recommended" id="plan-grow">
+          <div class="plan-recommended">Recommended for you</div>
+          <div class="plan-popular">Most popular</div>
+          <div class="plan-tier">Grow</div>
+          <div class="plan-price">
+            <span class="plan-price-num" id="price-grow">£299</span>
+            <span class="plan-price-period">per month</span>
           </div>
-          <div class="pricing-roi-highlight">Covers the Grow plan completely.</div>
-          <p class="pricing-roi-profit">Everything after that is profit.</p>
+          <div class="plan-tagline">Calls don't just come in — they get booked instantly</div>
+          <div class="plan-result-box">
+            <div class="plan-result-label">Result</div>
+            <div class="plan-result-text">Customers don't just call — they get booked instantly.</div>
+          </div>
+          <div class="plan-features-label">What happens when someone calls</div>
+          <ul class="plan-features">
+            <li><span class="plan-tick">✓</span> AI answers instantly and qualifies the caller</li>
+            <li><span class="plan-tick">✓</span> Appointment booked directly into your calendar</li>
+            <li><span class="plan-tick">✓</span> Confirmation SMS to you and the customer</li>
+            <li><span class="plan-tick">✓</span> ~80 enquiries handled per month</li>
+            <li><span class="plan-tick">✓</span> Everything in Book</li>
+            <li><span class="plan-tick">✓</span> AI appointment booking</li>
+            <li><span class="plan-tick">✓</span> Calendar integration (Google / Cal.com)</li>
+            <li><span class="plan-tick">✓</span> Booking confirmations + reminders</li>
+          </ul>
+          <div class="plan-anchor">
+            A few extra bookings per week can generate thousands more.
+          </div>
+          <a href="#call-live" class="plan-cta solid" onclick="startOliviaCall(); return false;">Start with Grow</a>
         </div>
-      </article>
+
+        <div class="plan-card" id="plan-scale">
+          <div class="plan-recommended">Recommended for you</div>
+          <div class="plan-tier">Scale</div>
+          <div class="plan-price">
+            <span class="plan-price-num" id="price-scale">£499</span>
+            <span class="plan-price-period">per month</span>
+          </div>
+          <div class="plan-tagline">Maximise revenue and see exactly what's working</div>
+          <div class="plan-result-box">
+            <div class="plan-result-label">Result</div>
+            <div class="plan-result-text">Your phone becomes a measurable, optimised revenue channel.</div>
+          </div>
+          <div class="plan-features-label">What happens when someone calls</div>
+          <ul class="plan-features">
+            <li><span class="plan-tick">✓</span> AI answers, qualifies, and books the job</li>
+            <li><span class="plan-tick">✓</span> Data stored and synced to your CRM</li>
+            <li><span class="plan-tick">✓</span> Insights — see which calls turn into revenue</li>
+            <li><span class="plan-tick">✓</span> ~200 enquiries handled per month</li>
+            <li><span class="plan-tick">✓</span> Everything in Grow</li>
+            <li><span class="plan-tick">✓</span> CRM sync (Airtable / HubSpot)</li>
+            <li><span class="plan-tick">✓</span> Revenue tracking dashboard</li>
+            <li><span class="plan-tick">✓</span> Call analytics + attribution</li>
+          </ul>
+          <div class="plan-anchor">
+            Know exactly where your revenue is coming from — and scale what works.
+          </div>
+          <a href="#call-live" class="plan-cta outline" onclick="startOliviaCall(); return false;">Call &amp; Try It Live</a>
+        </div>
+      </div>
+
+      <div class="overage-block">
+        <div class="overage-title">No limits. No missed opportunities.</div>
+        <div class="overage-subtitle">
+          If you exceed your plan, we keep answering every call:
+        </div>
+        <div class="overage-row">
+          <div class="overage-cell">
+            <div class="overage-tier">Book</div>
+            <div class="overage-price">£1.50 per extra call</div>
+          </div>
+          <div class="overage-cell">
+            <div class="overage-tier">Grow</div>
+            <div class="overage-price">£1.00 per extra call</div>
+          </div>
+          <div class="overage-cell">
+            <div class="overage-tier">Scale</div>
+            <div class="overage-price">£0.75 per extra call</div>
+          </div>
+        </div>
+        <div class="overage-note">
+          We never stop answering your calls — even if you exceed your plan.
+        </div>
+      </div>
+
+      <div class="roi-strip">
+        <div class="roi-left">
+          <div class="roi-label">ROI Example</div>
+          <p>Just a few extra calls can pay for everything</p>
+          <div class="roi-copy">
+            A couple of recovered jobs pays for the plan before the month settles.
+          </div>
+        </div>
+        <div class="roi-numbers">
+          <div class="roi-num-cell">
+            <div class="roi-label">Average job</div>
+            <div class="roi-num">£150</div>
+            <div class="roi-num-label">typical locksmith</div>
+          </div>
+          <div class="roi-num-cell">
+            <div class="roi-label">2 extra bookings</div>
+            <div class="roi-num">£300</div>
+            <div class="roi-num-label">per month</div>
+          </div>
+        </div>
+        <div class="roi-result">
+          <div class="roi-result-text">
+            Covers the Grow plan completely.<br>
+            <span style="font-size:12px;font-weight:400">
+              Everything after that is profit.
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -4294,6 +4310,9 @@
 
       calcNum.textContent = "£" + monthly.toLocaleString("en-GB");
       calcSub.textContent = "≈ £" + daily.toLocaleString("en-GB") + "/day";
+      if (typeof window.highlightPlan === "function") {
+        window.highlightPlan(mc);
+      }
 
       if (result) {
         result.classList.remove("is-updating");
@@ -4306,6 +4325,42 @@
     }
 
     calcUpdate();
+  </script>
+
+  <script>
+    (function () {
+      var isAnnual = false;
+      var MONTHLY = { book: 199, grow: 299, scale: 499 };
+      var ANNUAL = { book: 166, grow: 249, scale: 416 };
+
+      window.toggleBilling = function () {
+        isAnnual = !isAnnual;
+        var track = document.getElementById("billing-toggle");
+        if (!track) return;
+        track.classList.toggle("on", isAnnual);
+        document.getElementById("lbl-monthly").classList.toggle("active", !isAnnual);
+        document.getElementById("lbl-annual").classList.toggle("active", isAnnual);
+        document.getElementById("save-badge").classList.toggle("visible", isAnnual);
+
+        var prices = isAnnual ? ANNUAL : MONTHLY;
+        document.getElementById("price-book").textContent = "£" + prices.book;
+        document.getElementById("price-grow").textContent = "£" + prices.grow;
+        document.getElementById("price-scale").textContent = "£" + prices.scale;
+      };
+
+      window.highlightPlan = function (mc) {
+        ["plan-book", "plan-grow", "plan-scale"].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.classList.remove("recommended");
+        });
+        var target = mc <= 2 ? "plan-book" : mc <= 6 ? "plan-grow" : "plan-scale";
+        var plan = document.getElementById(target);
+        if (plan) plan.classList.add("recommended");
+      };
+
+      var mcInput = document.getElementById("mc-input");
+      window.highlightPlan(mcInput ? Number(mcInput.value) || 3 : 3);
+    })();
   </script>
 
   <script>
