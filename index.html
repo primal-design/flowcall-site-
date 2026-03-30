@@ -153,11 +153,7 @@
 
     .section-copy p,
     .section-head p,
-    .cta-copy p,
-    .how-board-copy p,
-    .card-copy p,
-    .how-card p,
-    .how-board-demo p {
+    .card-copy p {
       color: var(--muted);
       font-size: var(--text-body);
       line-height: var(--lh-loose);
@@ -1444,97 +1440,6 @@
       40% { transform: scale(1); opacity: 1; }
     }
 
-    .ticker-belt {
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-      border-top: 1px solid rgba(17, 24, 39, 0.08);
-      border-bottom: 1px solid rgba(17, 24, 39, 0.08);
-      background: rgba(255, 255, 255, 0.52);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .ticker-shell {
-      position: relative;
-      z-index: 1;
-      margin-top: 8px;
-    }
-
-    .ticker-label {
-      width: min(1180px, calc(100vw - 48px));
-      margin: 0 auto 10px;
-      color: #6a758b;
-      font-size: 0.82rem;
-      line-height: 1.3;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .ticker-belt::before,
-    .ticker-belt::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 84px;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .ticker-belt::before {
-      left: 0;
-      background: linear-gradient(to right, rgba(250, 248, 243, 0.96), transparent 100%);
-    }
-
-    .ticker-belt::after {
-      right: 0;
-      background: linear-gradient(to left, rgba(250, 248, 243, 0.96), transparent 100%);
-    }
-
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      animation: tickerScroll 32s linear infinite;
-      will-change: transform;
-    }
-
-    .ticker-track:hover { animation-play-state: paused; }
-
-    .ticker-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 34px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #677286;
-      white-space: nowrap;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      transition: color .18s ease, transform .18s ease;
-      cursor: pointer;
-    }
-
-    .ticker-item:hover {
-      color: var(--ink);
-      transform: translateY(-1px);
-    }
-
-    .ticker-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #c8cfdd;
-      flex: 0 0 auto;
-    }
-
-    @keyframes tickerScroll {
-      from { transform: translateX(28px); }
-      to { transform: translateX(calc(-50% + 28px)); }
-    }
-
     .loss-section {
       padding: 6rem 0;
       background:
@@ -2427,255 +2332,176 @@
       }
     }
 
-    .how-section {
-      background:
-        radial-gradient(880px 360px at 6% 0%, rgba(108, 136, 255, 0.06), transparent 58%),
-        radial-gradient(860px 420px at 100% 100%, rgba(255, 182, 112, 0.08), transparent 60%),
-        #fff;
-      border-top: 1px solid rgba(17, 24, 39, 0.05);
-      border-bottom: 1px solid rgba(17, 24, 39, 0.05);
+    .hiw-section {
+      background: #fafafa;
+      border-top: 1px solid #f3f4f6;
     }
 
-    .how-shell {
-      display: grid;
-      gap: 42px;
+    .hiw-section .section-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 96px 32px;
     }
 
-    .how-head {
-      max-width: 46rem;
+    .hiw-section .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a7f5a;
+      margin-bottom: 14px;
     }
 
-    .how-head h3 {
-      font-size: clamp(1.72rem, 2.45vw, 2.35rem);
-      line-height: 1.06;
-      margin-bottom: 16px;
-      font-weight: 800;
-      max-width: 16ch;
+    .hiw-section .section-eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1a7f5a;
+      flex-shrink: 0;
     }
 
-    .how-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
+    .hiw-section .section-h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #0d1117;
+      margin-bottom: 12px;
     }
 
-    .how-card {
-      padding: 26px;
-      min-height: 184px;
+    .hiw-section .section-sub {
+      font-size: 17px;
+      color: #6b7280;
+      line-height: 1.65;
+      max-width: 42rem;
+    }
+
+    .hiw-stat-bar {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 20px 28px;
+      background: #fff;
+      border: 1px solid #eaecf0;
+      border-radius: 16px;
+      margin-top: 36px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hiw-stat {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.52);
-      border-style: solid;
-      border-width: 1px;
-      border-color: rgba(17, 24, 39, 0.06);
+      gap: 2px;
+      flex: 1;
+      min-width: 120px;
     }
 
-    .how-card h3 {
-      font-size: clamp(1.12rem, 1.35vw, 1.32rem);
-      line-height: 1.16;
-      margin-bottom: 12px;
-      font-weight: 750;
+    .hiw-stat-num {
+      font-family: "DM Serif Display", serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: #0d1117;
+      line-height: 1;
       letter-spacing: -0.03em;
-      max-width: 13ch;
     }
 
-    .how-card p {
-      max-width: 29ch;
+    .hiw-stat-label {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.4;
     }
 
-    .how-board {
-      position: relative;
-      overflow: hidden;
-      min-height: 448px;
-      padding: 42px 42px 34px;
-      background:
-        radial-gradient(760px 220px at 0% 0%, rgba(255, 182, 112, 0.10), transparent 66%),
-        radial-gradient(760px 260px at 100% 100%, rgba(154, 99, 255, 0.10), transparent 68%),
-        rgba(255,255,255,0.84);
+    .hiw-stat-divider {
+      width: 1px;
+      height: 40px;
+      background: #e5e7eb;
+      flex-shrink: 0;
     }
 
-    .how-board-inner {
-      position: relative;
-      z-index: 2;
+    .hiw-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, 420px);
-      gap: clamp(18px, 2.4vw, 30px);
-      align-items: start;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
-    .how-board-copy {
-      max-width: 34ch;
+    .hiw-card {
+      background: #fff;
+      border: 1px solid #eaecf0;
+      border-radius: 16px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
     }
 
-    .how-board-copy h3 {
-      font-size: clamp(1.6rem, 2.2vw, 2.05rem);
-      line-height: 1.08;
-      margin-bottom: 12px;
-      font-weight: 800;
+    .hiw-number {
+      font-family: "DM Serif Display", serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #e5e7eb;
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
     }
 
-    .how-board-meta {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-      justify-items: start;
-    }
-
-    .how-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(17, 24, 39, 0.08);
-      color: #505a71;
-      font-size: 0.8rem;
+    .hiw-card-title {
+      font-size: 15px;
       font-weight: 600;
+      color: #0d1117;
+      margin-bottom: 10px;
+      line-height: 1.2;
     }
 
-    .how-pill-label {
-      color: #5d6880;
-      font-weight: 600;
+    .hiw-card-body {
+      font-size: 13.5px;
+      color: #6b7280;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      flex: 1;
     }
 
-    .how-pill strong::before {
-      content: "·";
-      margin: 0 8px;
-      color: #98a2b7;
-      font-weight: 600;
+    .hiw-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
-    .how-pill strong {
-      color: var(--ink);
-      font-size: 0.85rem;
-      letter-spacing: -0.01em;
-    }
-
-    .how-ribbon-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    #how-ribbon-canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .how-board-demo {
-      position: relative;
-      z-index: 3;
-      isolation: isolate;
-      overflow: hidden;
-      align-self: start;
-      justify-self: end;
-      width: min(100%, 420px);
-      padding: 34px 34px 30px;
-      text-align: center;
-      border-radius: 24px;
-      border: 1px solid rgba(95, 116, 246, 0.16);
-      box-shadow: 0 22px 56px rgba(16, 24, 40, 0.10), 0 0 0 16px rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background:
-        radial-gradient(220px 120px at 12% 28%, rgba(255, 182, 112, 0.16), transparent 72%),
-        radial-gradient(220px 120px at 88% 42%, rgba(154, 99, 255, 0.12), transparent 72%),
-        rgba(255, 255, 255, 0.92);
-    }
-
-    .how-board-demo::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0));
-    }
-
-    .how-board-demo-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 14px;
-      justify-items: center;
-    }
-
-    .how-demo-expectation {
-      margin: -2px 0 2px;
-      color: #58657d;
-      font-size: 0.86rem;
-      line-height: 1.55;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .how-board-demo .eyebrow {
-      margin-bottom: 0;
-      justify-content: center;
-    }
-
-    .how-board-demo h4 {
-      margin-bottom: 0;
-      font-size: clamp(1.5rem, 2.1vw, 1.95rem);
-      line-height: 0.98;
-      letter-spacing: -0.045em;
-      font-weight: 800;
-      max-width: 9.5ch;
-    }
-
-    .how-demo-wave {
+    .hiw-pill {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      height: 38px;
-      margin-bottom: 0;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 500;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 4px 10px;
+      color: #374151;
     }
 
-    .how-demo-wave span {
-      width: 5px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(188, 198, 255, 1), rgba(95, 116, 246, 1));
-      box-shadow: 0 0 14px rgba(95, 116, 246, 0.18);
-      animation: howDemoWave 1s ease-in-out infinite;
-      transform-origin: center;
+    .hiw-pill-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #3b5bdb;
+      flex-shrink: 0;
     }
 
-    .how-demo-wave span:nth-child(1),
-    .how-demo-wave span:nth-child(7) { height: 12px; animation-delay: 0s; }
-    .how-demo-wave span:nth-child(2),
-    .how-demo-wave span:nth-child(6) { height: 22px; animation-delay: 0.08s; }
-    .how-demo-wave span:nth-child(3),
-    .how-demo-wave span:nth-child(5) { height: 32px; animation-delay: 0.16s; }
-    .how-demo-wave span:nth-child(4) { height: 42px; animation-delay: 0.24s; }
+    @media (max-width: 960px) {
+      .hiw-stat-bar {
+        gap: 16px;
+        padding: 16px 20px;
+      }
 
-    .how-live-number {
-      display: block;
-      margin-bottom: 0;
-      font-family: var(--font-display);
-      font-size: clamp(2.05rem, 3.3vw, 3.15rem);
-      line-height: 0.92;
-      letter-spacing: -0.065em;
-      font-weight: 800;
-      color: var(--ink);
-      white-space: nowrap;
-      text-align: center;
-    }
+      .hiw-stat-divider {
+        display: none;
+      }
 
-    .how-live-demo-meta {
-      margin-top: 0;
-      font-size: 0.84rem;
-      color: #6a758c;
-      letter-spacing: -0.01em;
-    }
-
-    @keyframes howDemoWave {
-      0%, 100% { transform: scaleY(0.48); opacity: 0.38; }
-      50% { transform: scaleY(1); opacity: 1; }
+      .hiw-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .pricing-section {
@@ -3072,132 +2898,6 @@
       font-weight: 700;
     }
 
-    .cta-section {
-      background:
-        radial-gradient(760px 280px at 10% 100%, rgba(255, 182, 112, 0.10), transparent 60%),
-        radial-gradient(680px 260px at 90% 0%, rgba(108, 136, 255, 0.10), transparent 64%),
-        #fcfbf7;
-    }
-
-    .cta-board {
-      position: relative;
-      overflow: hidden;
-      padding: 48px 42px;
-      text-align: center;
-      max-width: 820px;
-      margin: 0 auto;
-      box-shadow: 0 26px 68px rgba(17, 24, 39, 0.10);
-      background:
-        radial-gradient(440px 150px at 0% 0%, rgba(255,176,116,0.10), transparent 66%),
-        radial-gradient(420px 180px at 100% 100%, rgba(108,136,255,0.10), transparent 68%),
-        rgba(255,255,255,0.9);
-    }
-
-    .cta-copy {
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-context {
-      margin: 14px auto 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 8px 12px;
-      width: fit-content;
-      border-radius: 999px;
-      background: rgba(95, 116, 246, 0.07);
-      border: 1px solid rgba(95, 116, 246, 0.12);
-      color: #5160ae;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .cta-context.is-visible {
-      display: inline-flex;
-    }
-
-    .cta-copy h2 {
-      max-width: 12ch;
-      margin: 0 auto 14px;
-      font-size: clamp(2rem, 3.2vw, 3rem);
-      line-height: 1.02;
-    }
-
-    .cta-copy p {
-      margin: 12px auto 24px;
-      max-width: 34rem;
-    }
-
-    .cta-actions {
-      display: grid;
-      justify-items: center;
-      gap: 12px;
-    }
-
-    .cta-actions .btn {
-      min-width: 240px;
-    }
-
-    .cta-link-lite {
-      min-width: auto !important;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: #617088;
-      font-size: 0.92rem;
-      font-weight: 600;
-      box-shadow: none;
-    }
-
-    .cta-link-lite:hover {
-      color: var(--ink);
-      background: transparent;
-      transform: none;
-    }
-
-    .faq-section {
-      padding-top: 0;
-      background: transparent;
-    }
-
-    .faq-shell {
-      display: grid;
-      gap: 30px;
-    }
-
-    .faq-head {
-      max-width: 36rem;
-    }
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .faq-item {
-      padding: 26px;
-      background: rgba(255,255,255,0.54);
-      border-color: rgba(17, 24, 39, 0.06);
-    }
-
-    .faq-item h3 {
-      margin: 0 0 12px;
-      font-size: 1.04rem;
-      line-height: 1.26;
-      font-weight: 750;
-      letter-spacing: -0.03em;
-    }
-
-    .faq-item p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.6;
-    }
-
     .site-footer {
       padding: 28px 0 36px;
       border-top: 1px solid rgba(17, 24, 39, 0.08);
@@ -3242,13 +2942,11 @@
     .footer-links a:hover { color: var(--ink); }
 
     @media (max-width: 1120px) {
-      .pricing-grid,
-      .how-cards {
+      .pricing-grid {
         grid-template-columns: 1fr;
       }
 
       .pricing-overage-grid,
-      .faq-grid,
       .pricing-roi-values {
         grid-template-columns: 1fr;
       }
@@ -3303,28 +3001,12 @@
       }
 
       .loss-board-copy h3,
-      .cta-copy h2,
       .loss-copy h2 {
         max-width: 14ch;
         white-space: normal;
         text-wrap: balance;
       }
 
-      .how-board {
-        min-height: 392px;
-        padding: 32px 32px 28px;
-      }
-      .how-board-inner {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .how-board-demo {
-        justify-self: start;
-        width: min(100%, 420px);
-      }
-      .how-live-number {
-        white-space: normal;
-      }
       .pricing-grid {
         grid-template-columns: 1fr;
       }
@@ -3339,8 +3021,7 @@
     @media (max-width: 640px) {
       section { padding: 64px 0; }
       .container { width: min(var(--max-width-container), calc(100vw - (2 * var(--space-4)))); }
-      .hero-ctas a,
-      .cta-actions a { width: 100%; }
+      .hero-ctas a { width: 100%; }
       .mob-ctas .nb-cta { width: 100%; justify-content: center; }
       .hero-copy {
         gap: 0;
@@ -3511,20 +3192,10 @@
       .fc-booking-meta-cell {
         padding: var(--space-3);
       }
-      .ticker-label {
-        width: min(1180px, calc(100vw - 24px));
-        margin-bottom: 8px;
-        font-size: 0.76rem;
-      }
-      .ticker-item { padding: 12px 24px; font-size: 0.72rem; }
       .loss-board,
       .pricing-card,
-      .cta-board,
-      .how-card,
-      .how-board,
       .pricing-overage-card,
-      .pricing-roi,
-      .faq-item { padding: 22px; }
+      .pricing-roi { padding: 22px; }
       .loss-proof {
         width: 100%;
         gap: var(--space-4);
@@ -3537,19 +3208,9 @@
       .loss-copy p,
       .section-copy p,
       .section-head p,
-      .cta-copy p,
-      .how-board-copy p,
-      .card-copy p,
-      .how-card p { font-size: 0.96rem; }
-      .pricing-card .btn,
-      .cta-actions .btn {
-        width: 100%;
-      }
-      .cta-actions .cta-link-lite {
-        width: auto;
-      }
+      .card-copy p { font-size: 0.96rem; }
+      .pricing-card .btn { width: 100%; }
       .pricing-overage-grid,
-      .faq-grid,
       .pricing-roi-values {
         grid-template-columns: 1fr;
       }
@@ -3558,7 +3219,6 @@
         justify-content: flex-start;
       }
       .footer-inner { flex-direction: column; }
-      .how-board-demo .btn { width: 100%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -3768,29 +3428,91 @@
     </div>
   </div>
 
-  <div class="ticker-shell">
-    <div class="ticker-label">Built for service businesses like</div>
-    <div class="ticker-belt">
-      <div class="ticker-track">
-        <a class="ticker-item" href="#cta" data-vertical="Dental practices">Dental Practices<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="GP surgeries">GP Surgeries<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Veterinary practices">Veterinary Practices<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Physiotherapy clinics">Physiotherapy Clinics<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Plumbers">Plumbers<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Electricians">Electricians<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Boiler engineers">Boiler Engineers<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="HVAC engineers">HVAC Engineers<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Dental practices">Dental Practices<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="GP surgeries">GP Surgeries<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Veterinary practices">Veterinary Practices<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Physiotherapy clinics">Physiotherapy Clinics<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Plumbers">Plumbers<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Electricians">Electricians<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="Boiler engineers">Boiler Engineers<span class="ticker-dot"></span></a>
-        <a class="ticker-item" href="#cta" data-vertical="HVAC engineers">HVAC Engineers<span class="ticker-dot"></span></a>
+  <section class="hiw-section" id="how">
+    <div class="section-wrap">
+      <p class="section-eyebrow">
+        <span class="section-eyebrow-dot"></span> How It Works
+      </p>
+      <h2 class="section-h2">The call handled. The lead delivered.</h2>
+      <p class="section-sub">
+        FlowCall answers instantly, qualifies the enquiry naturally,
+        and sends you the details while the lead is still warm.
+      </p>
+
+      <div class="hiw-stat-bar">
+        <div class="hiw-stat">
+          <div class="hiw-stat-num">&lt;28s</div>
+          <div class="hiw-stat-label">from first ring to confirmed booking</div>
+        </div>
+        <div class="hiw-stat-divider"></div>
+        <div class="hiw-stat">
+          <div class="hiw-stat-num">24/7</div>
+          <div class="hiw-stat-label">every call answered, no hold music</div>
+        </div>
+        <div class="hiw-stat-divider"></div>
+        <div class="hiw-stat">
+          <div class="hiw-stat-num">£0</div>
+          <div class="hiw-stat-label">cost per missed call recovered</div>
+        </div>
+      </div>
+
+      <div class="hiw-grid">
+        <div class="hiw-card">
+          <div class="hiw-number">01</div>
+          <div class="hiw-card-title">Customer calls</div>
+          <div class="hiw-card-body">
+            AI answers instantly in your business name. Captures the
+            name, service type, postcode, and urgency under 2 rings.
+            Greets the caller naturally.
+          </div>
+          <div class="hiw-pill-row">
+            <div class="hiw-pill">
+              <span class="hiw-pill-dot"></span> Answer speed · &lt;2 rings
+            </div>
+            <div class="hiw-pill">
+              <span class="hiw-pill-dot"></span> Natural AI voice
+            </div>
+          </div>
+        </div>
+
+        <div class="hiw-card">
+          <div class="hiw-number">02</div>
+          <div class="hiw-card-title">Lead is qualified</div>
+          <div class="hiw-card-body">
+            Captures what they need, where they are, and how urgent.
+            If booking is available, it offers a slot and confirms.
+            All without you lifting a finger.
+          </div>
+          <div class="hiw-pill-row">
+            <div class="hiw-pill">
+              <span class="hiw-pill-dot"></span> Qualification · Natural AI
+            </div>
+            <div class="hiw-pill">
+              <span class="hiw-pill-dot"></span> Live booking
+            </div>
+          </div>
+        </div>
+
+        <div class="hiw-card">
+          <div class="hiw-number">03</div>
+          <div class="hiw-card-title">Next step is delivered</div>
+          <div class="hiw-card-body">
+            Full lead summary via SMS seconds after the call ends.
+            Booking confirmed. Customer notified. CRM updated.
+            Job in the diary.
+          </div>
+          <div class="hiw-pill-row">
+            <div class="hiw-pill">
+              <span class="hiw-pill-dot"></span> Delivery · SMS + CRM
+            </div>
+            <div class="hiw-pill">
+              <span class="hiw-pill-dot"></span> Instant
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <section class="cost-section" id="cost">
     <div class="section-wrap">
@@ -3876,62 +3598,6 @@
     </div>
   </section>
 
-  <section class="how-section" id="how" aria-labelledby="how-title">
-    <div class="container how-shell">
-      <header class="how-head section-copy">
-        <div class="eyebrow"><span class="dot"></span>How it works</div>
-        <h3 id="how-title">The call handled. The lead delivered.</h3>
-        <p>FlowCall answers instantly, qualifies the enquiry naturally, and sends you the details while the lead is still warm.</p>
-      </header>
-
-      <div class="how-cards">
-        <article class="surface-card soft how-card">
-          <h3>Customer calls</h3>
-          <p>AI answers instantly and understands the request in your business name.</p>
-        </article>
-        <article class="surface-card soft how-card">
-          <h3>Lead is qualified</h3>
-          <p>Captures what they need, where they are, and how urgent the enquiry is.</p>
-        </article>
-        <article class="surface-card soft how-card">
-          <h3>Next step is delivered</h3>
-          <p>Your team gets the lead, booking, and follow-up details while the enquiry is still warm.</p>
-        </article>
-      </div>
-
-      <article class="surface-card how-board">
-        <div class="how-ribbon-wrap" aria-hidden="true">
-          <canvas id="how-ribbon-canvas"></canvas>
-        </div>
-        <div class="how-board-inner">
-          <div class="how-board-copy">
-            <h3>Voice intelligence in motion</h3>
-            <p>FlowCall answers, qualifies, and hands your team the lead details before the caller moves on, so missed calls turn into booked work instead of lost intent.</p>
-            <div class="how-board-meta">
-              <span class="how-pill"><span class="how-pill-label">Answer speed</span><strong>&lt; 2 rings</strong></span>
-              <span class="how-pill"><span class="how-pill-label">Qualification</span><strong>Natural AI</strong></span>
-              <span class="how-pill"><span class="how-pill-label">Delivery</span><strong>SMS + CRM</strong></span>
-            </div>
-          </div>
-
-          <div class="how-board-demo">
-            <div class="how-board-demo-inner" id="live-demo">
-              <div class="eyebrow"><span class="dot"></span>Live demo</div>
-              <h4>Hear it for yourself.</h4>
-              <p>Call our demo number. Hear exactly how FlowCall sounds on your line.</p>
-              <div class="how-demo-expectation">Call. Speak naturally. See how it handles a real enquiry.</div>
-              <div class="how-demo-wave" aria-hidden="true">
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-              </div>
-              <a class="btn primary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
-              <div class="how-live-demo-meta">Free to call · Less than 30 seconds</div>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
   <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
     <div class="container pricing-shell">
       <header class="pricing-head section-copy">
@@ -3971,7 +3637,7 @@
             </ul>
           </div>
           <div class="pricing-anchor">Just 1–2 recovered jobs can cover this plan.</div>
-          <a class="btn secondary" href="#cta">Start with Book</a>
+          <a class="btn secondary" href="#audio-modal" onclick="openAudioModal(); return false;">Start with Book</a>
         </article>
 
         <article class="surface-card pricing-card featured">
@@ -4089,55 +3755,6 @@
     </div>
   </section>
 
-  <section class="cta-section" id="cta">
-    <div class="container">
-      <article class="surface-card cta-board">
-        <div class="cta-copy">
-          <div class="eyebrow"><span class="dot"></span>Live demo</div>
-          <div class="cta-context" id="cta-context"></div>
-          <h2>Hear it before you decide</h2>
-          <p>Call our AI receptionist and experience exactly how it handles your customers.</p>
-          <div class="cta-actions">
-            <a class="btn primary" href="#audio-modal" onclick="openAudioModal(); return false;">Call &amp; Try It Live</a>
-            <a class="btn secondary cta-link-lite" href="#pricing">View Plans &amp; Pricing</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="faq-section" aria-labelledby="faq-title">
-    <div class="container faq-shell">
-      <header class="faq-head section-copy">
-        <div class="eyebrow"><span class="dot"></span>FAQ</div>
-        <h2 id="faq-title">Short answers before you commit.</h2>
-      </header>
-
-      <div class="faq-grid">
-        <article class="surface-card soft faq-item">
-          <h3>Do I need to change my number?</h3>
-          <p>No — just forward your existing number.</p>
-        </article>
-        <article class="surface-card soft faq-item">
-          <h3>What happens after the call?</h3>
-          <p>You receive a full lead summary instantly via SMS.</p>
-        </article>
-        <article class="surface-card soft faq-item">
-          <h3>Can it book appointments?</h3>
-          <p>Yes — on Grow and Scale plans.</p>
-        </article>
-        <article class="surface-card soft faq-item">
-          <h3>What if I get more calls than expected?</h3>
-          <p>We continue handling them automatically.</p>
-        </article>
-        <article class="surface-card soft faq-item">
-          <h3>What if I already have a receptionist?</h3>
-          <p>FlowCall works alongside your team — covering missed calls, after-hours, and overflow.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -4148,7 +3765,6 @@
         <div class="footer-links">
           <a href="#how">How it works</a>
           <a href="#pricing">Pricing</a>
-          <a href="#cta">Live demo</a>
         </div>
         <div class="footer-meta">© 2026 FlowCall. All rights reserved.</div>
       </div>
@@ -4160,8 +3776,7 @@
       var nav = document.getElementById("nav");
       var sections = [
         { link: document.querySelector('.nl a[href="#how"]'), section: document.getElementById("how") },
-        { link: document.querySelector('#nav .nb1[href="#pricing"]'), section: document.getElementById("pricing") },
-        { link: document.querySelector('#nav .nb-cta'), section: document.getElementById("cta") }
+        { link: document.querySelector('#nav .nb1[href="#pricing"]'), section: document.getElementById("pricing") }
       ].filter(function (item) {
         return item.link && item.section;
       });
@@ -4691,195 +4306,6 @@
     }
 
     calcUpdate();
-  </script>
-
-  <script>
-    (function () {
-      var ctaContext = document.getElementById("cta-context");
-      if (!ctaContext) return;
-
-      document.querySelectorAll(".ticker-item[data-vertical]").forEach(function (link) {
-        link.addEventListener("click", function () {
-          var vertical = link.getAttribute("data-vertical");
-          if (!vertical) return;
-          ctaContext.textContent = "Built for " + vertical;
-          ctaContext.classList.add("is-visible");
-        });
-      });
-    })();
-  </script>
-
-  <script>
-    (function () {
-      var canvas = document.getElementById("how-ribbon-canvas");
-      if (!canvas) return;
-      var ctx = canvas.getContext("2d");
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var W = 0;
-      var H = 0;
-      var raf = null;
-      var tick = 0;
-      var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      function resize() {
-        var rect = canvas.getBoundingClientRect();
-        if (!rect.width || !rect.height) {
-          requestAnimationFrame(resize);
-          return;
-        }
-        W = rect.width;
-        H = rect.height;
-        canvas.width = W * dpr;
-        canvas.height = H * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-
-      function surfaceY(x, depth, time) {
-        var nx = x / W;
-        var mobile = W < 560;
-        var ampScale = mobile ? 0.74 : 1;
-        var breathe = 1 + Math.sin(time * 0.42) * 0.18;
-        var w1 = Math.sin(nx * Math.PI * 2.1 - time - depth * 1.25);
-        var w2 = Math.sin(nx * Math.PI * 3.9 + time * 0.72 + depth * 0.9) * 0.26;
-        var w3 = Math.sin(nx * Math.PI * 0.72 - time * 0.44 + depth * 0.56) * 0.18;
-        var w4 = Math.sin(nx * Math.PI * 6.4 - time * 1.28 + depth * 0.32) * 0.07;
-        var wave = (w1 + w2 + w3 + w4) * breathe;
-        var amp = H * (0.11 + depth * 0.09) * ampScale;
-        var centerY = H * (0.72 + depth * 0.12);
-        var edge = Math.pow(Math.sin(nx * Math.PI), 0.07);
-        return centerY + wave * amp * edge;
-      }
-
-      function buildLine(depth, time, steps) {
-        var points = [];
-        for (var i = 0; i <= steps; i++) {
-          var x = (i / steps) * W;
-          points.push({ x: x, y: surfaceY(x, depth, time) });
-        }
-        return points;
-      }
-
-      function drawStrip(top, bottom, c0, c1) {
-        var grad = ctx.createLinearGradient(0, 0, 0, H);
-        grad.addColorStop(0, c0);
-        grad.addColorStop(1, c1);
-        ctx.beginPath();
-        ctx.moveTo(top[0].x, top[0].y);
-        for (var i = 1; i < top.length; i++) ctx.lineTo(top[i].x, top[i].y);
-        for (var j = bottom.length - 1; j >= 0; j--) ctx.lineTo(bottom[j].x, bottom[j].y);
-        ctx.closePath();
-        ctx.fillStyle = grad;
-        ctx.fill();
-      }
-
-      function drawLine(points, alpha, width) {
-        ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
-        for (var i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
-        ctx.strokeStyle = "rgba(255,255,255," + alpha + ")";
-        ctx.lineWidth = width;
-        ctx.lineJoin = "round";
-        ctx.lineCap = "round";
-        ctx.stroke();
-      }
-
-      function renderFrame() {
-        if (!W || !H) {
-          raf = requestAnimationFrame(renderFrame);
-          return;
-        }
-
-        var time = tick * 0.0022;
-        var mobile = W < 560;
-        var slices = mobile ? 18 : 28;
-        var lines = mobile ? 12 : 20;
-        var steps = mobile ? 72 : 120;
-        ctx.clearRect(0, 0, W, H);
-
-        var sliceLines = [];
-        for (var s = 0; s <= slices; s++) sliceLines.push(buildLine(s / slices, time, steps));
-
-        for (var k = 0; k < slices; k++) {
-          var mid = (k + 0.5) / slices;
-          var r = Math.round(255 - mid * 96);
-          var g = Math.round(176 - mid * 88);
-          var b = Math.round(112 + mid * 150);
-          var edge = Math.abs(mid - 0.5) * 2;
-          var a = 0.16 + edge * edge * 0.22;
-          drawStrip(
-            sliceLines[k],
-            sliceLines[k + 1],
-            "rgba(" + r + "," + g + "," + b + "," + a + ")",
-            "rgba(" + Math.max(0, r - 8) + "," + Math.max(0, g - 8) + "," + Math.min(255, b + 10) + "," + a + ")"
-          );
-        }
-
-        for (var l = 0; l < lines; l++) {
-          var depth = l / Math.max(1, lines - 1);
-          var alpha = Math.max(0.04, 0.18 - depth * 0.12);
-          drawLine(buildLine(depth, time, steps), alpha, depth < 0.12 ? 1 : 0.6);
-        }
-
-        var topFade = ctx.createLinearGradient(0, 0, 0, H * 0.42);
-        topFade.addColorStop(0, "rgba(255,255,255,0.98)");
-        topFade.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.fillStyle = topFade;
-        ctx.fillRect(0, 0, W, H * 0.42);
-
-        var sideWidth = W * 0.12;
-        var leftFade = ctx.createLinearGradient(0, 0, sideWidth, 0);
-        leftFade.addColorStop(0, "rgba(255,255,255,0.98)");
-        leftFade.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.fillStyle = leftFade;
-        ctx.fillRect(0, 0, sideWidth, H);
-
-        var rightFade = ctx.createLinearGradient(W, 0, W - sideWidth, 0);
-        rightFade.addColorStop(0, "rgba(255,255,255,0.98)");
-        rightFade.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.fillStyle = rightFade;
-        ctx.fillRect(W - sideWidth, 0, sideWidth, H);
-
-        var bottomFade = ctx.createLinearGradient(0, H, 0, H * 0.86);
-        bottomFade.addColorStop(0, "rgba(255,255,255,0.68)");
-        bottomFade.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.fillStyle = bottomFade;
-        ctx.fillRect(0, H * 0.86, W, H * 0.14);
-
-        tick += 1;
-        raf = requestAnimationFrame(renderFrame);
-      }
-
-      function start() {
-        cancelAnimationFrame(raf);
-        resize();
-        if (reduceMotion) {
-          tick = 10;
-          renderFrame();
-          cancelAnimationFrame(raf);
-        } else {
-          renderFrame();
-        }
-      }
-
-      if (document.readyState === "complete") start();
-      else window.addEventListener("load", start, { once: true });
-
-      var resizeTimer;
-      window.addEventListener("resize", function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-          cancelAnimationFrame(raf);
-          resize();
-          if (reduceMotion) {
-            tick = 10;
-            renderFrame();
-            cancelAnimationFrame(raf);
-          } else {
-            renderFrame();
-          }
-        }, 100);
-      });
-    })();
   </script>
 
   <script>
