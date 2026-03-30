@@ -3759,9 +3759,9 @@
       </div>
 
       <div class="modal-cta-row">
-        <button class="modal-cta-call" id="olivia-call-btn">
+        <a class="modal-cta-call" id="olivia-call-btn" href="tel:+447455744560">
           📞 Call Olivia Live
-        </button>
+        </a>
         <a href="#pricing" class="modal-cta-pricing" onclick="closeAudioModal()">View pricing →</a>
       </div>
       <div id="olivia-call-status" style="text-align:center;margin-top:8px;font-size:13px;color:#888;display:none;"></div>
@@ -5087,9 +5087,11 @@
       var btn = document.getElementById("olivia-call-btn");
       var status = document.getElementById("olivia-call-status");
 
-      // On mobile — just dial directly
+      // On mobile — open tel link in a tag (Safari compatible)
       if (isMobile()) {
-        window.location.href = "tel:+447455744560";
+        var a = document.createElement("a");
+        a.href = "tel:+447455744560";
+        a.click();
         return;
       }
 
