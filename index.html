@@ -5076,7 +5076,7 @@
     import VapiModule from "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm";
     const Vapi = VapiModule.default || VapiModule;
 
-    var vapiInstance = null;
+    var vapiInstance = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
     var callActive = false;
 
     function isMobile() {
@@ -5106,8 +5106,6 @@
       btn.disabled = true;
       status.style.display = "block";
       status.textContent = "Allow microphone access when prompted";
-
-      vapiInstance = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
 
       vapiInstance.on("call-start", function () {
         callActive = true;
