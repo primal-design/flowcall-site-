@@ -3236,6 +3236,44 @@
       }
     }
 
+    /* ── Founding member banner ── */
+    .founding-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #fff8ed, #fff3e0);
+      border: 1.5px solid #ffb074;
+      border-radius: 0.75rem;
+      padding: 0.875rem 1.25rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .founding-badge {
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #c2410c;
+      white-space: nowrap;
+    }
+    .founding-text {
+      font-size: 0.875rem;
+      color: #7c4a03;
+    }
+
+    /* ── 4-column pricing grid ── */
+    .pricing-grid--4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 1100px) {
+      .pricing-grid--4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .pricing-grid--4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ── Waitlist form ── */
     .fc-waitlist {
       margin-top: 1.5rem;
@@ -3700,7 +3738,7 @@
               </svg>
             </a>
             <div class="calc-below-cta">
-              FlowCall starts at £199/month. Recovering one job covers the plan.
+              FlowCall starts at £49/month. One recovered job covers 3 months.
             </div>
           </div>
         </div>
@@ -3714,12 +3752,17 @@
         <span class="section-eyebrow-dot"></span> Pricing
       </p>
       <h2 class="section-h2" id="pricing-title">
-        Turn every call into a lead —<br>and every lead into revenue.
+        Start small. Scale when it works.
       </h2>
       <p class="section-sub">
-        FlowCall answers instantly, qualifies the caller, and helps you
-        capture — or book — every opportunity.
+        Try FlowCall risk-free from £49/month. One recovered job pays for months of the plan.
       </p>
+
+      <!-- Founding member banner -->
+      <div class="founding-banner">
+        <span class="founding-badge">🔒 Founding Member Offer</span>
+        <span class="founding-text">First 20 customers lock in these prices forever — they never go up.</span>
+      </div>
 
       <div class="billing-toggle">
         <span class="billing-label active" id="lbl-monthly">Monthly</span>
@@ -3730,92 +3773,114 @@
         <span class="save-badge" id="save-badge">Save 2 months</span>
       </div>
 
-      <div class="pricing-grid">
+      <div class="pricing-grid pricing-grid--4">
+
+        <!-- Trial -->
+        <div class="plan-card" id="plan-trial">
+          <div class="plan-tier">Trial</div>
+          <div class="plan-price">
+            <span class="plan-price-num" id="price-trial">£49</span>
+            <span class="plan-price-period">per month</span>
+          </div>
+          <div class="plan-tagline">Try it risk-free — see it work first</div>
+          <div class="plan-result-box">
+            <div class="plan-result-label">Result</div>
+            <div class="plan-result-text">Find out exactly how many calls you're missing — and what they're worth.</div>
+          </div>
+          <div class="plan-features-label">What you get</div>
+          <ul class="plan-features">
+            <li><span class="plan-tick">✓</span> AI answers instantly in your business name</li>
+            <li><span class="plan-tick">✓</span> Collects name, service, postcode &amp; urgency</li>
+            <li><span class="plan-tick">✓</span> SMS lead summary seconds after each call</li>
+            <li><span class="plan-tick">✓</span> ~20 enquiries handled per month</li>
+            <li><span class="plan-tick">✓</span> 24/7 call answering</li>
+            <li><span class="plan-tick">✓</span> Your own dedicated FlowCall number</li>
+          </ul>
+          <div class="plan-anchor">
+            One recovered job covers 3 months of this plan.
+          </div>
+          <a href="#call-live" class="plan-cta outline" onclick="startOliviaCall(); return false;">Start Trial</a>
+        </div>
+
+        <!-- Book -->
         <div class="plan-card" id="plan-book">
-          <div class="plan-recommended">Recommended for you</div>
           <div class="plan-tier">Book</div>
           <div class="plan-price">
-            <span class="plan-price-num" id="price-book">£199</span>
+            <span class="plan-price-num" id="price-book">£149</span>
             <span class="plan-price-period">per month</span>
           </div>
           <div class="plan-tagline">Stop losing customers to missed calls</div>
           <div class="plan-result-box">
             <div class="plan-result-label">Result</div>
-            <div class="plan-result-text">You know exactly who called and what they need — so you can call back and win the job.</div>
+            <div class="plan-result-text">You know exactly who called and what they need — call back and win the job.</div>
           </div>
           <div class="plan-features-label">What happens when someone calls</div>
           <ul class="plan-features">
-            <li><span class="plan-tick">✓</span> AI answers instantly in your business name</li>
-            <li><span class="plan-tick">✓</span> Collects name, service, postcode, and urgency</li>
-            <li><span class="plan-tick">✓</span> SMS with full lead details seconds after the call</li>
-            <li><span class="plan-tick">✓</span> ~40 enquiries handled per month</li>
-            <li><span class="plan-tick">✓</span> 24/7 call answering</li>
+            <li><span class="plan-tick">✓</span> Everything in Trial</li>
+            <li><span class="plan-tick">✓</span> ~50 enquiries handled per month</li>
             <li><span class="plan-tick">✓</span> Missed-call text-back</li>
-            <li><span class="plan-tick">✓</span> Call summary — see what was said</li>
+            <li><span class="plan-tick">✓</span> Full call summary — see what was said</li>
+            <li><span class="plan-tick">✓</span> Priority support</li>
           </ul>
           <div class="plan-anchor">
-            Just 1–2 recovered jobs can cover this plan.
+            Just 1 recovered job covers this plan.
           </div>
           <a href="#call-live" class="plan-cta outline" onclick="startOliviaCall(); return false;">Start with Book</a>
         </div>
 
+        <!-- Grow -->
         <div class="plan-card featured recommended" id="plan-grow">
-          <div class="plan-recommended">Recommended for you</div>
           <div class="plan-popular">Most popular</div>
           <div class="plan-tier">Grow</div>
           <div class="plan-price">
-            <span class="plan-price-num" id="price-grow">£299</span>
+            <span class="plan-price-num" id="price-grow">£249</span>
             <span class="plan-price-period">per month</span>
           </div>
-          <div class="plan-tagline">Calls don't just come in — they get booked instantly</div>
+          <div class="plan-tagline">Calls get booked instantly — no waiting, no callbacks</div>
           <div class="plan-result-box">
             <div class="plan-result-label">Result</div>
-            <div class="plan-result-text">Customers don't just call — they get booked instantly.</div>
+            <div class="plan-result-text">Customers call and get booked instantly. Jobs land in your diary automatically.</div>
           </div>
           <div class="plan-features-label">What happens when someone calls</div>
           <ul class="plan-features">
-            <li><span class="plan-tick">✓</span> AI answers instantly and qualifies the caller</li>
-            <li><span class="plan-tick">✓</span> Appointment booked directly into your calendar</li>
-            <li><span class="plan-tick">✓</span> Confirmation SMS to you and the customer</li>
-            <li><span class="plan-tick">✓</span> ~80 enquiries handled per month</li>
             <li><span class="plan-tick">✓</span> Everything in Book</li>
+            <li><span class="plan-tick">✓</span> ~100 enquiries handled per month</li>
             <li><span class="plan-tick">✓</span> AI appointment booking</li>
             <li><span class="plan-tick">✓</span> Calendar integration (Google / Cal.com)</li>
-            <li><span class="plan-tick">✓</span> Booking confirmations + reminders</li>
+            <li><span class="plan-tick">✓</span> Booking confirmations + reminders to customer</li>
+            <li><span class="plan-tick">✓</span> Confirmation SMS to you instantly</li>
           </ul>
           <div class="plan-anchor">
-            A few extra bookings per week can generate thousands more.
+            A few extra bookings a week pays for this many times over.
           </div>
           <a href="#call-live" class="plan-cta solid" onclick="startOliviaCall(); return false;">Start with Grow</a>
         </div>
 
+        <!-- Scale -->
         <div class="plan-card" id="plan-scale">
-          <div class="plan-recommended">Recommended for you</div>
           <div class="plan-tier">Scale</div>
           <div class="plan-price">
-            <span class="plan-price-num" id="price-scale">£499</span>
+            <span class="plan-price-num" id="price-scale">£449</span>
             <span class="plan-price-period">per month</span>
           </div>
-          <div class="plan-tagline">Maximise revenue and see exactly what's working</div>
+          <div class="plan-tagline">Know exactly what's working — and scale it</div>
           <div class="plan-result-box">
             <div class="plan-result-label">Result</div>
             <div class="plan-result-text">Your phone becomes a measurable, optimised revenue channel.</div>
           </div>
           <div class="plan-features-label">What happens when someone calls</div>
           <ul class="plan-features">
-            <li><span class="plan-tick">✓</span> AI answers, qualifies, and books the job</li>
-            <li><span class="plan-tick">✓</span> Data stored and synced to your CRM</li>
-            <li><span class="plan-tick">✓</span> Insights — see which calls turn into revenue</li>
-            <li><span class="plan-tick">✓</span> ~200 enquiries handled per month</li>
             <li><span class="plan-tick">✓</span> Everything in Grow</li>
+            <li><span class="plan-tick">✓</span> ~250 enquiries handled per month</li>
             <li><span class="plan-tick">✓</span> CRM sync (Airtable / HubSpot)</li>
             <li><span class="plan-tick">✓</span> Revenue tracking dashboard</li>
             <li><span class="plan-tick">✓</span> Call analytics + attribution</li>
+            <li><span class="plan-tick">✓</span> Insights — see which calls turn into revenue</li>
           </ul>
           <div class="plan-anchor">
-            Know exactly where your revenue is coming from — and scale what works.
+            Know exactly where your revenue comes from — and double down.
           </div>
-          <a href="#call-live" class="plan-cta outline" onclick="startOliviaCall(); return false;">Call &amp; Try It Live</a>
+          <a href="#call-live" class="plan-cta outline" onclick="startOliviaCall(); return false;">Start with Scale</a>
         </div>
       </div>
 
@@ -3825,6 +3890,10 @@
           If you exceed your plan, we keep answering every call:
         </div>
         <div class="overage-row">
+          <div class="overage-cell">
+            <div class="overage-tier">Trial</div>
+            <div class="overage-price">£2.00 per extra call</div>
+          </div>
           <div class="overage-cell">
             <div class="overage-tier">Book</div>
             <div class="overage-price">£1.50 per extra call</div>
@@ -3848,7 +3917,7 @@
           <div class="roi-label">ROI Example</div>
           <p>Just a few extra calls can pay for everything</p>
           <div class="roi-copy">
-            A couple of recovered jobs pays for the plan before the month settles.
+            One recovered job at £150 covers the Trial plan for 3 months. Two jobs covers Grow entirely.
           </div>
         </div>
         <div class="roi-numbers">
@@ -4436,8 +4505,8 @@
   <script>
     (function () {
       var isAnnual = false;
-      var MONTHLY = { book: 199, grow: 299, scale: 499 };
-      var ANNUAL = { book: 166, grow: 249, scale: 416 };
+      var MONTHLY = { trial: 49, book: 149, grow: 249, scale: 449 };
+      var ANNUAL  = { trial: 41, book: 124, grow: 207, scale: 374 };
 
       window.toggleBilling = function () {
         isAnnual = !isAnnual;
@@ -4449,17 +4518,19 @@
         document.getElementById("save-badge").classList.toggle("visible", isAnnual);
 
         var prices = isAnnual ? ANNUAL : MONTHLY;
-        document.getElementById("price-book").textContent = "£" + prices.book;
-        document.getElementById("price-grow").textContent = "£" + prices.grow;
-        document.getElementById("price-scale").textContent = "£" + prices.scale;
+        var ids = ["trial", "book", "grow", "scale"];
+        ids.forEach(function(k) {
+          var el = document.getElementById("price-" + k);
+          if (el) el.textContent = "£" + prices[k];
+        });
       };
 
       window.highlightPlan = function (mc) {
-        ["plan-book", "plan-grow", "plan-scale"].forEach(function (id) {
+        ["plan-trial", "plan-book", "plan-grow", "plan-scale"].forEach(function (id) {
           var el = document.getElementById(id);
           if (el) el.classList.remove("recommended");
         });
-        var target = mc <= 2 ? "plan-book" : mc <= 6 ? "plan-grow" : "plan-scale";
+        var target = mc <= 1 ? "plan-trial" : mc <= 3 ? "plan-book" : mc <= 6 ? "plan-grow" : "plan-scale";
         var plan = document.getElementById(target);
         if (plan) plan.classList.add("recommended");
       };
