@@ -3235,6 +3235,99 @@
         scroll-behavior: auto !important;
       }
     }
+
+    /* ── Waitlist form ── */
+    .fc-waitlist {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(17,24,39,0.1);
+      border-radius: 1rem;
+      max-width: 480px;
+    }
+    .fc-waitlist-label {
+      font-size: 0.875rem;
+      color: #475569;
+      margin: 0 0 0.75rem;
+    }
+    .fc-waitlist-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .fc-waitlist-input {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.6rem 1rem;
+      border: 1.5px solid rgba(17,24,39,0.15);
+      border-radius: 0.6rem;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .fc-waitlist-input:focus { border-color: #3159f5; }
+    .fc-waitlist-btn {
+      padding: 0.6rem 1.25rem;
+      background: #3159f5;
+      color: #fff;
+      border: none;
+      border-radius: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .fc-waitlist-btn:hover { background: #2546cf; }
+    .fc-waitlist-success {
+      color: #059669;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Pre-footer proof section ── */
+    .proof-section {
+      background: #f0f4ff;
+      border-top: 1px solid rgba(49,89,245,0.1);
+    }
+    .proof-section .fc-waitlist-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ── Privacy modal ── */
+    #privacy-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      overflow-y: auto;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .privacy-box {
+      background: #fff;
+      max-width: 640px;
+      width: 100%;
+      padding: 2.5rem;
+      border-radius: 1rem;
+      position: relative;
+      margin: auto;
+    }
+    .privacy-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #475569;
+    }
   </style>
 </head>
 <body>
@@ -3320,6 +3413,17 @@
               <span class="fc-cta-meta">Free to call · Under 30 sec</span>
             </div>
           </div>
+
+          <!-- Waitlist capture -->
+          <div class="fc-waitlist" id="fc-waitlist">
+            <p class="fc-waitlist-label">Not ready to call? Join the waitlist — be first to get access.</p>
+            <form class="fc-waitlist-form" onsubmit="handleWaitlist(event)">
+              <input class="fc-waitlist-input" type="email" placeholder="your@email.com" required aria-label="Email address" />
+              <button class="fc-waitlist-btn" type="submit">Join Waitlist</button>
+            </form>
+            <p class="fc-waitlist-success" id="fc-waitlist-success" style="display:none;">✓ You're on the list! We'll be in touch soon.</p>
+          </div>
+
         </div>
       </div>
 
@@ -3781,8 +3885,10 @@
         <div class="footer-links">
           <a href="#how">How it works</a>
           <a href="#pricing">Pricing</a>
+          <a href="javascript:void(0)" onclick="document.getElementById('privacy-modal').style.display='flex'">Privacy Policy</a>
+          <a href="mailto:hello@flowcall.co.uk">Contact</a>
         </div>
-        <div class="footer-meta">© 2026 FlowCall. All rights reserved.</div>
+        <div class="footer-meta">© 2026 FlowCall. All rights reserved. · <a href="mailto:hello@flowcall.co.uk" style="color:inherit;">hello@flowcall.co.uk</a></div>
       </div>
     </div>
   </footer>
@@ -4628,5 +4734,73 @@
     var btn = document.getElementById("olivia-call-btn");
     if (btn) btn.addEventListener("click", handleCallClick);
   </script>
+
+  <script>
+    // Waitlist form handler
+    function handleWaitlist(e) {
+      e.preventDefault();
+      var form = e.target;
+      var email = form.querySelector('input[type="email"]').value;
+      // Store in localStorage as fallback (replace with real API later)
+      try {
+        var list = JSON.parse(localStorage.getItem('fc_waitlist') || '[]');
+        if (!list.includes(email)) list.push(email);
+        localStorage.setItem('fc_waitlist', JSON.stringify(list));
+      } catch(err) {}
+      form.style.display = 'none';
+      // Show success message — try both IDs
+      var s1 = document.getElementById('fc-waitlist-success');
+      var s2 = document.getElementById('fc-waitlist-success-2');
+      if (s1) s1.style.display = 'block';
+      if (s2) s2.style.display = 'block';
+      // Hide the label too if present
+      var label = form.closest('.fc-waitlist');
+      if (label) { var lp = label.querySelector('.fc-waitlist-label'); if(lp) lp.style.display='none'; }
+    }
+  </script>
+
+  <!-- Pre-footer waitlist section -->
+  <section class="proof-section">
+    <div class="section-wrap" style="text-align:center;padding:3.5rem 1rem;">
+      <p class="section-eyebrow"><span class="section-eyebrow-dot"></span> Early Access</p>
+      <h2 class="section-h2" style="margin-bottom:0.5rem;">Be first. Get the founding member rate.</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Join the waitlist — no commitment, no spam. Just early access and a special rate locked in for life.</p>
+      <form class="fc-waitlist-form" onsubmit="handleWaitlist(event)" style="max-width:420px;margin:0 auto 0.75rem;">
+        <input class="fc-waitlist-input" type="email" placeholder="your@email.com" required aria-label="Email address" />
+        <button class="fc-waitlist-btn" type="submit">Get Early Access</button>
+      </form>
+      <p class="fc-waitlist-success" id="fc-waitlist-success-2" style="display:none;">✓ You're on the list! We'll be in touch soon.</p>
+      <p style="font-size:0.8rem;color:#7d88a0;margin-top:0.5rem;">No spam. Unsubscribe any time.</p>
+    </div>
+  </section>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-modal" onclick="if(event.target===this)this.style.display='none'">
+    <div class="privacy-box">
+      <button class="privacy-close" onclick="document.getElementById('privacy-modal').style.display='none'">×</button>
+      <h2 style="margin-top:0;">Privacy Policy</h2>
+      <p><strong>Last updated: January 2026</strong></p>
+      <p>FlowCall is committed to protecting your personal data. This policy explains how we collect and use your information.</p>
+      <h3>What we collect</h3>
+      <ul>
+        <li>Email addresses submitted via our waitlist or sign-up forms</li>
+        <li>Call recordings and transcripts (with caller consent) for service delivery</li>
+        <li>Business contact details provided during onboarding</li>
+      </ul>
+      <h3>How we use it</h3>
+      <ul>
+        <li>To provide and improve the FlowCall service</li>
+        <li>To contact you about your account or waitlist position</li>
+        <li>We do not sell your data to third parties. Ever.</li>
+      </ul>
+      <h3>Your rights (UK GDPR)</h3>
+      <p>You have the right to access, correct, or delete your personal data at any time. Email us at <a href="mailto:hello@flowcall.co.uk">hello@flowcall.co.uk</a> to exercise these rights.</p>
+      <h3>Cookies</h3>
+      <p>We use minimal cookies for analytics and functionality only.</p>
+      <h3>Contact</h3>
+      <p><a href="mailto:hello@flowcall.co.uk">hello@flowcall.co.uk</a></p>
+    </div>
+  </div>
+
 </body>
 </html>
