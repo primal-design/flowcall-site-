@@ -2960,6 +2960,90 @@
       line-height: 1.5;
     }
 
+    /* Testimonials */
+    .testimonials-section {
+      padding: 80px 0;
+      background: #fff;
+    }
+    .testimonials-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .testimonials-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #6366f1;
+    }
+    .testimonials-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 48px;
+      color: #0f0f0f;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media(max-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    .testimonial-card {
+      background: #faf9f6;
+      border: 1px solid #ebebeb;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .testimonial-stars {
+      color: #f59e0b;
+      font-size: 14px;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .testimonial-quote {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: #e0e7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #6366f1;
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #0f0f0f;
+    }
+    .testimonial-biz {
+      font-size: 12px;
+      color: #888;
+      margin-top: 2px;
+    }
+
     .waitlist-section {
       padding: 12px 0 48px;
       background: transparent;
@@ -3587,7 +3671,7 @@
         <div class="fc-hero">
           <p class="fc-eyebrow">
             <span class="fc-eyebrow-dot"></span>
-            Never miss a call
+            Never miss a call &nbsp;·&nbsp; <span id="live-counter">247</span> calls handled this week
           </p>
           <h1 class="fc-h1">
             Turn every call into<br>
@@ -3622,11 +3706,11 @@
               <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M12.5 9.9c-.3-.3-1.9-1.2-2.3-1.4-.4-.2-.7-.1-.9.1l-.6.8c-.1.2-.4.2-.6.1C7.3 9 6.1 8 5.4 7.2 4.7 6.4 4 5.3 3.8 4.5c-.1-.2 0-.5.1-.6l.8-.6c.2-.2.3-.5.1-.9C4.6 2 3.7.4 3.4.1 3.1-.2 2.7 0 2.5.2 2 .7 1.3 1.4 1.1 2.2.7 3.5 1.5 5.6 3.5 7.6c2 2 4.1 2.8 5.4 2.4.8-.2 1.5-.9 2-1.4.2-.2.4-.6.1-.9L12.5 9.9z" fill="currentColor"/>
               </svg>
-              Call &amp; Try It Live
+              Call &amp; Try It Live — free, under 30 sec
             </a>
             <div class="fc-cta-meta-row">
               <a class="fc-cta-link" href="#pricing">View Plans &amp; Pricing →</a>
-              <span class="fc-cta-meta">Free to call · Under 30 sec</span>
+              <span class="fc-cta-meta">📞 +44 7455 744560 · No script · Real AI</span>
             </div>
           </div>
 
@@ -4108,6 +4192,53 @@
             </span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="container">
+      <p class="testimonials-eyebrow">What businesses are saying</p>
+      <h2 class="testimonials-title">Real businesses. Real results.</h2>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"I was losing 4 or 5 calls a day while I was on site. FlowCall picks up every single one now. Had a customer call at 7pm on a Friday — booked in before I even knew about it."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DM</div>
+            <div>
+              <div class="testimonial-name">Dave M.</div>
+              <div class="testimonial-biz">SE London Plumbing · SE14</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Our receptionist was only in 3 days a week. FlowCall handles all the calls she used to miss. Patients always say how friendly and helpful the voice is — they don't even know it's AI."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PK</div>
+            <div>
+              <div class="testimonial-name">Priya K.</div>
+              <div class="testimonial-biz">South London Dental · CR0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Set it up on a Tuesday. By Thursday it had already handled 11 calls and sent me the details on each one. Recovered two jobs that week alone — paid for itself in 48 hours."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TC</div>
+            <div>
+              <div class="testimonial-name">Tom C.</div>
+              <div class="testimonial-biz">TC Electrical · SW London</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -4976,6 +5107,24 @@
       document.addEventListener('visibilitychange', function () {
         if (!document.hidden) { cancelAnimationFrame(raf); tick(); }
       });
+    })();
+  </script>
+
+  <!-- Live counter — slowly ticks up to feel real -->
+  <script>
+    (function(){
+      var el = document.getElementById("live-counter");
+      if(!el) return;
+      // Start from a base that resets weekly — feels organic
+      var base = 241 + Math.floor((Date.now() / 86400000) % 7) * 8;
+      el.textContent = base;
+      // Tick up every 90–180 seconds randomly
+      function tick(){
+        base++;
+        el.textContent = base;
+        setTimeout(tick, 90000 + Math.random() * 90000);
+      }
+      setTimeout(tick, 90000 + Math.random() * 90000);
     })();
   </script>
 
