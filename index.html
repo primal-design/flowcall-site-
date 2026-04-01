@@ -5178,55 +5178,24 @@
     })();
   </script>
 
-  <!-- Vapi Web Call -->
-  <script type="module">
-    import Vapi from "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm";
+  <!-- Call modal -->
+  <div id="call-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:400px;width:100%;text-align:center;position:relative;">
+      <button onclick="document.getElementById('call-modal').style.display='none'" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;color:#888;">✕</button>
+      <div style="font-size:40px;margin-bottom:12px;">📞</div>
+      <h2 style="font-size:22px;font-weight:700;margin:0 0 8px;">Call Olivia Live</h2>
+      <p style="color:#666;font-size:15px;margin:0 0 24px;">Dial the number below and Olivia will answer. Free to call — under 30 seconds to see how it works.</p>
+      <a href="tel:+447455744560" style="display:block;background:#4f46e5;color:#fff;font-size:20px;font-weight:700;padding:16px 24px;border-radius:12px;text-decoration:none;margin-bottom:12px;letter-spacing:0.5px;">
+        +44 7455 744560
+      </a>
+      <p style="color:#aaa;font-size:12px;margin:0;">Tap to dial on mobile · Dial manually on desktop</p>
+    </div>
+  </div>
 
-    const PHONE = "+447455744560";
-    const ASSISTANT_ID = "e21e2f5d-372a-4702-9e31-02fbf6b66817";
-
-    const vapi = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
-    let callActive = false;
-
-    function isMobile(){
-      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    }
-    function getBtn(){ return document.getElementById("olivia-call-btn"); }
-    function getStatus(){ return document.getElementById("olivia-call-status"); }
-
-    vapi.on("call-start", () => {
-      callActive = true;
-      const btn = getBtn(), status = getStatus();
-      if(btn){ btn.textContent = "🔴 End Call"; btn.disabled = false; }
-      if(status){ status.style.display = "block"; status.textContent = "Connected to Olivia — speak now"; }
-    });
-
-    vapi.on("call-end", () => {
-      callActive = false;
-      const btn = getBtn(), status = getStatus();
-      if(btn){ btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
-      if(status){ status.style.display = "none"; }
-    });
-
-    vapi.on("error", (e) => {
-      callActive = false;
-      const btn = getBtn(), status = getStatus();
-      if(btn){ btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
-      if(status){ status.style.display = "block"; status.textContent = "Call failed — dial " + PHONE; }
-      console.error("Vapi error:", e);
-    });
-
-    // Expose trigger to window so regular onclick can call it
-    window.__startOliviaCall = function(){
-      if(isMobile()){ window.location.href = "tel:" + PHONE; return; }
-      if(callActive){ vapi.stop(); return; }
-      const btn = getBtn(), status = getStatus();
-      if(btn){ btn.textContent = "⏳ Connecting..."; btn.disabled = true; }
-      if(status){ status.style.display = "block"; status.textContent = "Allow microphone access when prompted..."; }
-      vapi.start(ASSISTANT_ID);
+  <script>
+    window.startOliviaCall = function(){
+      document.getElementById('call-modal').style.display = 'flex';
     };
-
-    console.log("Vapi ready ✓");
   </script>
 
   <!-- Privacy Policy Modal -->
