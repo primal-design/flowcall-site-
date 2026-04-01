@@ -2913,6 +2913,89 @@
       line-height: 1.5;
     }
 
+    .waitlist-section {
+      padding: 0 0 40px;
+      background: transparent;
+    }
+
+    .waitlist-card {
+      position: relative;
+      overflow: hidden;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 24px 26px 20px;
+      border-radius: 20px;
+      border: 1px solid #e5e7eb;
+      background:
+        radial-gradient(180px 120px at -4% -10%, rgba(173, 139, 255, 0.22), transparent 68%),
+        radial-gradient(220px 140px at 14% 0%, rgba(255, 184, 120, 0.12), transparent 72%),
+        #fff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .waitlist-copy {
+      margin: 0 0 12px;
+      max-width: 34rem;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      line-height: 1.45;
+      color: #55627b;
+      letter-spacing: -0.01em;
+    }
+
+    .waitlist-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .waitlist-field,
+    .waitlist-btn {
+      min-height: 44px;
+    }
+
+    .waitlist-field {
+      flex: 1 1 320px;
+      padding: 0 16px;
+      border-radius: 12px;
+      border: 1px solid #d7dbe3;
+      background: #fff;
+      font-size: 14px;
+      color: #0d1117;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .waitlist-field::placeholder {
+      color: #8b95a7;
+    }
+
+    .waitlist-field:focus {
+      border-color: #c7d2f5;
+      box-shadow: 0 0 0 4px rgba(59, 91, 219, 0.08);
+    }
+
+    .waitlist-btn {
+      padding: 0 22px;
+      border: none;
+      border-radius: 12px;
+      background: #3b5bdb;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 3px rgba(59, 91, 219, 0.25);
+    }
+
+    .waitlist-btn:hover {
+      background: #3451c7;
+    }
+
+    .waitlist-btn:active {
+      transform: scale(0.98);
+    }
+
     .site-footer {
       padding: 28px 0 36px;
       border-top: 1px solid rgba(17, 24, 39, 0.08);
@@ -3224,6 +3307,8 @@
       .overage-row { grid-template-columns: 1fr; }
       .roi-strip { flex-direction: column; align-items: flex-start; }
       .roi-numbers { flex-direction: column; width: 100%; }
+      .waitlist-card { padding: 20px; }
+      .waitlist-form { flex-direction: column; align-items: stretch; }
       .footer-inner { flex-direction: column; }
     }
 
@@ -3940,6 +4025,24 @@
             </span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist-section" aria-labelledby="waitlist-title">
+    <div class="container">
+      <div class="waitlist-card">
+        <p class="waitlist-copy" id="waitlist-title">
+          Not ready to call? Join the waitlist — be first to get access.
+        </p>
+        <form class="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="waitlist">
+          <p hidden>
+            <label>Don't fill this out if you're human: <input name="bot-field"></label>
+          </p>
+          <input class="waitlist-field" type="email" name="email" placeholder="your@email.com" required>
+          <button class="waitlist-btn" type="submit">Join Waitlist</button>
+        </form>
       </div>
     </div>
   </section>
