@@ -803,6 +803,7 @@
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
     }
 
     .fc-cta-link:hover {
@@ -813,6 +814,7 @@
     .fc-cta-meta {
       font-size: 13px;
       color: #7f8b9c;
+      white-space: nowrap;
     }
 
     .audio-card {
@@ -3365,8 +3367,10 @@
         padding: 0;
       }
       .fc-hero .fc-eyebrow {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
         margin-bottom: var(--space-2);
+        flex-wrap: wrap;
+        gap: 4px;
       }
       .fc-hero .fc-h1 {
         font-size: 2.375rem;
@@ -3454,7 +3458,14 @@
         justify-content: center;
       }
       .fc-cta-meta-row {
-        gap: 0.75rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .fc-cta-link,
+      .fc-cta-meta {
+        font-size: 14px;
+        white-space: normal;
       }
       .hero-grid {
         gap: var(--space-6);
@@ -3547,6 +3558,44 @@
       .waitlist-card { padding: 20px; }
       .waitlist-form { flex-direction: column; align-items: stretch; }
       .footer-inner { flex-direction: column; }
+
+      /* CTA meta row — stack on mobile */
+      .fc-cta-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-top: 4px;
+      }
+      .fc-cta-link,
+      .fc-cta-meta {
+        font-size: 13px;
+        white-space: normal;
+        line-height: 1.5;
+      }
+
+      /* Testimonials — single column */
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .testimonials-title {
+        font-size: 24px;
+        margin-bottom: 28px;
+      }
+
+      /* Pricing cards — full width */
+      .plans-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* How it works cards */
+      .how-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Nav phone number too long — hide on tiny screens */
+      #live-counter {
+        display: none;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
