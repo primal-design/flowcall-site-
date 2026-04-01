@@ -4774,50 +4774,51 @@
     const vapi = new Vapi(PUBLIC_KEY);
     let callActive = false;
 
-    const btn = document.getElementById("olivia-call-btn");
-    const status = document.getElementById("olivia-call-status");
-
     function isMobile() {
       return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
+    function getBtn() { return document.getElementById("olivia-call-btn"); }
+    function getStatus() { return document.getElementById("olivia-call-status"); }
+
     vapi.on("call-start", () => {
       callActive = true;
-      btn.textContent = "🔴 End Call";
-      btn.disabled = false;
-      status.style.display = "block";
-      status.textContent = "Connected to Olivia — speak now";
+      const btn = getBtn(); const status = getStatus();
+      if (btn) { btn.textContent = "🔴 End Call"; btn.disabled = false; }
+      if (status) { status.style.display = "block"; status.textContent = "Connected to Olivia — speak now"; }
     });
 
     vapi.on("call-end", () => {
       callActive = false;
-      btn.textContent = "📞 Call Olivia Live";
-      btn.disabled = false;
-      status.style.display = "none";
+      const btn = getBtn(); const status = getStatus();
+      if (btn) { btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
+      if (status) { status.style.display = "none"; }
     });
 
     vapi.on("error", (e) => {
       callActive = false;
-      btn.textContent = "📞 Call Olivia Live";
-      btn.disabled = false;
-      status.style.display = "block";
-      status.textContent = "Call failed — dial " + PHONE + " directly";
+      const btn = getBtn(); const status = getStatus();
+      if (btn) { btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
+      if (status) { status.style.display = "block"; status.textContent = "Call failed — dial " + PHONE + " directly"; }
       console.error("Vapi error:", e);
     });
 
-    btn.addEventListener("click", () => {
+    // Use event delegation — works even when modal is hidden at page load
+    document.addEventListener("click", (e) => {
+      if (e.target.id !== "olivia-call-btn" && !e.target.closest("#olivia-call-btn")) return;
+      e.preventDefault();
       if (isMobile()) {
         window.location.href = "tel:" + PHONE;
         return;
       }
+      const btn = getBtn();
+      const status = getStatus();
       if (callActive) {
         vapi.stop();
         return;
       }
-      btn.textContent = "⏳ Connecting...";
-      btn.disabled = true;
-      status.style.display = "block";
-      status.textContent = "Allow microphone access when prompted...";
+      if (btn) { btn.textContent = "⏳ Connecting..."; btn.disabled = true; }
+      if (status) { status.style.display = "block"; status.textContent = "Allow microphone access when prompted..."; }
       vapi.start(ASSISTANT_ID);
     });
   </script>
