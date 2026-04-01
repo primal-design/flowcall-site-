@@ -3582,7 +3582,7 @@
       </div>
 
       <div class="modal-cta-row">
-        <button class="modal-cta-call" id="olivia-call-btn" type="button">
+        <button class="modal-cta-call" id="olivia-call-btn" type="button" onclick="window.__startOliviaCall && window.__startOliviaCall()">
           📞 Call Olivia Live
         </button>
         <a href="#pricing" class="modal-cta-pricing" onclick="closeAudioModal()">View pricing →</a>
@@ -4763,68 +4763,54 @@
   </script>
 
   <!-- Vapi Web Call -->
-  <script>
-    (function(){
-      var PHONE = "+447455744560";
+  <script type="module">
+    import Vapi from "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm";
 
-      function isMobile(){
-        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      }
+    const PHONE = "+447455744560";
+    const ASSISTANT_ID = "e21e2f5d-372a-4702-9e31-02fbf6b66817";
 
-      function getBtn(){ return document.getElementById("olivia-call-btn"); }
-      function getStatus(){ return document.getElementById("olivia-call-status"); }
+    const vapi = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
+    let callActive = false;
 
-      // Load Vapi SDK dynamically
-      var script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/dist/vapi.js";
-      script.onload = function(){
-        var VapiClass = window.Vapi || (window.vapiSdk && window.vapiSdk.Vapi);
-        if(!VapiClass){ console.error("Vapi not found on window"); return; }
+    function isMobile(){
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+    function getBtn(){ return document.getElementById("olivia-call-btn"); }
+    function getStatus(){ return document.getElementById("olivia-call-status"); }
 
-        var vapi = new VapiClass("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
-        var callActive = false;
+    vapi.on("call-start", () => {
+      callActive = true;
+      const btn = getBtn(), status = getStatus();
+      if(btn){ btn.textContent = "🔴 End Call"; btn.disabled = false; }
+      if(status){ status.style.display = "block"; status.textContent = "Connected to Olivia — speak now"; }
+    });
 
-        vapi.on("call-start", function(){
-          callActive = true;
-          var btn = getBtn(); var status = getStatus();
-          if(btn){ btn.textContent = "🔴 End Call"; btn.disabled = false; }
-          if(status){ status.style.display = "block"; status.textContent = "Connected to Olivia — speak now"; }
-        });
+    vapi.on("call-end", () => {
+      callActive = false;
+      const btn = getBtn(), status = getStatus();
+      if(btn){ btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
+      if(status){ status.style.display = "none"; }
+    });
 
-        vapi.on("call-end", function(){
-          callActive = false;
-          var btn = getBtn(); var status = getStatus();
-          if(btn){ btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
-          if(status){ status.style.display = "none"; }
-        });
+    vapi.on("error", (e) => {
+      callActive = false;
+      const btn = getBtn(), status = getStatus();
+      if(btn){ btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
+      if(status){ status.style.display = "block"; status.textContent = "Call failed — dial " + PHONE; }
+      console.error("Vapi error:", e);
+    });
 
-        vapi.on("error", function(e){
-          callActive = false;
-          var btn = getBtn(); var status = getStatus();
-          if(btn){ btn.textContent = "📞 Call Olivia Live"; btn.disabled = false; }
-          if(status){ status.style.display = "block"; status.textContent = "Call failed — dial " + PHONE; }
-          console.error("Vapi error:", e);
-        });
+    // Expose trigger to window so regular onclick can call it
+    window.__startOliviaCall = function(){
+      if(isMobile()){ window.location.href = "tel:" + PHONE; return; }
+      if(callActive){ vapi.stop(); return; }
+      const btn = getBtn(), status = getStatus();
+      if(btn){ btn.textContent = "⏳ Connecting..."; btn.disabled = true; }
+      if(status){ status.style.display = "block"; status.textContent = "Allow microphone access when prompted..."; }
+      vapi.start(ASSISTANT_ID);
+    };
 
-        document.addEventListener("click", function(e){
-          var target = e.target.closest ? e.target.closest("#olivia-call-btn") : (e.target.id === "olivia-call-btn" ? e.target : null);
-          if(!target) return;
-          e.preventDefault();
-          if(isMobile()){ window.location.href = "tel:" + PHONE; return; }
-          if(callActive){ vapi.stop(); return; }
-          var btn = getBtn(); var status = getStatus();
-          if(btn){ btn.textContent = "⏳ Connecting..."; btn.disabled = true; }
-          if(status){ status.style.display = "block"; status.textContent = "Allow microphone access when prompted..."; }
-          vapi.start("e21e2f5d-372a-4702-9e31-02fbf6b66817");
-        });
-
-        console.log("Vapi ready");
-      };
-      script.onerror = function(){
-        console.error("Failed to load Vapi SDK");
-      };
-      document.head.appendChild(script);
-    })();
+    console.log("Vapi ready ✓");
   </script>
 
   <!-- Privacy Policy Modal -->
