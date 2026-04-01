@@ -2914,53 +2914,66 @@
     }
 
     .waitlist-section {
-      padding: 0 0 40px;
+      padding: 12px 0 48px;
       background: transparent;
     }
 
     .waitlist-card {
       position: relative;
       overflow: hidden;
-      max-width: 1160px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 24px 26px 20px;
-      border-radius: 20px;
-      border: 1px solid #e5e7eb;
+      padding: 30px 30px 24px;
+      border-radius: 24px;
+      border: 1px solid #dfe4ee;
       background:
-        radial-gradient(180px 120px at -4% -10%, rgba(173, 139, 255, 0.22), transparent 68%),
-        radial-gradient(220px 140px at 14% 0%, rgba(255, 184, 120, 0.12), transparent 72%),
+        radial-gradient(220px 160px at -4% -12%, rgba(173, 139, 255, 0.24), transparent 70%),
+        radial-gradient(240px 160px at 14% 0%, rgba(255, 184, 120, 0.12), transparent 72%),
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96)),
         #fff;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06);
+    }
+
+    .waitlist-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0));
     }
 
     .waitlist-copy {
-      margin: 0 0 12px;
-      max-width: 34rem;
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      line-height: 1.45;
-      color: #55627b;
+      position: relative;
+      z-index: 1;
+      margin: 0 0 18px;
+      max-width: 36rem;
+      font-size: clamp(1.28rem, 2vw, 1.55rem);
+      line-height: 1.4;
+      color: #4c5870;
       letter-spacing: -0.01em;
     }
 
     .waitlist-form {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      max-width: 760px;
     }
 
     .waitlist-field,
     .waitlist-btn {
-      min-height: 44px;
+      min-height: 52px;
     }
 
     .waitlist-field {
-      flex: 1 1 320px;
-      padding: 0 16px;
-      border-radius: 12px;
+      width: 100%;
+      padding: 0 18px;
+      border-radius: 14px;
       border: 1px solid #d7dbe3;
-      background: #fff;
-      font-size: 14px;
+      background: rgba(255,255,255,0.96);
+      font-size: 15px;
       color: #0d1117;
       outline: none;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -2976,16 +2989,16 @@
     }
 
     .waitlist-btn {
-      padding: 0 22px;
+      padding: 0 24px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       background: #3b5bdb;
       color: #fff;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 500;
       cursor: pointer;
       transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-      box-shadow: 0 1px 3px rgba(59, 91, 219, 0.25);
+      box-shadow: 0 8px 18px rgba(59, 91, 219, 0.18), 0 1px 3px rgba(59, 91, 219, 0.22);
     }
 
     .waitlist-btn:hover {
@@ -3051,6 +3064,99 @@
       .roi-strip {
         flex-direction: column;
         align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-wrap {
+        padding: 72px 20px;
+      }
+
+      .cost-section .section-wrap,
+      .pricing-section .section-wrap {
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
+
+      .section-h2 {
+        max-width: 12ch;
+      }
+
+      .hiw-stat-bar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .hiw-stat {
+        min-width: 0;
+      }
+
+      .cost-section .calc-layout {
+        gap: 28px;
+      }
+
+      .cost-section .calc-widget {
+        padding: 22px 18px;
+      }
+
+      .billing-toggle {
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .founding-banner {
+        align-items: flex-start;
+        padding: 14px 16px;
+      }
+
+      .pricing-grid--4 {
+        grid-template-columns: 1fr;
+      }
+
+      .plan-card {
+        padding: 22px 18px;
+      }
+
+      .roi-strip {
+        gap: 18px;
+        padding: 20px;
+      }
+
+      .roi-numbers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        gap: 12px;
+      }
+
+      .waitlist-section {
+        padding: 8px 0 32px;
+      }
+
+      .waitlist-card {
+        padding: 22px 18px 18px;
+        border-radius: 20px;
+      }
+
+      .waitlist-copy {
+        margin-bottom: 14px;
+        max-width: 18ch;
+        font-size: 1.1rem;
+        line-height: 1.42;
+      }
+
+      .waitlist-form {
+        grid-template-columns: 1fr;
+      }
+
+      .waitlist-btn {
+        width: 100%;
+      }
+
+      .footer-inner {
+        gap: 16px;
       }
     }
 
@@ -3353,7 +3459,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .pricing-grid--4 {
         grid-template-columns: 1fr;
       }
