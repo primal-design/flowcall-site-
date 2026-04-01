@@ -3582,9 +3582,9 @@
       </div>
 
       <div class="modal-cta-row">
-        <a class="modal-cta-call" id="olivia-call-btn" href="tel:+447455744560">
+        <button class="modal-cta-call" id="olivia-call-btn" type="button">
           📞 Call Olivia Live
-        </a>
+        </button>
         <a href="#pricing" class="modal-cta-pricing" onclick="closeAudioModal()">View pricing →</a>
       </div>
       <div id="olivia-call-status" style="text-align:center;margin-top:8px;font-size:13px;color:#888;display:none;"></div>
@@ -4767,76 +4767,59 @@
     import VapiModule from "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/+esm";
     const Vapi = VapiModule.default || VapiModule;
 
-    var vapiInstance = new Vapi("bb7b1dae-98cb-48ae-acbb-8e9bdfcce329");
-    var callActive = false;
+    const PUBLIC_KEY = "bb7b1dae-98cb-48ae-acbb-8e9bdfcce329";
+    const ASSISTANT_ID = "e21e2f5d-372a-4702-9e31-02fbf6b66817";
+    const PHONE = "+447455744560";
+
+    const vapi = new Vapi(PUBLIC_KEY);
+    let callActive = false;
+
+    const btn = document.getElementById("olivia-call-btn");
+    const status = document.getElementById("olivia-call-status");
 
     function isMobile() {
       return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
-    function handleCallClick() {
-      var btn = document.getElementById("olivia-call-btn");
-      var status = document.getElementById("olivia-call-status");
+    vapi.on("call-start", () => {
+      callActive = true;
+      btn.textContent = "🔴 End Call";
+      btn.disabled = false;
+      status.style.display = "block";
+      status.textContent = "Connected to Olivia — speak now";
+    });
 
-      // On mobile — open tel link in a tag (Safari compatible)
+    vapi.on("call-end", () => {
+      callActive = false;
+      btn.textContent = "📞 Call Olivia Live";
+      btn.disabled = false;
+      status.style.display = "none";
+    });
+
+    vapi.on("error", (e) => {
+      callActive = false;
+      btn.textContent = "📞 Call Olivia Live";
+      btn.disabled = false;
+      status.style.display = "block";
+      status.textContent = "Call failed — dial " + PHONE + " directly";
+      console.error("Vapi error:", e);
+    });
+
+    btn.addEventListener("click", () => {
       if (isMobile()) {
-        var a = document.createElement("a");
-        a.href = "tel:+447455744560";
-        a.click();
+        window.location.href = "tel:" + PHONE;
         return;
       }
-
-      // End call if active
       if (callActive) {
-        if (vapiInstance) vapiInstance.stop();
-        callActive = false;
-        btn.textContent = "📞 Call Olivia Live";
-        status.style.display = "none";
+        vapi.stop();
         return;
       }
-
       btn.textContent = "⏳ Connecting...";
       btn.disabled = true;
       status.style.display = "block";
-      status.textContent = "Allow microphone access when prompted";
-
-      vapiInstance.on("call-start", function () {
-        callActive = true;
-        btn.textContent = "🔴 End Call";
-        btn.disabled = false;
-        status.textContent = "Connected to Olivia — speak now";
-      });
-
-      vapiInstance.on("call-end", function () {
-        callActive = false;
-        btn.textContent = "📞 Call Olivia Live";
-        btn.disabled = false;
-        status.style.display = "none";
-      });
-
-      vapiInstance.on("error", function (e) {
-        callActive = false;
-        btn.textContent = "📞 Call Olivia Live";
-        btn.disabled = false;
-        status.style.display = "block";
-        status.textContent = "Something went wrong — dial +44 7455 744560 directly";
-        console.error("Vapi error:", e);
-      });
-
-      vapiInstance.start("e21e2f5d-372a-4702-9e31-02fbf6b66817");
-    }
-
-    window.startOliviaCall = handleCallClick;
-
-    // Attach click handler once DOM is ready
-    document.addEventListener("DOMContentLoaded", function () {
-      var btn = document.getElementById("olivia-call-btn");
-      if (btn) btn.addEventListener("click", handleCallClick);
+      status.textContent = "Allow microphone access when prompted...";
+      vapi.start(ASSISTANT_ID);
     });
-
-    // Fallback if DOM already loaded
-    var btn = document.getElementById("olivia-call-btn");
-    if (btn) btn.addEventListener("click", handleCallClick);
   </script>
 
   <!-- Privacy Policy Modal -->
