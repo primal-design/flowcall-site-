@@ -881,6 +881,7 @@
       border-radius: 999px;
       background: #b0b8c8;
       transition: background 0.06s;
+      will-change: height, opacity;
     }
 
     .wf-bar.played {
@@ -902,28 +903,6 @@
 
     .hero .wf-bar.current {
       background: #738cff;
-    }
-
-    .hero .audio-caption {
-      font-size: 13px;
-      color: #9ca3af;
-      margin-top: 8px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      line-height: 1.4;
-      max-width: none;
-      text-shadow: none;
-    }
-
-    .hero .audio-caption::before {
-      content: "";
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #d1d5db;
-      flex-shrink: 0;
     }
 
     .audio-card-mono {
@@ -965,6 +944,12 @@
 
     .audio-card-mono .wf-bar.current {
       background: #6b7280;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wf-bar {
+        opacity: 1;
+      }
     }
 
     .modal-backdrop {
@@ -3824,26 +3809,6 @@
             FlowCall answers instantly, qualifies the caller, and books<br>
             the job — while the lead is still on the phone.
           </p>
-          <div class="audio-card" id="fc-player" onclick="openAudioModal()" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Play a real call recording">
-            <div class="audio-top">
-              <button class="play-btn" type="button" tabindex="-1" aria-label="Play">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M4 2.5L13 8L4 13.5V2.5Z" fill="white"/>
-                </svg>
-              </button>
-              <div class="audio-mid">
-                <div class="audio-title">Real inbound call</div>
-                <div class="audio-badge">Real call · No script</div>
-              </div>
-              <div class="audio-right">
-                <div class="audio-time" id="fc-time">0:15</div>
-                <div class="audio-duration">15 sec</div>
-              </div>
-            </div>
-            <div class="waveform" id="fc-waveform" aria-hidden="true"></div>
-          </div>
-
-          <p class="audio-caption">Actual customer call. Booked in under 30 seconds.</p>
           <div class="fc-cta-group">
             <a class="fc-cta-primary" href="#call-live" onclick="startOliviaCall(); return false;">
               <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -4669,6 +4634,8 @@
       var lastFocused = null;
       var modalBars = [];
       var previewSets = [];
+      var previewRaf = null;
+      var reduceMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false;
 
       function formatTime(seconds) {
         var whole = Math.max(0, Math.floor(seconds));
@@ -4676,17 +4643,19 @@
       }
 
       function buildBars(container, heights, className) {
-        heights.forEach(function (height) {
+        heights.forEach(function (height, index) {
           var bar = document.createElement("div");
           bar.className = className;
           bar.style.height = height + "px";
+          if (className === "wf-bar") {
+            bar.dataset.baseHeight = String(height);
+          }
           container.appendChild(bar);
         });
         return Array.prototype.slice.call(container.querySelectorAll("." + className));
       }
 
       [
-        { waveformId: "fc-waveform", triggerId: "fc-player", timeId: "fc-time" },
         { waveformId: "hiw-waveform", triggerId: "hiw-audio-player", timeId: "hiw-audio-time" }
       ].forEach(function (config) {
         var waveform = document.getElementById(config.waveformId);
@@ -4708,8 +4677,28 @@
           preview.bars.forEach(function (bar) {
             bar.classList.remove("played");
             bar.classList.remove("current");
+            bar.style.opacity = "";
+            bar.style.height = (bar.dataset.baseHeight || 1) + "px";
           });
         });
+      }
+
+      function animatePreviewWave(time) {
+        if (reduceMotion) return;
+        var t = time * 0.003;
+        previewSets.forEach(function (preview, previewIndex) {
+          preview.bars.forEach(function (bar, index) {
+            var base = Number(bar.dataset.baseHeight || 1);
+            var waveA = Math.sin(t + (index * 0.34) + (previewIndex * 0.8));
+            var waveB = Math.sin((t * 1.7) - (index * 0.16) + (previewIndex * 0.45));
+            var activity = (waveA * 0.65) + (waveB * 0.35);
+            var intensity = 1 + ((Math.max(2, base) / 18) * 0.28);
+            var height = Math.max(1, Math.round(base + (activity * intensity)));
+            bar.style.height = height + "px";
+            bar.style.opacity = (0.68 + ((height / Math.max(base, 2)) * 0.12)).toFixed(2);
+          });
+        });
+        previewRaf = window.requestAnimationFrame(animatePreviewWave);
       }
 
       function renderModalWaveform() {
@@ -4823,6 +4812,9 @@
 
       renderPreview();
       updateModal();
+      if (!reduceMotion) {
+        previewRaf = window.requestAnimationFrame(animatePreviewWave);
+      }
     })();
   </script>
 
