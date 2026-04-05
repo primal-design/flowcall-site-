@@ -24,6 +24,10 @@
       --line-strong: rgba(17, 24, 39, 0.12);
       --blue: #3159f5;
       --blue-d: #2546cf;
+      --cta-bg: #111111;
+      --cta-bg-hover: #000000;
+      --cta-border: #111111;
+      --cta-shadow: 0 10px 24px rgba(17, 17, 17, 0.22);
       --green: #059669;
       --font-display: "Inter", system-ui, sans-serif;
       --font-body: "Inter", system-ui, sans-serif;
@@ -241,14 +245,14 @@
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, #5f74f6, #2f56f0);
-      border-color: #4764f3;
+      background: var(--cta-bg);
+      border-color: var(--cta-border);
       color: #fff;
-      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+      box-shadow: var(--cta-shadow);
     }
 
     .btn.primary:hover {
-      background: linear-gradient(135deg, #4764f3, #2649d6);
+      background: var(--cta-bg-hover);
       transform: translateY(-1px);
     }
 
@@ -364,22 +368,22 @@
       font-weight: 500;
       padding: 13px 28px;
       border-radius: 8px;
-      background: linear-gradient(135deg, #5f74f6, #2f56f0);
+      background: var(--cta-bg);
       color: #fff;
-      border: 1px solid #4764f3;
+      border: 1px solid var(--cta-border);
       transition: all .18s ease;
-      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+      box-shadow: var(--cta-shadow);
     }
 
     .nb-cta:hover {
-      background: linear-gradient(135deg, #4764f3, #2649d6);
-      border-color: #2649d6;
+      background: var(--cta-bg-hover);
+      border-color: var(--cta-bg-hover);
       transform: translateY(-1px);
     }
 
     .nb-cta.is-active {
-      background: linear-gradient(135deg, #4764f3, #2649d6);
-      border-color: #2649d6;
+      background: var(--cta-bg-hover);
+      border-color: var(--cta-bg-hover);
     }
 
     .hbg {
@@ -615,14 +619,14 @@
     }
 
     .hero-cta {
-      background: linear-gradient(135deg, #5f74f6, #2f56f0);
+      background: var(--cta-bg);
       color: #fff;
-      border-color: #4764f3;
-      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+      border-color: var(--cta-border);
+      box-shadow: var(--cta-shadow);
     }
 
     .hero-cta:hover {
-      background: linear-gradient(135deg, #4764f3, #2649d6);
+      background: var(--cta-bg-hover);
       transform: translateY(-1px);
     }
 
@@ -771,24 +775,24 @@
       align-items: center;
       gap: 9px;
       justify-content: center;
-      background: linear-gradient(135deg, #5f74f6, #2f56f0);
+      background: var(--cta-bg);
       color: #fff;
       font-family: "DM Sans", sans-serif;
       font-size: 1rem;
       font-weight: 500;
       padding: 13px 28px;
       border-radius: 8px;
-      border: 1px solid #4764f3;
+      border: 1px solid var(--cta-border);
       cursor: pointer;
       text-decoration: none;
       width: fit-content;
       transition: all 0.18s ease;
-      box-shadow: 0 10px 24px rgba(63, 88, 240, 0.26);
+      box-shadow: var(--cta-shadow);
     }
 
     .fc-cta-primary:hover {
-      background: linear-gradient(135deg, #4764f3, #2649d6);
-      border-color: #2649d6;
+      background: var(--cta-bg-hover);
+      border-color: var(--cta-bg-hover);
       transform: translateY(-1px);
     }
 
@@ -1188,7 +1192,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: #3b5bdb;
+      background: var(--cta-bg);
       color: #fff;
       font-size: 14px;
       font-weight: 500;
@@ -1201,7 +1205,7 @@
     }
 
     .modal-cta-call:hover {
-      background: #3451c7;
+      background: var(--cta-bg-hover);
     }
 
     .modal-cta-pricing {
@@ -2355,7 +2359,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #3b5bdb;
+      background: var(--cta-bg);
       color: #fff;
       font-size: 14px;
       font-weight: 500;
@@ -2365,12 +2369,12 @@
       cursor: pointer;
       text-decoration: none;
       font-family: "DM Sans", sans-serif;
-      box-shadow: 0 2px 8px rgba(59, 91, 219, 0.25);
+      box-shadow: 0 8px 18px rgba(17, 17, 17, 0.18);
       transition: background 0.15s ease, transform 0.1s ease;
     }
 
     .cost-section .calc-result-cta:hover {
-      background: #3451c7;
+      background: var(--cta-bg-hover);
     }
 
     .cost-section .calc-result-cta:active {
@@ -2858,25 +2862,26 @@
     }
 
     .plan-cta.solid {
-      background: #3b5bdb;
+      background: var(--cta-bg);
       color: #fff;
-      border: none;
-      box-shadow: 0 1px 3px rgba(59, 91, 219, 0.25);
+      border: 1px solid var(--cta-border);
+      box-shadow: 0 8px 18px rgba(17, 17, 17, 0.16);
     }
 
     .plan-cta.solid:hover {
-      background: #3451c7;
+      background: var(--cta-bg-hover);
     }
 
     .plan-cta.outline {
-      background: transparent;
-      color: #374151;
-      border: 1px solid #e5e7eb;
+      background: var(--cta-bg);
+      color: #fff;
+      border: 1px solid var(--cta-border);
+      box-shadow: 0 8px 18px rgba(17, 17, 17, 0.16);
     }
 
     .plan-cta.outline:hover {
-      border-color: #d1d5db;
-      background: #f9fafb;
+      border-color: var(--cta-bg-hover);
+      background: var(--cta-bg-hover);
     }
 
     .overage-block {
@@ -3190,17 +3195,17 @@
       padding: 0 24px;
       border: none;
       border-radius: 14px;
-      background: #3b5bdb;
+      background: var(--cta-bg);
       color: #fff;
       font-size: 15px;
       font-weight: 500;
       cursor: pointer;
       transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-      box-shadow: 0 8px 18px rgba(59, 91, 219, 0.18), 0 1px 3px rgba(59, 91, 219, 0.22);
+      box-shadow: 0 8px 18px rgba(17, 17, 17, 0.18), 0 1px 3px rgba(17, 17, 17, 0.22);
     }
 
     .waitlist-btn:hover {
-      background: #3451c7;
+      background: var(--cta-bg-hover);
     }
 
     .waitlist-btn:active {
@@ -5337,7 +5342,7 @@
       <div style="font-size:40px;margin-bottom:12px;">📞</div>
       <h2 style="font-size:22px;font-weight:700;margin:0 0 8px;">Call Olivia Live</h2>
       <p style="color:#666;font-size:15px;margin:0 0 24px;">Dial the number below and Olivia will answer. Free to call — under 30 seconds to see how it works.</p>
-      <a href="tel:+447455744560" style="display:block;background:#4f46e5;color:#fff;font-size:20px;font-weight:700;padding:16px 24px;border-radius:12px;text-decoration:none;margin-bottom:12px;letter-spacing:0.5px;">
+      <a href="tel:+447455744560" style="display:block;background:#111111;color:#fff;font-size:20px;font-weight:700;padding:16px 24px;border-radius:12px;text-decoration:none;margin-bottom:12px;letter-spacing:0.5px;">
         +44 7455 744560
       </a>
       <p style="color:#aaa;font-size:12px;margin:0;">Tap to dial on mobile · Dial manually on desktop</p>
