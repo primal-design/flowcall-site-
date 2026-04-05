@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --page: #faf8f3;
-      --page-2: #fffdf8;
+      --page: #ffffff;
+      --page-2: #ffffff;
       --surface: #ffffff;
       --surface-soft: rgba(255, 255, 255, 0.84);
       --ink: #171b27;
@@ -102,10 +102,7 @@
       position: relative;
       font-family: var(--font-body);
       color: var(--ink);
-      background:
-        radial-gradient(960px 520px at 8% 4%, rgba(97, 131, 255, 0.08), transparent 62%),
-        radial-gradient(860px 540px at 96% 6%, rgba(255, 182, 112, 0.10), transparent 64%),
-        var(--page);
+      background: #fff;
       line-height: var(--lh-base);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -449,53 +446,12 @@
       width: 100%;
     }
 
-    .page-ribbon-wrap {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      height: var(--page-ribbon-height, 1800px);
-      pointer-events: none;
-      z-index: 0;
-      display: flex;
-      justify-content: center;
-      opacity: 0.42;
-      filter: blur(5px) saturate(0.86) brightness(1.12);
-    }
-
-    .page-ribbon-fade {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      height: var(--page-ribbon-height, 1800px);
-      pointer-events: none;
-      z-index: 0;
-      background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06) 12%, rgba(255, 255, 255, 0.06) 88%, rgba(255, 255, 255, 0.42)),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06) 12%, rgba(255, 255, 255, 0.06) 88%, rgba(255, 255, 255, 0.26));
-    }
-
-    #page-ribbon-canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    @media (min-width: 981px) {
-      #page-ribbon-canvas {
-        max-width: 1600px;
-      }
-    }
-
     .hero {
       padding-top: 150px;
       position: relative;
       overflow: hidden;
       z-index: 1;
-      background:
-        radial-gradient(900px 460px at 12% 4%, rgba(49, 89, 245, 0.08), transparent 65%),
-        radial-gradient(720px 420px at 92% 14%, rgba(232, 196, 160, 0.12), transparent 70%);
+      background: #fff;
     }
 
     .hero-grid {
@@ -540,19 +496,7 @@
     }
 
     .hero-copy::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 4rem;
-      width: min(44rem, 96%);
-      height: 24rem;
-      transform: translateX(-50%);
-      border-radius: 999px;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.07) 34%, rgba(248, 248, 246, 0.04) 58%, transparent 78%);
-      filter: blur(5rem);
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: -1;
+      content: none;
     }
 
     h1 {
@@ -2784,7 +2728,7 @@
     }
 
     .plan-result-box {
-      background: linear-gradient(180deg, rgba(248,247,244,0.92), rgba(245,243,239,0.88));
+      background: #fff;
       border-radius: 10px;
       padding: 12px 14px;
       margin-bottom: 20px;
@@ -2887,9 +2831,7 @@
     .overage-block {
       margin-top: 32px;
       padding: 24px 28px;
-      background:
-        linear-gradient(180deg, rgba(248,247,244,0.92), rgba(245,243,239,0.88)),
-        #f9f8f6;
+      background: #fff;
       border-radius: 16px;
       border: 1px solid rgba(237, 238, 242, 0.9);
       box-shadow: 0 14px 30px rgba(15, 23, 42, 0.035);
@@ -2950,9 +2892,7 @@
       justify-content: space-between;
       gap: 24px;
       flex-wrap: wrap;
-      background:
-        linear-gradient(180deg, rgba(248,247,244,0.94), rgba(245,243,239,0.9)),
-        #f9f8f6;
+      background: #fff;
       border: 1px solid rgba(237, 238, 242, 0.9);
       border-radius: 16px;
       padding: 24px 28px;
@@ -3129,20 +3069,12 @@
       padding: 30px 30px 24px;
       border-radius: 24px;
       border: 1px solid #dfe4ee;
-      background:
-        radial-gradient(220px 160px at -4% -12%, rgba(173, 139, 255, 0.24), transparent 70%),
-        radial-gradient(240px 160px at 14% 0%, rgba(255, 184, 120, 0.12), transparent 72%),
-        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96)),
-        #fff;
+      background: #fff;
       box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06);
     }
 
     .waitlist-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0));
+      content: none;
     }
 
     .waitlist-copy {
@@ -3800,11 +3732,6 @@
     </div>
   </div>
 
-  <div class="page-ribbon-wrap" id="page-ribbon-wrap" aria-hidden="true">
-    <canvas id="page-ribbon-canvas"></canvas>
-  </div>
-  <div class="page-ribbon-fade" id="page-ribbon-fade" aria-hidden="true"></div>
-
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -4384,7 +4311,7 @@
   </section>
 
   <!-- ── Trust Badges ── -->
-  <section style="padding: 2rem 0; background: #faf8f3; border-top: 1px solid rgba(17,24,39,0.06); border-bottom: 1px solid rgba(17,24,39,0.06);">
+  <section style="padding: 2rem 0; background: #fff; border-top: 1px solid rgba(17,24,39,0.06); border-bottom: 1px solid rgba(17,24,39,0.06);">
     <div class="container" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
       <span style="display:inline-flex;align-items:center;gap:0.4rem;background:#fff;border:1px solid rgba(17,24,39,0.1);border-radius:99px;padding:0.5rem 1.1rem;font-size:0.85rem;font-weight:600;color:#0f172a;">✅ No contract</span>
       <span style="display:inline-flex;align-items:center;gap:0.4rem;background:#fff;border:1px solid rgba(17,24,39,0.1);border-radius:99px;padding:0.5rem 1.1rem;font-size:0.85rem;font-weight:600;color:#0f172a;">✅ Cancel anytime</span>
@@ -5122,198 +5049,6 @@
 
       var mcInput = document.getElementById("mc-input");
       window.highlightPlan(mcInput ? Number(mcInput.value) || 3 : 3);
-    })();
-  </script>
-
-  <script>
-    (function () {
-      var canvas = document.getElementById('page-ribbon-canvas');
-      var wrap = document.getElementById('page-ribbon-wrap');
-      var fade = document.getElementById('page-ribbon-fade');
-      if (!canvas || !wrap) return;
-      var ctx = canvas.getContext('2d');
-      var W, H, raf, t = 0;
-      var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
-
-      function surfaceX(y, depth, time) {
-        var ny = y / H;
-        var mobile = W < 560;
-        var tablet = W < 900;
-        var startX = W * (mobile ? 0.18 : 0.16);
-        var endX = W * (mobile ? 0.78 : 0.84);
-        var diagonal = startX + (endX - startX) * ny;
-        var sway1 = Math.sin((ny * Math.PI * 1.18) - time * 0.72 + depth * 0.9);
-        var sway2 = Math.sin((ny * Math.PI * 3.4) + time * 0.95 + depth * 1.5) * 0.32;
-        var sway3 = Math.sin((ny * Math.PI * 6.3) - time * 1.18 + depth * 0.35) * 0.12;
-        var sway4 = Math.sin((ny * Math.PI * 0.55) - time * 0.32 + depth * 1.1) * 0.20;
-        var ampScale = mobile ? 0.10 : (tablet ? 0.135 : 0.17);
-        var amp = W * (ampScale - depth * 0.035);
-        return diagonal + (sway1 + sway2 + sway3 + sway4) * amp;
-      }
-
-      function buildLine(depth, time, steps) {
-        var pts = [];
-        for (var i = 0; i <= steps; i++) {
-          var y = (i / steps) * H;
-          pts.push({ x: surfaceX(y, depth, time), y: y });
-        }
-        return pts;
-      }
-
-      function drawStrip(ptsA, ptsB, colorTop, colorBot) {
-        ctx.beginPath();
-        ctx.moveTo(ptsA[0].x, ptsA[0].y);
-        for (var i = 1; i < ptsA.length; i++) ctx.lineTo(ptsA[i].x, ptsA[i].y);
-        for (var j = ptsB.length - 1; j >= 0; j--) ctx.lineTo(ptsB[j].x, ptsB[j].y);
-        ctx.closePath();
-        var minY = Math.min(ptsA[0].y, ptsB[0].y);
-        var maxY = Math.max(ptsA[ptsA.length - 1].y, ptsB[ptsB.length - 1].y);
-        var grad = ctx.createLinearGradient(0, minY - 20, 0, maxY + 20);
-        grad.addColorStop(0, colorTop);
-        grad.addColorStop(1, colorBot);
-        ctx.fillStyle = grad;
-        ctx.fill();
-      }
-
-      function drawLine(pts, alpha, lw) {
-        ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
-        for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
-        ctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
-        ctx.lineWidth = lw;
-        ctx.stroke();
-      }
-
-      function tick() {
-        if (!W || !H) { raf = requestAnimationFrame(tick); return; }
-        t++;
-        ctx.clearRect(0, 0, W, H);
-
-        var mobile = W < 560;
-        var tablet = W < 900;
-        var SLICES = mobile ? 18 : (tablet ? 26 : 34);
-        var FLOWLINES = mobile ? 12 : (tablet ? 18 : 24);
-        var STEPS = mobile ? 140 : 220;
-        var time = t * 0.0016;
-        var sliceLines = [];
-        for (var s = 0; s <= SLICES; s++) sliceLines.push(buildLine(s / SLICES, time, STEPS));
-
-        for (var k = 0; k < SLICES; k++) {
-          var mid = ((k / SLICES) + ((k + 1) / SLICES)) * 0.5;
-          var p = mid;
-          var r0 = Math.round(255 - p * 100);
-          var g0 = Math.round(160 - p * 100);
-          var b0 = Math.round(60 + p * 195);
-          var edgeDist = Math.abs(mid - 0.5) * 2;
-          var a0 = 0.28 + edgeDist * edgeDist * 0.34;
-          drawStrip(
-            sliceLines[k],
-            sliceLines[k + 1],
-            'rgba(' + r0 + ',' + g0 + ',' + b0 + ',' + a0 + ')',
-            'rgba(' + Math.max(0, r0 - 8) + ',' + Math.max(0, g0 - 8) + ',' + Math.min(255, b0 + 6) + ',' + a0 + ')'
-          );
-        }
-
-        ctx.save();
-        ctx.lineJoin = 'round';
-        ctx.lineCap = 'round';
-        for (var f = 0; f < FLOWLINES; f++) {
-          var d = f / (FLOWLINES - 1);
-          var alpha = Math.max(0, 0.18 - d * 0.13);
-          if (alpha > 0.01) drawLine(buildLine(d, time, STEPS), alpha, 0.5);
-        }
-        drawLine(buildLine(0, time, STEPS), 0.48, 1.1);
-        drawLine(buildLine(0.04, time, STEPS), 0.26, 0.75);
-        drawLine(buildLine(0.96, time, STEPS), 0.3, 0.82);
-        ctx.restore();
-
-        ctx.save();
-        var bg = 'rgba(255,255,255,';
-        var sideFade = W < 560 ? 0.18 : 0.12;
-        var sideWidth = W * sideFade;
-
-        var gl = ctx.createLinearGradient(0, 0, sideWidth, 0);
-        gl.addColorStop(0, bg + '1)');
-        gl.addColorStop(1, bg + '0)');
-        ctx.fillStyle = gl;
-        ctx.fillRect(0, 0, sideWidth, H);
-
-        var gr = ctx.createLinearGradient(W, 0, W - sideWidth, 0);
-        gr.addColorStop(0, bg + '1)');
-        gr.addColorStop(1, bg + '0)');
-        ctx.fillStyle = gr;
-        ctx.fillRect(W - sideWidth, 0, sideWidth, H);
-
-        var topFade = 0.18;
-        var gt = ctx.createLinearGradient(0, 0, 0, H * topFade);
-        gt.addColorStop(0, bg + '1)');
-        gt.addColorStop(1, bg + '0)');
-        ctx.fillStyle = gt;
-        ctx.fillRect(0, 0, W, H * topFade);
-
-        var gb = ctx.createLinearGradient(0, H, 0, H * 0.84);
-        gb.addColorStop(0, bg + '1)');
-        gb.addColorStop(1, bg + '0)');
-        ctx.fillStyle = gb;
-        ctx.fillRect(0, H * 0.84, W, H * 0.16);
-        ctx.restore();
-
-        raf = requestAnimationFrame(tick);
-      }
-
-      function safeResize() {
-        var rect = wrap.getBoundingClientRect();
-        var docHeight = Math.max(
-          document.documentElement.scrollHeight,
-          document.body.scrollHeight,
-          document.documentElement.offsetHeight,
-          document.body.offsetHeight
-        );
-        var topOffset = 60;
-        if (rect.width === 0 || docHeight === 0) {
-          requestAnimationFrame(safeResize);
-          return;
-        }
-        W = rect.width;
-        H = Math.max(900, docHeight - topOffset);
-        document.documentElement.style.setProperty('--page-ribbon-height', H + 'px');
-        wrap.style.height = H + 'px';
-        if (fade) fade.style.height = H + 'px';
-        canvas.width = W * dpr;
-        canvas.height = H * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-
-      function startLoop() {
-        cancelAnimationFrame(raf);
-        safeResize();
-        tick();
-      }
-
-      if (document.readyState === 'complete') startLoop();
-      else window.addEventListener('load', startLoop);
-
-      var resizeTimer;
-      window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-          cancelAnimationFrame(raf);
-          safeResize();
-          tick();
-        }, 100);
-      });
-
-      window.addEventListener('orientationchange', function () {
-        setTimeout(function () {
-          cancelAnimationFrame(raf);
-          safeResize();
-          tick();
-        }, 300);
-      });
-
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) { cancelAnimationFrame(raf); tick(); }
-      });
     })();
   </script>
 
