@@ -95,6 +95,7 @@
       scroll-behavior: smooth;
     }
     body {
+      position: relative;
       font-family: var(--font-body);
       color: var(--ink);
       background:
@@ -102,6 +103,7 @@
         radial-gradient(860px 540px at 96% 6%, rgba(255, 182, 112, 0.10), transparent 64%),
         var(--page);
       line-height: var(--lh-base);
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
@@ -443,48 +445,53 @@
       width: 100%;
     }
 
-    .hero {
-      padding-top: 150px;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(900px 460px at 12% 4%, rgba(49, 89, 245, 0.1), transparent 65%),
-        radial-gradient(720px 420px at 92% 14%, rgba(232, 196, 160, 0.16), transparent 70%),
-        #fff;
-    }
-
-    .hero-ribbon-fade {
+    .page-ribbon-wrap {
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(44rem 24rem at 18% 34%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.82) 36%, rgba(255, 255, 255, 0.18) 64%, transparent 82%),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 34%);
-    }
-
-    .hero-canvas-wrap {
-      position: absolute;
-      inset: 0;
+      top: 60px;
+      left: 0;
+      right: 0;
+      height: var(--page-ribbon-height, 1800px);
       pointer-events: none;
       z-index: 0;
       display: flex;
       justify-content: center;
-      opacity: 0.56;
-      transform: translateY(12%);
-      filter: blur(4px) saturate(0.82) brightness(1.2);
+      opacity: 0.42;
+      filter: blur(5px) saturate(0.86) brightness(1.12);
     }
 
-    #hero-canvas {
+    .page-ribbon-fade {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      height: var(--page-ribbon-height, 1800px);
+      pointer-events: none;
+      z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06) 12%, rgba(255, 255, 255, 0.06) 88%, rgba(255, 255, 255, 0.42)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06) 12%, rgba(255, 255, 255, 0.06) 88%, rgba(255, 255, 255, 0.26));
+    }
+
+    #page-ribbon-canvas {
       width: 100%;
       height: 100%;
       display: block;
     }
 
     @media (min-width: 981px) {
-      #hero-canvas {
+      #page-ribbon-canvas {
         max-width: 1600px;
       }
+    }
+
+    .hero {
+      padding-top: 150px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      background:
+        radial-gradient(900px 460px at 12% 4%, rgba(49, 89, 245, 0.08), transparent 65%),
+        radial-gradient(720px 420px at 92% 14%, rgba(232, 196, 160, 0.12), transparent 70%);
     }
 
     .hero-grid {
@@ -2395,18 +2402,16 @@
     .waitlist-section {
       position: relative;
       isolation: isolate;
-      overflow: clip;
+      overflow: visible;
+      background: transparent;
+      border-top: 1px solid rgba(17, 24, 39, 0.08);
     }
 
     .hiw-section::before,
     .cost-section::before,
     .pricing-section::before,
     .waitlist-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+      content: none;
     }
 
     .hiw-section .section-wrap,
@@ -2416,20 +2421,6 @@
     .site-footer .container {
       position: relative;
       z-index: 1;
-    }
-
-    .hiw-section {
-      background:
-        radial-gradient(42rem 20rem at 8% 4%, rgba(151, 119, 255, 0.09), transparent 68%),
-        radial-gradient(34rem 18rem at 88% 16%, rgba(255, 185, 124, 0.1), transparent 70%),
-        linear-gradient(180deg, rgba(255,255,255,0.96), #fafaf9 42%, #f8f7f5 100%);
-      border-top: 1px solid #f3f4f6;
-    }
-
-    .hiw-section::before {
-      background:
-        radial-gradient(26rem 14rem at 78% 72%, rgba(108, 136, 255, 0.06), transparent 72%),
-        radial-gradient(18rem 12rem at 20% 86%, rgba(224, 196, 255, 0.08), transparent 78%);
     }
 
     .hiw-section .section-wrap {
@@ -2614,34 +2605,6 @@
       .hiw-grid {
         grid-template-columns: 1fr;
       }
-    }
-
-    .cost-section {
-      background:
-        radial-gradient(34rem 18rem at 100% 10%, rgba(255, 183, 120, 0.09), transparent 72%),
-        radial-gradient(36rem 18rem at 4% 18%, rgba(140, 159, 255, 0.08), transparent 72%),
-        linear-gradient(180deg, rgba(255,255,255,0.94), #fbfaf8 58%, #f9f8f6 100%);
-      border-top: 1px solid #f3f4f6;
-    }
-
-    .cost-section::before {
-      background:
-        radial-gradient(24rem 14rem at 84% 76%, rgba(196, 169, 255, 0.08), transparent 74%),
-        radial-gradient(20rem 14rem at 12% 92%, rgba(255, 201, 153, 0.06), transparent 76%);
-    }
-
-    .pricing-section {
-      background:
-        radial-gradient(40rem 20rem at 10% 0%, rgba(255, 182, 112, 0.09), transparent 72%),
-        radial-gradient(36rem 20rem at 90% 8%, rgba(158, 129, 255, 0.09), transparent 72%),
-        linear-gradient(180deg, rgba(255,255,255,0.96), #fbfaf8 54%, #f7f5f1 100%);
-      border-top: 1px solid #f3f4f6;
-    }
-
-    .pricing-section::before {
-      background:
-        radial-gradient(26rem 14rem at 78% 70%, rgba(107, 132, 255, 0.08), transparent 75%),
-        radial-gradient(22rem 12rem at 18% 78%, rgba(227, 201, 255, 0.07), transparent 78%);
     }
 
     .pricing-section .section-wrap {
@@ -3151,15 +3114,6 @@
 
     .waitlist-section {
       padding: 12px 0 48px;
-      background:
-        radial-gradient(36rem 18rem at 8% -12%, rgba(171, 140, 255, 0.1), transparent 72%),
-        radial-gradient(38rem 18rem at 92% 14%, rgba(255, 186, 126, 0.08), transparent 76%),
-        transparent;
-    }
-
-    .waitlist-section::before {
-      background:
-        radial-gradient(20rem 12rem at 82% 72%, rgba(106, 132, 255, 0.06), transparent 78%);
     }
 
     .waitlist-card {
@@ -3254,11 +3208,11 @@
     }
 
     .site-footer {
+      position: relative;
+      z-index: 1;
       padding: 28px 0 36px;
       border-top: 1px solid rgba(17, 24, 39, 0.08);
-      background:
-        radial-gradient(30rem 18rem at 16% 100%, rgba(170, 139, 255, 0.06), transparent 78%),
-        linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.32));
+      background: transparent;
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -3841,11 +3795,12 @@
     </div>
   </div>
 
+  <div class="page-ribbon-wrap" id="page-ribbon-wrap" aria-hidden="true">
+    <canvas id="page-ribbon-canvas"></canvas>
+  </div>
+  <div class="page-ribbon-fade" id="page-ribbon-fade" aria-hidden="true"></div>
+
   <section class="hero" id="top">
-    <div class="hero-canvas-wrap" id="hero-canvas-wrap" aria-hidden="true">
-      <canvas id="hero-canvas"></canvas>
-    </div>
-    <div class="hero-ribbon-fade" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <div class="fc-hero">
@@ -5167,43 +5122,35 @@
 
   <script>
     (function () {
-      var canvas = document.getElementById('hero-canvas');
-      if (!canvas) return;
+      var canvas = document.getElementById('page-ribbon-canvas');
+      var wrap = document.getElementById('page-ribbon-wrap');
+      var fade = document.getElementById('page-ribbon-fade');
+      if (!canvas || !wrap) return;
       var ctx = canvas.getContext('2d');
       var W, H, raf, t = 0;
-      var dpr = window.devicePixelRatio || 1;
-      var mx = 0.5, my = 0.5;
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
 
-      function surfaceY(x, depth, time) {
-        var nx = x / W;
-        var mxOff = (mx - 0.5) * 0.55;
-        var myMod = (my - 0.5) * 0.18;
-        var breathe = 1.0 + Math.sin(time * 0.38) * 0.22;
-        var twistRate = 1.1 + Math.sin(time * 0.27) * 0.45;
-        var freq1 = 1.2 + Math.sin(time * 0.19) * 0.18;
-        var phase1 = time + depth * twistRate;
-        var w1 = Math.sin((nx + mxOff) * Math.PI * freq1 * 2 - phase1);
-        var w2 = Math.sin((nx + mxOff) * Math.PI * 2.8 + time * 0.95 + depth * 0.6) * 0.32;
-        var w3 = Math.sin((nx + mxOff) * Math.PI * 4.2 - time * 1.1 + depth * 1.4) * 0.14;
-        var w4 = Math.sin((nx + mxOff) * Math.PI * 0.7 - time * 0.55 + depth * 0.8) * 0.20;
-        var w5 = Math.sin((nx + mxOff) * Math.PI * 7.0 - time * 1.8 + depth * 0.25) * 0.05;
-        var wave = (w1 + w2 + w3 + w4 + w5) * breathe;
+      function surfaceX(y, depth, time) {
+        var ny = y / H;
         var mobile = W < 560;
-        var tablet = W < 820;
-        var ampScale = mobile ? 0.60 : (tablet ? 0.80 : 1);
-        var amp = H * (0.14 + depth * 0.10) * ampScale;
-        var centreOffset = mobile ? 0.80 : (tablet ? 0.72 : 0.58);
-        var centreY = H * (centreOffset + myMod * 0.3 + depth * (mobile ? 0.10 : 0.14));
-        var edgeFade = Math.sin(nx * Math.PI);
-        edgeFade = Math.pow(edgeFade, 0.08);
-        return centreY + wave * amp * edgeFade;
+        var tablet = W < 900;
+        var startX = W * (mobile ? 0.18 : 0.16);
+        var endX = W * (mobile ? 0.78 : 0.84);
+        var diagonal = startX + (endX - startX) * ny;
+        var sway1 = Math.sin((ny * Math.PI * 1.18) - time * 0.72 + depth * 0.9);
+        var sway2 = Math.sin((ny * Math.PI * 3.4) + time * 0.95 + depth * 1.5) * 0.32;
+        var sway3 = Math.sin((ny * Math.PI * 6.3) - time * 1.18 + depth * 0.35) * 0.12;
+        var sway4 = Math.sin((ny * Math.PI * 0.55) - time * 0.32 + depth * 1.1) * 0.20;
+        var ampScale = mobile ? 0.10 : (tablet ? 0.135 : 0.17);
+        var amp = W * (ampScale - depth * 0.035);
+        return diagonal + (sway1 + sway2 + sway3 + sway4) * amp;
       }
 
       function buildLine(depth, time, steps) {
         var pts = [];
         for (var i = 0; i <= steps; i++) {
-          var x = (i / steps) * W;
-          pts.push({ x: x, y: surfaceY(x, depth, time) });
+          var y = (i / steps) * H;
+          pts.push({ x: surfaceX(y, depth, time), y: y });
         }
         return pts;
       }
@@ -5238,10 +5185,11 @@
         ctx.clearRect(0, 0, W, H);
 
         var mobile = W < 560;
-        var SLICES = mobile ? 24 : 48;
-        var FLOWLINES = mobile ? 18 : 36;
-        var STEPS = mobile ? 80 : 160;
-        var time = t * 0.0024;
+        var tablet = W < 900;
+        var SLICES = mobile ? 18 : (tablet ? 26 : 34);
+        var FLOWLINES = mobile ? 12 : (tablet ? 18 : 24);
+        var STEPS = mobile ? 140 : 220;
+        var time = t * 0.0016;
         var sliceLines = [];
         for (var s = 0; s <= SLICES; s++) sliceLines.push(buildLine(s / SLICES, time, STEPS));
 
@@ -5252,7 +5200,7 @@
           var g0 = Math.round(160 - p * 100);
           var b0 = Math.round(60 + p * 195);
           var edgeDist = Math.abs(mid - 0.5) * 2;
-          var a0 = 0.45 + edgeDist * edgeDist * 0.55;
+          var a0 = 0.28 + edgeDist * edgeDist * 0.34;
           drawStrip(
             sliceLines[k],
             sliceLines[k + 1],
@@ -5266,17 +5214,17 @@
         ctx.lineCap = 'round';
         for (var f = 0; f < FLOWLINES; f++) {
           var d = f / (FLOWLINES - 1);
-          var alpha = Math.max(0, 0.22 - d * 0.16);
-          if (alpha > 0.01) drawLine(buildLine(d, time, STEPS), alpha, 0.55);
+          var alpha = Math.max(0, 0.18 - d * 0.13);
+          if (alpha > 0.01) drawLine(buildLine(d, time, STEPS), alpha, 0.5);
         }
-        drawLine(buildLine(0, time, STEPS), 0.65, 1.4);
-        drawLine(buildLine(0.04, time, STEPS), 0.32, 0.9);
-        drawLine(buildLine(0.96, time, STEPS), 0.42, 1.0);
+        drawLine(buildLine(0, time, STEPS), 0.48, 1.1);
+        drawLine(buildLine(0.04, time, STEPS), 0.26, 0.75);
+        drawLine(buildLine(0.96, time, STEPS), 0.3, 0.82);
         ctx.restore();
 
         ctx.save();
         var bg = 'rgba(255,255,255,';
-        var sideFade = W < 560 ? 0.16 : 0.11;
+        var sideFade = W < 560 ? 0.18 : 0.12;
         var sideWidth = W * sideFade;
 
         var gl = ctx.createLinearGradient(0, 0, sideWidth, 0);
@@ -5291,31 +5239,41 @@
         ctx.fillStyle = gr;
         ctx.fillRect(W - sideWidth, 0, sideWidth, H);
 
-        var topFade = W < 560 ? 0.68 : (W < 820 ? 0.62 : 0.52);
+        var topFade = 0.18;
         var gt = ctx.createLinearGradient(0, 0, 0, H * topFade);
         gt.addColorStop(0, bg + '1)');
         gt.addColorStop(1, bg + '0)');
         ctx.fillStyle = gt;
         ctx.fillRect(0, 0, W, H * topFade);
 
-        var gb = ctx.createLinearGradient(0, H, 0, H * 0.86);
+        var gb = ctx.createLinearGradient(0, H, 0, H * 0.84);
         gb.addColorStop(0, bg + '1)');
         gb.addColorStop(1, bg + '0)');
         ctx.fillStyle = gb;
-        ctx.fillRect(0, H * 0.86, W, H * 0.14);
+        ctx.fillRect(0, H * 0.84, W, H * 0.16);
         ctx.restore();
 
         raf = requestAnimationFrame(tick);
       }
 
       function safeResize() {
-        var rect = canvas.getBoundingClientRect();
-        if (rect.width === 0 || rect.height === 0) {
+        var rect = wrap.getBoundingClientRect();
+        var docHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.body.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.body.offsetHeight
+        );
+        var topOffset = 60;
+        if (rect.width === 0 || docHeight === 0) {
           requestAnimationFrame(safeResize);
           return;
         }
         W = rect.width;
-        H = rect.height;
+        H = Math.max(900, docHeight - topOffset);
+        document.documentElement.style.setProperty('--page-ribbon-height', H + 'px');
+        wrap.style.height = H + 'px';
+        if (fade) fade.style.height = H + 'px';
         canvas.width = W * dpr;
         canvas.height = H * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
