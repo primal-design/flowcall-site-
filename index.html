@@ -926,6 +926,47 @@
       flex-shrink: 0;
     }
 
+    .audio-card-mono {
+      max-width: 460px;
+      border-color: #d6dbe3;
+      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+    }
+
+    .audio-card-mono:hover {
+      border-color: #111111;
+      box-shadow: 0 14px 30px rgba(17, 24, 39, 0.1);
+    }
+
+    .audio-card-mono:focus-visible {
+      border-color: #111111;
+      box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08), 0 14px 30px rgba(17, 24, 39, 0.1);
+    }
+
+    .audio-card-mono .play-btn {
+      background: #111111;
+      box-shadow: 0 4px 12px rgba(17, 17, 17, 0.22);
+    }
+
+    .audio-card-mono .play-btn:hover {
+      background: #000000;
+    }
+
+    .audio-card-mono .audio-badge {
+      color: #7b8493;
+    }
+
+    .audio-card-mono .wf-bar {
+      background: #d4d8de;
+    }
+
+    .audio-card-mono .wf-bar.played {
+      background: #111111;
+    }
+
+    .audio-card-mono .wf-bar.current {
+      background: #6b7280;
+    }
+
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -2464,6 +2505,33 @@
       gap: 16px;
     }
 
+    .hiw-audio-proof {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hiw-audio-caption {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .hiw-audio-caption::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #d1d5db;
+      flex-shrink: 0;
+    }
+
     .hiw-card {
       background:
         linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92)),
@@ -2552,6 +2620,14 @@
 
       .hiw-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hiw-audio-proof {
+        align-items: stretch;
+      }
+
+      .hiw-audio-proof .audio-card-mono {
+        max-width: none;
       }
     }
 
@@ -3978,6 +4054,28 @@
           </div>
         </div>
       </div>
+
+      <div class="hiw-audio-proof">
+        <div class="audio-card audio-card-mono" id="hiw-audio-player" onclick="openAudioModal()" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Play a real inbound call recording">
+          <div class="audio-top">
+            <button class="play-btn" type="button" tabindex="-1" aria-label="Play">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 2.5L13 8L4 13.5V2.5Z" fill="white"/>
+              </svg>
+            </button>
+            <div class="audio-mid">
+              <div class="audio-title">Real inbound call</div>
+              <div class="audio-badge">Real call · No script</div>
+            </div>
+            <div class="audio-right">
+              <div class="audio-time" id="hiw-audio-time">0:15</div>
+              <div class="audio-duration">15 sec</div>
+            </div>
+          </div>
+          <div class="waveform" id="hiw-waveform" aria-hidden="true"></div>
+        </div>
+        <p class="hiw-audio-caption">Actual customer call. Booked in under 30 seconds.</p>
+      </div>
     </div>
   </section>
 
@@ -4543,9 +4641,6 @@
 
   <script>
     (function () {
-      var previewWaveform = document.getElementById("fc-waveform");
-      var trigger = document.getElementById("fc-player");
-      var previewTime = document.getElementById("fc-time");
       var backdrop = document.getElementById("audio-modal");
       var modalWaveform = document.getElementById("modal-wf");
       var modalPlay = document.getElementById("modal-play-btn");
@@ -4554,7 +4649,7 @@
       var modalElapsed = document.getElementById("modal-elapsed");
       var modalDuration = document.getElementById("modal-duration");
       var transcriptLines = Array.prototype.slice.call(document.querySelectorAll(".tr-line"));
-      if (!previewWaveform || !trigger || !previewTime || !backdrop || !modalWaveform || !modalPlay || !modalPlaySvg || !modalPauseSvg || !modalElapsed || !modalDuration || !transcriptLines.length) return;
+      if (!backdrop || !modalWaveform || !modalPlay || !modalPlaySvg || !modalPauseSvg || !modalElapsed || !modalDuration || !transcriptLines.length) return;
 
       var PREVIEW_BARS = [
         1, 1, 1, 1, 2, 2, 1, 1, 1, 1,
@@ -4572,8 +4667,8 @@
       var isPlaying = false;
       var interval = null;
       var lastFocused = null;
-      var previewBars = [];
       var modalBars = [];
+      var previewSets = [];
 
       function formatTime(seconds) {
         var whole = Math.max(0, Math.floor(seconds));
@@ -4590,14 +4685,30 @@
         return Array.prototype.slice.call(container.querySelectorAll("." + className));
       }
 
-      previewBars = buildBars(previewWaveform, PREVIEW_BARS, "wf-bar");
+      [
+        { waveformId: "fc-waveform", triggerId: "fc-player", timeId: "fc-time" },
+        { waveformId: "hiw-waveform", triggerId: "hiw-audio-player", timeId: "hiw-audio-time" }
+      ].forEach(function (config) {
+        var waveform = document.getElementById(config.waveformId);
+        var trigger = document.getElementById(config.triggerId);
+        var time = document.getElementById(config.timeId);
+        if (!waveform || !trigger || !time) return;
+        previewSets.push({
+          trigger: trigger,
+          time: time,
+          bars: buildBars(waveform, PREVIEW_BARS, "wf-bar")
+        });
+      });
+
       modalBars = buildBars(modalWaveform, MODAL_BARS, "modal-wf-bar");
 
       function renderPreview() {
-        previewTime.textContent = "0:15";
-        previewBars.forEach(function (bar) {
-          bar.classList.remove("played");
-          bar.classList.remove("current");
+        previewSets.forEach(function (preview) {
+          preview.time.textContent = "0:15";
+          preview.bars.forEach(function (bar) {
+            bar.classList.remove("played");
+            bar.classList.remove("current");
+          });
         });
       }
 
@@ -4695,11 +4806,13 @@
         }
       };
 
-      trigger.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          window.openAudioModal();
-        }
+      previewSets.forEach(function (preview) {
+        preview.trigger.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            window.openAudioModal();
+          }
+        });
       });
 
       document.addEventListener("keydown", function (event) {
